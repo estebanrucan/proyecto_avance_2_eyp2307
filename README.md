@@ -44,6 +44,13 @@ de dicho modelo se cumplen.
 - Abrir proyecto.
 - Exploratorio.r
 - Mi parte.Rmd
+- Paleta de colores:
+  * "dodgerblue1"
+  * "deepskyblue3"
+  * "deepskyblue4"
+  * "darkorange"
+- Tidyverse -> ggplot
 - Github.
+
 
 
