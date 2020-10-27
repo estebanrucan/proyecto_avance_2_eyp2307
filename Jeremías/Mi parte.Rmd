@@ -1,0 +1,122 @@
+---
+output: 
+    beamer_presentation:
+        theme: "Antibes"
+        colortheme: "orchid"
+        includes:
+            in_header: mystyles.sty
+        latex_engine: xelatex
+        keep_tex: yes
+        df_print: kable
+        slide_level: 2
+fontsize: 11pt
+author: "Grupo A - Estadística"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.show='hold', size='footnotesize', prompt=FALSE, comment=NA, tidy=TRUE, results="markup", tidy.opts=list(width.cutoff=50), comment="", highlight=TRUE, warning = FALSE, message = FALSE, echo = FALSE)
+knitr::opts_knit$set(self.contained=FALSE)
+
+library(xtable)
+library(tidyverse)
+library(caret)
+library(reticulate)
+library(formatR)
+options(xtable.floating = TRUE)
+options(xtable.timestamp = "")
+```
+
+```{r IGNORAR}
+train = read.csv("train.csv", header = TRUE)
+unique_m = read.csv("unique_m.csv", header = TRUE)
+train$critical_temp = NULL
+unique_m$material = NULL
+df = data.frame(train, unique_m)
+attach(df)
+variables = names(df)
+cantvariables = length(variables)
+variables_baja_var = nearZeroVar(df, names = TRUE)
+for(i in 1:(length(variables_baja_var))){
+    a = paste("df$",variables_baja_var[i],"=NULL",sep = "")
+    eval(parse( text=a ))
+}
+variables = names(df)
+cantvariables = length(variables)
+tol = 0.05
+cor_baja = c()
+for(i in 1:(cantvariables-1)){
+    correlacion = cor(df[,i], df$critical_temp)
+    if(abs(correlacion) < tol){
+        cor_baja = c(cor_baja, i)
+    }
+}
+variables_cor_baja = c()
+for(i in 1:(length(cor_baja))){
+    variables_cor_baja = c(variables_cor_baja, variables[cor_baja[i]])
+}
+for(i in 1:(length(variables_cor_baja))){
+    a = paste("df$",variables_cor_baja[i],"=NULL",sep = "")
+    eval(parse( text=a ))
+}
+variables = names(df)
+cantvariables = length(variables)
+tol = 0.8
+cor_alta = c()
+for( i in 1:(cantvariables-1)){
+    if(i != cantvariables-1){
+        for(j in (i+1):(cantvariables-1)){
+            correlacion = cor(df[,i], df[,j])
+            if(abs(correlacion) > tol){
+                cor_alta = c(cor_alta,j)
+            }
+        }
+    }
+}
+cor_alta = sort(cor_alta[!duplicated(cor_alta)])
+variables_cor_alta = c()
+for(i in 1:(length(cor_alta))){
+    variables_cor_alta = c(variables_cor_alta, variables[cor_alta[i]])
+}
+for(i in 1:(length(variables_cor_alta))){
+    a = paste("df$",variables_cor_alta[i],"=NULL",sep = "")
+    eval(parse( text=a ))
+}
+corrplot1 = cor(df)
+attach(df)
+variables = names(df)
+cantvariables = length(variables)
+df = df[!duplicated(df),]
+rm(list=ls()[-7])
+```
+
+## $\,$
+
+\maketitle
+
+# Sección 1
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Slide with Bullets
+
+-   Bullet 1
+-   Bullet 2
+-   Bullet 3
+
+## Slide with R Output
+
+```{r cars}
+summary(cars)
+```
+
+# Sección 2
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure, type = "l")
+```
