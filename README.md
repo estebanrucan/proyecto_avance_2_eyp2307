@@ -30,7 +30,7 @@
 - Proponer distintos modelos de regresión lineal múltiple.
 - Elegir el mejor modelo basado en algún criterio de selección y verificar si los supuestos
 de dicho modelo se cumplen.
-- Presentar la idea intuitiva de un método alternativo, sus ventajas y desventajas, y la comparación de este método frente al modelo de regresión lineal múltiple elegido.
+- Presentar la idea intuitiva de un método alternativo (*Ridge Regression*), sus ventajas y desventajas, y la comparación de este método frente al modelo de regresión lineal múltiple elegido.
 
 ## Distribución de los trabajos
 - Claudia:
