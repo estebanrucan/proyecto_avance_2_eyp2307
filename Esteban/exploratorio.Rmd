@@ -1,0 +1,140 @@
+---
+title: "Exploratorio"
+author: "Esteban Rucán"
+date: "31-10-2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align = 'center')
+library(caret)
+library(tidyverse)
+```
+
+```{r}
+train = rio::import("train.csv")
+unique_m = rio::import("unique_m.csv")
+train$critical_temp = NULL
+unique_m$material = NULL
+df = data.frame(train, unique_m)
+attach(df)
+variables = names(df)
+cantvariables = length(variables)
+variables_baja_var = nearZeroVar(df, names = TRUE)
+for(i in 1:(length(variables_baja_var))){
+    a = paste("df$",variables_baja_var[i],"=NULL",sep = "")
+    eval(parse( text=a ))
+}
+variables = names(df)
+cantvariables = length(variables)
+tol = 0.05
+cor_baja = c()
+for(i in 1:(cantvariables-1)){
+    correlacion = cor(df[,i], df$critical_temp)
+    if(abs(correlacion) < tol){
+        cor_baja = c(cor_baja, i)
+    }
+}
+variables_cor_baja = c()
+for(i in 1:(length(cor_baja))){
+    variables_cor_baja = c(variables_cor_baja, variables[cor_baja[i]])
+}
+for(i in 1:(length(variables_cor_baja))){
+    a = paste("df$",variables_cor_baja[i],"=NULL",sep = "")
+    eval(parse( text=a ))
+}
+variables = names(df)
+cantvariables = length(variables)
+tol = 0.8
+cor_alta = c()
+for( i in 1:(cantvariables-1)){
+    if(i != cantvariables-1){
+        for(j in (i+1):(cantvariables-1)){
+            correlacion = cor(df[,i], df[,j])
+            if(abs(correlacion) > tol){
+                cor_alta = c(cor_alta,j)
+            }
+        }
+    }
+}
+cor_alta = sort(cor_alta[!duplicated(cor_alta)])
+variables_cor_alta = c()
+for(i in 1:(length(cor_alta))){
+    variables_cor_alta = c(variables_cor_alta, variables[cor_alta[i]])
+}
+for(i in 1:(length(variables_cor_alta))){
+    a = paste("df$",variables_cor_alta[i],"=NULL",sep = "")
+    eval(parse( text=a ))
+}
+attach(df)
+variables = names(df)
+cantvariables = length(variables)
+df = df[!duplicated(df),]
+rm(list=ls()[-6])
+#corrplot1 = cor(df)[, 'critical_temp'][-34] %>% abs() %>% sort() 
+```
+
+```{r NORMALIDAD VARIABLE RESPUESTA}
+set.seed(19)
+df_shapiro <- df[sample(1:nrow(df), 5000), ]
+qqnorm(df_shapiro$critical_temp); qqline(df_shapiro$critical_temp)
+shapiro.test(df_shapiro$critical_temp)
+lambda <- EnvStats::boxcox(df_shapiro$critical_temp, optimize=TRUE)$lambda
+
+if(lambda==0){ df_shapiro$critical_temp <- log(df_shapiro$critical_temp)
+} else { df_shapiro$critical_temp <- (df_shapiro$critical_temp ^ lambda-1)/lambda }
+qqnorm(df_shapiro$critical_temp); qqline(df_shapiro$critical_temp)
+shapiro.test(df_shapiro$critical_temp)
+
+set.seed(19)
+df_shapiro <- df[sample(1:nrow(df), 5000), ]
+df_shapiro$critical_temp <- Johnson::RE.Johnson(df_shapiro$critical_temp)$transformed
+qqnorm(df_shapiro$critical_temp); qqline(df_shapiro$critical_temp)
+shapiro.test(df_shapiro$critical_temp)
+```
+
+
+
+```{r VIF}
+lin_mod <- lm(critical_temp ~ ., data = df)
+#coefficients(lin_mod)
+vif <- car::vif(lin_mod)
+multicolinealidad <- vif[vif > 10] %>% names()
+
+df_sin_multicolinealidad <- df
+for(variable in multicolinealidad){
+    df_sin_multicolinealidad[[variable]] <- NULL
+}
+
+vif_fit <- lm(critical_temp ~ ., data = df_sin_multicolinealidad)
+vif_r_squared <- summary(vif_fit)$'r.squared'
+mean((df$critical_temp - vif_fit$fitted.values) ^ 2)
+```
+
+```{r RIDGE REGRESSION}
+x <- df[, 1:33]; y <- df[, 34] %>% as.data.frame()
+
+set.seed(1)
+train_rows <- sample(1:nrow(x), nrow(x) * 2 / 3)
+
+x_train <- x[train_rows, ] %>% as.matrix()
+x_test <- x[-train_rows, ] %>% as.matrix()
+y_train <- y[train_rows, ] %>% as.matrix()
+y_test <- y[-train_rows, ] %>% as.matrix()
+
+ridge_fit <- glmnet::cv.glmnet(x_train, y_train, type.measure = 'mse', alpha = 0,
+                               family = 'gaussian')
+coeficientes = coef(ridge_fit) %>% as.numeric()
+
+ridge_predicted <- predict(ridge_fit, s = ridge_fit$lambda.min, newx = x_test) %>%
+    as.numeric()
+y_test = as.numeric(y_test)
+
+mean((y_test - ridge_predicted) ^ 2)
+
+(ridge_r_squared <- 1 - (nrow(x_test) - 1) / (nrow(x_test) - 34) * 
+        (1 - sum((ridge_predicted - mean(y_test)) ^ 2) / sum((y_test - mean(y_test)) ^ 2)))
+vif_r_squared
+```
+
+
