@@ -76,4 +76,6 @@
 
 ## Otros
 
--   Presentamos el 1 de Diciembre.
+- Deadline: 22 de Noviembre.
+  
+- Presentamos el 1 de Diciembre.
