@@ -120,3 +120,11 @@ summary(cars)
 ```{r pressure}
 plot(pressure, type = "l")
 ```
+# Sección 3
+
+## Grafico
+
+```{r}
+plot()
+```
+
