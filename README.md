@@ -38,8 +38,8 @@
 ## Estructura de la presentación
 
 -   Presentar problemática del Avance 1.
--   Proponer distintos modelos de regresión lineal múltiple (Viendo VIF, Backward, Foward, Barkward-Foward).
--   Elegir el mejor modelo basado en algún criterio de selección y verificar si los supuestos de dicho modelo se cumplen.
+-   Proponer distintos modelos de regresión lineal múltiple (VIF-Backward, Backward, Foward, Barkward-Foward, add1, drop1).
+-   Elegir el mejor modelo basado en algún criterio de selección (AIC y BIC) y verificar si los supuestos de dicho modelo se cumplen.
 -   Presentar la idea intuitiva de un método alternativo (*Ridge Regression*), sus ventajas y desventajas, y la comparación de este método frente al modelo de regresión lineal múltiple elegido.
 
 ## Distribución de los trabajos
@@ -72,7 +72,7 @@
 
 -   Tema del gráfico: theme_bw()
 
--   Github (git pull - trabajo - git add * - git commit -m "Comentario" - git push)
+-   Github (git pull -> trabajo -> git add * -> git commit -m "Comentario" -> git push)
 
 ## Otros
 
