@@ -1,0 +1,50 @@
+---
+title: "proyecto avance 2"
+author: "Ricardo Torres"
+date: "05-11-2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Presentación de la problemática del avance 1 
+
+## Recursos utilizados 
+
+-  Utilizamos R Studio
+-- R Markdown para explorara los datos
+-- R Sweave para generar la presentación
+-  Estamos trabajando con los archivos "train.csv" y unique_m.csv"
+
+## Objetivo avance 1 
+
+-  Predecir la temperatura crítica de los superconductores, en base a nuestra variable respuesta "Critical_temp"
+
+## Limpieza de la base de datos
+
+- Como se tenian 169 variables en total, se decidío limipar la base de datos
+- Al hacer la limpieza se mantuvieron 34 datos 
+
+## Elección del modelo
+
+- Se hizo un analisis de correlación
+- La variable "std_ThermalConductivity" tuvo la correlación más alta de $0.65$, por lo tanto se utilizó para nuestro modelo
+
+- Al hacer el analisis de la varianza explicada: $R^2=0.43$
+
+- Se decidío buscar alternativas para intentar aumentar este último valor 
+
+## Buscando Alternativas
+
+- Nos decidimos por un nuevo modelo 
+- Utilizaremos la variable "range_Valence" por ser una variable discreta y nos quedan 6 modelos 
+- El modelo final nos queda:
+- Correlación = $0.75$
+- $R^2 = 0.56$
+
+## Objetivo del avance 2 
+
+-Predecir la temperatura crítica de los superconductores en base a nuestra variable respuesta, utilizando modelos de regresión lineal multiple para mejorar los resultados obtenidos en el avance 1 
