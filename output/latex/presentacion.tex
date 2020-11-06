@@ -1,0 +1,164 @@
+\documentclass[11pt]{beamer}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{textcomp,xifthen,graphicx,color}
+\usepackage{ifthen}
+\usepackage{enumerate}
+\usepackage{tcolorbox}
+\usepackage{grffile}
+\usepackage{inconsolata}
+\usepackage{listings,color}
+\usepackage{helvet}
+\usepackage{xcolor}
+\usepackage{sansmath}
+\spanishdecimal{.}
+\usetheme{Antibes}
+\usecolortheme{orchid}
+\usefonttheme{default}
+
+% FONT
+
+%\SelectInputMappings{%
+%  ntilde={Ã±}
+%  }
+
+% ENVIRONMENTS
+\newenvironment{m}[1]{%
+	\begin{list}{}{%
+			\setlength{\topsep}{0pt}%
+			\setlength{\leftmargin}{#1}%
+			\setlength{\listparindent}{\parindent}%
+			\setlength{\itemindent}{\parindent}%
+			\setlength{\parsep}{\parskip}%
+		}%
+		\item[]}{\end{list}}
+
+
+\newenvironment{problema}[1]{%
+    \par\refstepcounter{section}
+	\sectionmark{#1}
+    \addcontentsline{toc}{section}{Problema #1}
+
+	\item[\textbf{{#1}.}] {}
+    }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SOME COMMANDS
+\renewcommand{\baselinestretch}{1.2}
+\newcommand\mynewline[1]{ \\[{#1}\baselineskip]}
+\newcommand{\dem}{\begin{m}{17cm}
+			$\blacksquare$
+		  \end{m}}
+\newcommand{\sol}{\underline{Solución}: }
+\newcommand{\com}{\textbf{Comentario}: }
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\renewcommand{\labelitemii}{\ding{43}}
+\newcommand{\makehigho}{\leavevmode\raise1.0ex\hbox{\tiny o}}
+\newcommand\segundo{2\makehigho{ }}
+\newcommand\primero{1\makehigho}
+\usepackage{fancyhdr}
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+% DATA
+
+\title{Temperatura Crítica de Superconductores} % Titulo
+\subtitle{Presentamos nuevos modelos} % Subtítulo
+\logo{\includegraphics[scale=0.0375]{logo-uc}}
+\author{Grupo A - Estadística}		% Autor
+\date{1 de Diciembre de 2020}		% Fecha
+\institute[PUC]{
+	\inst{}
+		Pontificia Universidad Católica de Chile \\
+		Facultad de Matemáticas \\
+		EYP2307 - Análisis de Regresión
+        }
+
+
+\AtBeginSection[]
+{
+	\begin{frame}<beamer>{Contenido}
+		\tableofcontents[currentsection,currentsubsection]
+	\end{frame}
+}
+
+
+\begin{document}
+
+
+% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\maketitle
+\end{frame}
+
+% CONTENIDO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Contenido}
+	\tableofcontents
+\end{frame}
+
+
+% SECCION 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sección 1}
+
+\begin{frame}{Diapositiva}
+	content...
+\end{frame}
+
+% SECCION 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sección 2}
+
+\begin{frame}{Diapositiva}
+	content...
+\end{frame}
+
+
+% SECCION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sección 3}
+
+\begin{frame}{Diapositiva}
+	content...
+\end{frame}
+
+
+% SECCION 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sección 4}
+
+\begin{frame}{Diapositiva}
+	content...
+\end{frame}
+
+
+% CONCLUSIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusiones}
+
+\begin{frame}{Conclusiones}
+	
+\end{frame}
+
+
+% REFERENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referencias bibliográficas}
+
+\begin{frame}{Referencias bibliográficas}
+	
+\end{frame}
+
+
+\end{document}
+

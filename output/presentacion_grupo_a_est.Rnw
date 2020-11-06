@@ -1,0 +1,320 @@
+\documentclass[11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{textcomp,xifthen,graphicx,color}
+\usepackage{ifthen}
+\usepackage{enumerate}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{pifont}
+\usepackage{grffile}
+\usepackage{inconsolata}
+\usepackage{listings,color}
+\usepackage{helvet}
+\usepackage{xcolor}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}
+\spanishdecimal{.}
+\usetheme{Antibes}
+\usecolortheme{orchid}
+
+% FONT
+
+% ENVIRONMENTS
+\newenvironment{m}[1]{%
+	\begin{list}{}{%
+			\setlength{\topsep}{0pt}%
+			\setlength{\leftmargin}{#1}%
+			\setlength{\listparindent}{\parindent}%
+			\setlength{\itemindent}{\parindent}%
+			\setlength{\parsep}{\parskip}%
+		}%
+		\item[]}{\end{list}}
+
+
+\newenvironment{problema}[1]{%
+    \par\refstepcounter{section}
+	\sectionmark{#1}
+    \addcontentsline{toc}{section}{Problema #1}
+
+	\item[\textbf{{#1}.}] {}
+    }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SOME COMMANDS
+\renewcommand{\baselinestretch}{1.2}
+\newcommand\mynewline[1]{ \\[{#1}\baselineskip]}
+\newcommand{\dem}{\begin{m}{17cm}
+			$\blacksquare$
+		  \end{m}}
+\newcommand{\sol}{\underline{Solución}: }
+\newcommand{\com}{\textbf{Comentario}: }
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\renewcommand{\labelitemii}{\ding{43}}
+\newcommand{\makehigho}{\leavevmode\raise1.0ex\hbox{\tiny o}}
+\newcommand\segundo{2\makehigho{ }}
+\newcommand\primero{1\makehigho}
+\usepackage{fancyhdr}
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+% SYNTAX
+\definecolor{Rcodegreen}{rgb}{0,0.6,0}
+\definecolor{Rcodegray}{rgb}{0.5,0.5,0.5}
+\definecolor{Rcodepurple}{rgb}{0.58,0,0.82}
+\definecolor{Rbackcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{customstyle}{
+backgroundcolor=\color{Rbackcolour},
+commentstyle=\color{Rcodegreen},
+keywordstyle=\color{Rmagenta},
+numberstyle=\tiny\color{Rcodegray},
+stringstyle=\color{Rcodepurple},
+basicstyle=\footnotesize,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+\lstset{style=customstyle}
+
+<<setup, include=FALSE>>=
+options(width=60)
+opts_chunk$set(fig.width = 7, fig.height = 4, fig.align='center', concordance=TRUE, fig.show='hold', size='footnotesize', prompt=FALSE, comment=NA, tidy=TRUE, results="markup", tidy.opts=list(width.cutoff=50), comment="", highlight=TRUE, warning = FALSE, message = FALSE)
+opts_knit$set(concordance=TRUE,self.contained=FALSE)
+@
+
+
+<<libraries, include=FALSE>>=
+library(xtable)
+library(tidyverse)
+library(caret)
+library(corrplot)
+library(cowplot)
+library(reticulate)
+options(xtable.floating = TRUE)
+options(xtable.timestamp = "")
+@
+
+
+<<include=FALSE>>=
+train <- rio::import("train.csv")
+unique_m <- rio::import("unique_m.csv")
+# Limpieza
+train$critical_temp = NULL
+unique_m$material = NULL # Variable cualitativa nominal
+df = data.frame(train, unique_m)
+variables = names(df)
+cantvariables = length(variables)
+attach(df)
+
+
+# Sumario
+sumario = df %>% summarise(Minimo = min(critical_temp),
+                           Primer_Cuartil = quantile(critical_temp)[2],
+                           Mediana = quantile(critical_temp)[3],
+                           Tercer_Cuartil = quantile(critical_temp)[4],
+                           Maximo = max(critical_temp),
+                           Promedio = mean(critical_temp),
+                           Dev_Estandar = sd(critical_temp)) %>% t() %>%
+    xtable()
+names(sumario) = c("critical_temp")
+rownames(sumario) = c("Mínimo","Primer Cuartil","Mediana","Tercer Cuartil","Máximo", "Promedio", "Desv. Estándar")
+
+variables_baja_var = nearZeroVar(df, names = TRUE) # Explicar
+
+for(i in 1:(length(variables_baja_var))){
+    a = paste("df$",variables_baja_var[i],"=NULL",sep = "")
+    eval(parse( text=a ))
+}
+variables = names(df)
+cantvariables = length(variables)
+tol = 0.05
+cor_baja = c()
+for(i in 1:(cantvariables-1)){
+    correlacion = cor(df[,i], df$critical_temp)
+    if(abs(correlacion) < tol){
+        cor_baja = c(cor_baja, i)
+    }
+}
+
+variables_cor_baja = c()
+for(i in 1:(length(cor_baja))){
+    variables_cor_baja = c(variables_cor_baja, variables[cor_baja[i]])
+}
+
+for(i in 1:(length(variables_cor_baja))){
+    a = paste("df$",variables_cor_baja[i],"=NULL",sep = "")
+    eval(parse( text=a ))
+}
+
+variables = names(df)
+cantvariables = length(variables)
+tol = 0.8
+cor_alta = c()
+for( i in 1:(cantvariables-1)){
+    if(i != cantvariables-1){
+        for(j in (i+1):(cantvariables-1)){
+            correlacion = cor(df[,i], df[,j])
+            if(abs(correlacion) > tol){
+                cor_alta = c(cor_alta,j)
+            }
+        }
+    }
+}
+
+cor_alta = sort(cor_alta[!duplicated(cor_alta)])
+
+variables_cor_alta = c()
+for(i in 1:(length(cor_alta))){
+    variables_cor_alta = c(variables_cor_alta, variables[cor_alta[i]])
+}
+
+for(i in 1:(length(variables_cor_alta))){
+    a = paste("df$",variables_cor_alta[i],"=NULL",sep = "")
+    eval(parse( text=a ))
+}
+
+attach(df)
+variables = names(df)
+cantvariables = length(variables)
+df = df[!duplicated(df),]
+@
+
+
+
+% DATA
+
+\title{Temperatura Crítica de Superconductores} % Titulo
+\subtitle{Presentamos nuevos modelos} % Subtítulo
+\logo{\includegraphics[scale=0.0375]{logo-uc.jpg}}
+\author{Grupo A - Estadística}		% Autor
+\date{1 de Diciembre de 2020}		% Fecha
+\institute[PUC]{
+	\inst{}
+		Pontificia Universidad Católica de Chile \\
+		Facultad de Matemáticas \\
+		EYP2307 - Análisis de Regresión
+        }
+
+
+\AtBeginSection[]
+{
+	\begin{frame}<beamer>{Contenido}
+		\tableofcontents[currentsection,currentsubsection]
+	\end{frame}
+}
+
+
+\begin{document}
+
+
+% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\maketitle
+\end{frame}
+
+% CONTENIDO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Contenido}
+	\tableofcontents
+\end{frame}
+
+
+% PROBLEMATICA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Presentación de la problemática}
+
+\begin{frame}[fragile]{Sumario de los recursos utilizados}
+
+\end{frame}
+
+% BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tratamiento de las bases de datos}
+
+\begin{frame}[fragile]{Variable Respuesta}
+
+\end{frame}
+
+
+
+
+% ELIGIENDO UN MODELO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Eligimos un modelo}
+
+
+\begin{frame}[fragile]{Análisis de la correlación}
+
+\end{frame}
+
+
+% ALTERNATIVA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Analizamos alternativas}
+
+\begin{frame}[fragile]{¿Qué haremos?}
+
+\end{frame}
+
+
+% CONCLUSIÓN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusiones}
+
+\begin{frame}[fragile]{Conclusiones}
+
+\end{frame}
+
+
+% REFERENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referencias Bibliográficas}
+
+\begin{frame}[fragile]{Referencias Bibliográficas}
+
+\begin{thebibliography}{10}
+
+	\beamertemplateonlinebibitems % imagen de una URL de internet
+	\bibitem{Author2019}
+	archive.ics.uci.edu/ml/datasets/Superconductivty+Data
+	\newblock{\em Kam Ham Idieh - Machine Learning Repository}.
+	\newblock{2018}
+
+	\beamertemplateonlinebibitems % imagen de una URL de internet
+	\bibitem{Author2019}
+	archive.ics.uci.edu/ml/datasets/Superconductivty+Data
+	\newblock{\em Joe Ganser - Superconductivity Regression}.
+	\newblock{2019}
+
+	\beamertemplatearticlebibitems % imagen de libro
+	\bibitem{Author1990}
+	Machine learning modeling of superconducting
+	\newblock{\em V. Stanev, C. Oses, A.G. Kusne, et al.}
+	\newblock{2018}
+
+	%\beamertemplatebookbibitems % imagen de revista, paper o artículo
+	%\bibitem{Author19901}
+	%Libro
+	%\newblock{\em Autor}.
+	%\newblock{2020}
+
+\end{thebibliography}
+\end{frame}
+\end{document}
+
