@@ -17,10 +17,9 @@ unique_m = rio::import("unique_m.csv")
 train$critical_temp = NULL
 unique_m$material = NULL
 df = data.frame(train, unique_m)
-attach(df)
 variables = names(df)
 cantvariables = length(variables)
-variables_baja_var = nearZeroVar(df, names = TRUE)
+variables_baja_var = caret::nearZeroVar(df, names = TRUE)
 for(i in 1:(length(variables_baja_var))){
     a = paste("df$",variables_baja_var[i],"=NULL",sep = "")
     eval(parse( text=a ))
@@ -66,7 +65,6 @@ for(i in 1:(length(variables_cor_alta))){
     a = paste("df$",variables_cor_alta[i],"=NULL",sep = "")
     eval(parse( text=a ))
 }
-attach(df)
 variables = names(df)
 cantvariables = length(variables)
 df = df[!duplicated(df),]
@@ -95,46 +93,83 @@ shapiro.test(df_shapiro$critical_temp)
 
 
 
-```{r VIF}
-lin_mod <- lm(critical_temp ~ ., data = df)
-#coefficients(lin_mod)
-vif <- car::vif(lin_mod)
-multicolinealidad <- vif[vif > 10] %>% names()
-
-df_sin_multicolinealidad <- df
-for(variable in multicolinealidad){
-    df_sin_multicolinealidad[[variable]] <- NULL
-}
-
-vif_fit <- lm(critical_temp ~ ., data = df_sin_multicolinealidad)
-vif_r_squared <- summary(vif_fit)$'r.squared'
-mean((df$critical_temp - vif_fit$fitted.values) ^ 2)
-```
 
 ```{r RIDGE REGRESSION}
 x <- df[, 1:33]; y <- df[, 34] %>% as.data.frame()
 
 set.seed(1)
 train_rows <- sample(1:nrow(x), nrow(x) * 2 / 3)
-
+train_df <- df[train_rows, ]
 x_train <- x[train_rows, ] %>% as.matrix()
 x_test <- x[-train_rows, ] %>% as.matrix()
 y_train <- y[train_rows, ] %>% as.matrix()
 y_test <- y[-train_rows, ] %>% as.matrix()
 
-ridge_fit <- glmnet::cv.glmnet(x_train, y_train, type.measure = 'mse', alpha = 0,
-                               family = 'gaussian')
-coeficientes = coef(ridge_fit) %>% as.numeric()
+
+ridge_fit <- lmridge::lmridge(critical_temp ~ ., data = train_df)
 
 ridge_predicted <- predict(ridge_fit, s = ridge_fit$lambda.min, newx = x_test) %>%
     as.numeric()
-y_test = as.numeric(y_test)
 
-mean((y_test - ridge_predicted) ^ 2)
 
-(ridge_r_squared <- 1 - (nrow(x_test) - 1) / (nrow(x_test) - 34) * 
-        (1 - sum((ridge_predicted - mean(y_test)) ^ 2) / sum((y_test - mean(y_test)) ^ 2)))
-vif_r_squared
 ```
 
+
+```{r results="hide"}
+df$number_of_elements <- NULL
+df$range_Valence <- factor(df$range_Valence)
+
+lin_mods_bw <- list()
+lin_mods_fw <- list()
+lin_mods_bf <- list()
+vr <- c()
+fitted_values_bw <- c()
+fitted_values_fw <- c()
+fitted_values_bf <- c()
+
+for(i in 0:6){
+    new_df <- df %>% 
+        filter(range_Valence == i)
+    new_df$range_Valence <- NULL
+    
+    variables_var_minima <- caret::nearZeroVar(new_df, names = TRUE)
+    
+    for(variable in variables_var_minima){
+        new_df[[variable]] <- NULL
+    }
+    
+    full_lin_mod_i <- lm(critical_temp ~ ., data = new_df)
+    null_lin_mod_i <- lm(critical_temp ~ 1, data = new_df)
+    
+    if(summary(full_lin_mod_i)$r.squared != 1){
+        lin_mods_bw[[paste(i)]] <- step(full_lin_mod_i, direction = "backward", trace = 0)
+        lin_mods_fw[[paste(i)]] <- step(null_lin_mod_i, direction = "forward", scope = formula(full_lin_mod_i), trace = 0)
+        lin_mods_bf[[paste(i)]] <- step(full_lin_mod_i, direction = "both", trace = 0)
+    } else{
+        lin_mods_bw[[paste(i)]] <- full_lin_mod_i
+        lin_mods_fw[[paste(i)]] <- full_lin_mod_i
+        lin_mods_bf[[paste(i)]] <- full_lin_mod_i
+    }
+    
+    vr <- c(vr, new_df$critical_temp)
+    fitted_values_bw <- c(fitted_values_bw, lin_mods_bw[[paste(i)]]$fitted.values)
+    fitted_values_fw <- c(fitted_values_fw, lin_mods_fw[[paste(i)]]$fitted.values)
+    fitted_values_bf <- c(fitted_values_bf, lin_mods_bf[[paste(i)]]$fitted.values)
+}
+
+(correlacion_bw <- cor(vr, fitted_values_bw))
+(correlacion_fw <- cor(vr, fitted_values_fw))
+(correlacion_bf <- cor(vr, fitted_values_bf))
+
+new_mod <- lm(vr ~ fitted_values_bw)
+
+
+r_squared <- summary(new_mod)$r.squared
+aic <- AIC(new_mod)
+bic <- BIC(new_mod)
+
+
+
+
+```
 
