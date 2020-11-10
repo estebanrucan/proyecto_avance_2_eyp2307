@@ -80,11 +80,14 @@ modfor = step(lm(critical_temp ~ 1, data = df), direction = "forward",
                   wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
                   wtd_entropy_ThermalConductivity + mean_atomic_mass +
                   wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-                  entropy_ThermalConductivity)
+                  entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+                  range_Density)
 
 summary(modfor)
-#R^2 = 0.669
-plot(df$critical_temp, modfor$fitted.values)
+#Modelo deja fuera range_ElectronAffinity y mean_ElectronAffinity
+#utiliza  variables 31 explicativas
+#R^2 = 0.6721
+#plot(df$critical_temp, modfor$fitted.values)
 
 #BACKWARD
 
@@ -97,12 +100,15 @@ modback = step(lm(critical_temp ~ std_ThermalConductivity + number_of_elements +
                       wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
                       wtd_entropy_ThermalConductivity + mean_atomic_mass +
                       wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-                      entropy_ThermalConductivity, data = df),
+                      entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+                      range_Density, data = df),
                direction = "backward")
 
 summary(modback)
-#R^2 = 0.669
-plot(df$critical_temp, modback$fitted.values)
+#Modelo excluye wtd_mean_fie, mean_ElectronAffinity y range_ElectronAffinity,
+#total de variables explicativas es 30
+#R^2 = 0.6721
+#plot(df$critical_temp, modback$fitted.values)
 
 #AMBOS
 
@@ -115,12 +121,14 @@ modambos = step(lm(critical_temp ~ std_ThermalConductivity + number_of_elements 
                        wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
                        wtd_entropy_ThermalConductivity + mean_atomic_mass +
                        wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-                       entropy_ThermalConductivity, data = df),
+                       entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+                       range_Density, data = df),
                 direction = "both")
 
 summary(modambos)
-#R^2 = 0.669
-plot(df$critical_temp, modambos$fitted.values)
+#Mismo modelo que con backward
+#R^2 = 0.6721
+#plot(df$critical_temp, modambos$fitted.values)
 
 #DROP1
 
@@ -133,41 +141,54 @@ modover = lm(data = df, critical_temp ~ std_ThermalConductivity + number_of_elem
                  wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
                  wtd_entropy_ThermalConductivity + mean_atomic_mass +
                  wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-                 entropy_ThermalConductivity)
+                 entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+                 range_Density)
 
 drop1(modover, test = "Chisq")
 
-#Quitar range_ElectronAffinity, no es sigificativa
+#Quitar wtd_mean_fie, no es sigificativa
 
 modover = update(modover, ~ std_ThermalConductivity + number_of_elements + range_fie +
-                     O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
-                     wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
+                     O + Ba + Cu + range_atomic_mass + wtd_range_Valence + wtd_entropy_fie + gmean_ThermalConductivity +
                      mean_FusionHeat + wtd_mean_ThermalConductivity +
                      mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
-                     wtd_range_atomic_mass + Ca + wtd_range_fie +
+                     wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
                      wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
                      wtd_entropy_ThermalConductivity + mean_atomic_mass +
                      wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-                     entropy_ThermalConductivity)
+                     entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+                     range_Density)
 
 drop1(modover, test = "Chisq")
 
-#Quitar range_fie, no es significativa
+#Quitar mean_ElectronAffinity, no es significativa
 
-modover = update(modover, ~ std_ThermalConductivity + number_of_elements +
-                     O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
-                     wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
+modover = update(modover, ~ std_ThermalConductivity + number_of_elements + range_fie +
+                     O + Ba + Cu + range_atomic_mass + wtd_range_Valence + wtd_entropy_fie + gmean_ThermalConductivity +
+                     mean_FusionHeat + wtd_mean_ThermalConductivity +
+                     mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
+                     wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
+                     wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
+                     wtd_entropy_ThermalConductivity + mean_atomic_mass +
+                     wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
+                     entropy_ThermalConductivity + Sr + Y + range_Density)
+
+drop1(modover, test = "Chisq")
+
+#Quitar range_ElectronAffinity, no es significativa
+
+modover = update(modover, ~ std_ThermalConductivity + number_of_elements + range_fie +
+                     O + Ba + Cu + range_atomic_mass + wtd_range_Valence + wtd_entropy_fie + gmean_ThermalConductivity +
                      mean_FusionHeat + wtd_mean_ThermalConductivity +
                      mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
                      wtd_range_atomic_mass + Ca + wtd_range_fie +
                      wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
                      wtd_entropy_ThermalConductivity + mean_atomic_mass +
                      wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-                     entropy_ThermalConductivity)
+                     entropy_ThermalConductivity + Sr + Y + range_Density)
 
-summary(modover)
-#R^2 = 0.669. Tenemos el mismo coeficiente de determinación, pero
-#lo logramos con dos variables menos que los modelos anteriores.
+#Otra vez, mismo modelo, con las mismas 3 variables menos que en backward
+#R^2 = 0.6721
 
 #ADD1
 
@@ -182,7 +203,8 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos std_ThermalConductivity ya que es la con AIC más bajo,
 #entre todas las variables significativas
@@ -198,7 +220,8 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos Ba, variable co AIC más bajo
 
@@ -213,7 +236,8 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos number_of_elements (AIC más bajo)
 
@@ -228,7 +252,8 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos Ca, AIC más bajo
 
@@ -243,12 +268,30 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
+
+#Agregamos Sr, AIC más bajo
+
+mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
+                  Sr)
+
+add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
+         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
+         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
+         mean_FusionHeat + wtd_mean_ThermalConductivity +
+         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
+         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
+         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
+         wtd_entropy_ThermalConductivity + mean_atomic_mass +
+         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos wtd_mean_ElectronAffinity, AIC más bajo
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
-                  wtd_mean_ElectronAffinity)
+                  wtd_mean_ElectronAffinity + Sr)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -259,12 +302,13 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos range_fie, AIC más bajo
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
-                  wtd_mean_ElectronAffinity + range_fie)
+                  wtd_mean_ElectronAffinity + range_fie + Sr)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -275,12 +319,14 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
-#Agregamos range_Valence, AIC más bajo
+#Agregamos range_Valence
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
-                  wtd_mean_ElectronAffinity + range_fie + range_Valence)
+                  wtd_mean_ElectronAffinity + range_fie + Sr +
+                range_Valence)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -291,30 +337,14 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
-
-#Agregamos range_atomic_mass
-
-mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
-                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
-                  range_atomic_mass)
-
-add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
-         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
-         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
-         mean_FusionHeat + wtd_mean_ThermalConductivity +
-         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
-         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
-         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
-         wtd_entropy_ThermalConductivity + mean_atomic_mass +
-         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos wtd_mean_TermalConductivity
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
-                  range_atomic_mass + wtd_mean_ThermalConductivity)
+                  Sr + wtd_mean_ThermalConductivity)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -325,13 +355,14 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos gmean_ThermalConductivity
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
-                  range_atomic_mass + wtd_mean_ThermalConductivity +
+                  Sr + wtd_mean_ThermalConductivity +
                   gmean_ThermalConductivity)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
@@ -343,13 +374,14 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos mean_ThermalConductivity
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
-                  range_atomic_mass + wtd_mean_ThermalConductivity +
+                  Sr + wtd_mean_ThermalConductivity +
                   gmean_ThermalConductivity + mean_ThermalConductivity)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
@@ -361,14 +393,15 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
-#Agregamos Oxígeno
+#Agregamos range_atomic_mass
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O)
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -379,14 +412,15 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos wtd_range_atomic_mass
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
                   wtd_range_atomic_mass)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
@@ -398,14 +432,15 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos range_FusionHeat
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
                   wtd_range_atomic_mass + range_FusionHeat)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
@@ -417,15 +452,16 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
-#Agregamos mean_FusionHeat, AIC bajo + considerar que es más significativa
+#Agregamos wtd_range_Valence
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat)
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -436,16 +472,17 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
-#Agregamos mean_density
+#Agregamos range_density
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density)
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -456,16 +493,17 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
-#Agregamos mean_atomic_mass
+#Agregamos Y
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass)
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -476,16 +514,17 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
-#Agregamos wtd_range_valence
+#Agregamos mean_FusionHeat
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence)
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -496,16 +535,38 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
+
+#Agregamos wtd_range_atomic_radius
+
+mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
+                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
+                  range_atomic_mass + wtd_mean_ThermalConductivity +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius)
+
+add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
+         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
+         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
+         mean_FusionHeat + wtd_mean_ThermalConductivity +
+         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
+         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
+         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
+         wtd_entropy_ThermalConductivity + mean_atomic_mass +
+         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos mean_fie
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
                   mean_fie)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
@@ -517,16 +578,17 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos wtd_entropy_ThermalConductivity
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
                   mean_fie + wtd_entropy_ThermalConductivity)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
@@ -538,17 +600,40 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
+
+#Agregamos wtd_entropy_fie
+
+mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
+                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
+                  range_atomic_mass + wtd_mean_ThermalConductivity +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
+                  mean_fie + wtd_entropy_ThermalConductivity + wtd_entropy_fie)
+
+add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
+         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
+         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
+         mean_FusionHeat + wtd_mean_ThermalConductivity +
+         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
+         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
+         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
+         wtd_entropy_ThermalConductivity + mean_atomic_mass +
+         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos entropy_ThermalConductivity
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence +
-                  mean_fie + wtd_entropy_ThermalConductivity +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
+                  mean_fie + wtd_entropy_ThermalConductivity + wtd_entropy_fie +
                   entropy_ThermalConductivity)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
@@ -560,18 +645,90 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
+
+#Agregamos O
+
+mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
+                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
+                  range_atomic_mass + wtd_mean_ThermalConductivity +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
+                  mean_fie + wtd_entropy_ThermalConductivity + wtd_entropy_fie +
+                  entropy_ThermalConductivity + O)
+
+add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
+         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
+         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
+         mean_FusionHeat + wtd_mean_ThermalConductivity +
+         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
+         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
+         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
+         wtd_entropy_ThermalConductivity + mean_atomic_mass +
+         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
+
+#Agregamos mean_Density
+
+mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
+                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
+                  range_atomic_mass + wtd_mean_ThermalConductivity +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
+                  mean_fie + wtd_entropy_ThermalConductivity + wtd_entropy_fie +
+                  entropy_ThermalConductivity + O + mean_Density)
+
+add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
+         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
+         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
+         mean_FusionHeat + wtd_mean_ThermalConductivity +
+         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
+         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
+         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
+         wtd_entropy_ThermalConductivity + mean_atomic_mass +
+         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
+
+#Agregamos mean_atomic_mass
+
+mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
+                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
+                  range_atomic_mass + wtd_mean_ThermalConductivity +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
+                  mean_fie + wtd_entropy_ThermalConductivity + wtd_entropy_fie +
+                  entropy_ThermalConductivity + O + mean_Density +
+                  mean_atomic_mass)
+
+add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
+         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
+         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
+         mean_FusionHeat + wtd_mean_ThermalConductivity +
+         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
+         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
+         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
+         wtd_entropy_ThermalConductivity + mean_atomic_mass +
+         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos mean_atomic_radius
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence +
-                  mean_fie + wtd_entropy_ThermalConductivity +
-                  entropy_ThermalConductivity + mean_atomic_radius)
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
+                  mean_fie + wtd_entropy_ThermalConductivity + wtd_entropy_fie +
+                  entropy_ThermalConductivity + O + mean_Density +
+                  mean_atomic_mass + mean_atomic_radius)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -582,42 +739,20 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
-
-#Agregamos wtd_range_atomic_radius
-
-mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
-                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
-                  range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence +
-                  mean_fie + wtd_entropy_ThermalConductivity +
-                  entropy_ThermalConductivity + mean_atomic_radius +
-                  wtd_range_atomic_radius)
-
-add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
-         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
-         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
-         mean_FusionHeat + wtd_mean_ThermalConductivity +
-         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
-         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
-         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
-         wtd_entropy_ThermalConductivity + mean_atomic_mass +
-         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos wtd_range_ElectronAffinity
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence +
-                  mean_fie + wtd_entropy_ThermalConductivity +
-                  entropy_ThermalConductivity + mean_atomic_radius +
-                  wtd_range_atomic_radius + wtd_range_ElectronAffinity)
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
+                  mean_fie + wtd_entropy_ThermalConductivity + wtd_entropy_fie +
+                  entropy_ThermalConductivity + O + mean_Density +
+                  mean_atomic_mass + mean_atomic_radius + wtd_range_ElectronAffinity)
 
 add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
@@ -628,69 +763,55 @@ add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
          wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
          wtd_entropy_ThermalConductivity + mean_atomic_mass +
          wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
-
-#Agregamos wtd_mean_fie
-
-mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
-                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
-                  range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence +
-                  mean_fie + wtd_entropy_ThermalConductivity +
-                  entropy_ThermalConductivity + mean_atomic_radius +
-                  wtd_range_atomic_radius + wtd_range_ElectronAffinity +
-                  wtd_mean_fie)
-
-add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
-         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
-         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
-         mean_FusionHeat + wtd_mean_ThermalConductivity +
-         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
-         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
-         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
-         wtd_entropy_ThermalConductivity + mean_atomic_mass +
-         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
-
-#Agregamos wtd_entropy_fie
-
-mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
-                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
-                  range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence +
-                  mean_fie + wtd_entropy_ThermalConductivity +
-                  entropy_ThermalConductivity + mean_atomic_radius +
-                  wtd_range_atomic_radius + wtd_range_ElectronAffinity +
-                  wtd_mean_fie + wtd_entropy_fie)
-
-add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
-         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
-         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
-         mean_FusionHeat + wtd_mean_ThermalConductivity +
-         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
-         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
-         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
-         wtd_entropy_ThermalConductivity + mean_atomic_mass +
-         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
-         entropy_ThermalConductivity, test = "Chisq")
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
 
 #Agregamos wtd_range_fie
 
 mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
                   wtd_mean_ElectronAffinity + range_fie + range_Valence +
                   range_atomic_mass + wtd_mean_ThermalConductivity +
-                  gmean_ThermalConductivity + mean_ThermalConductivity + O +
-                  wtd_range_atomic_mass + range_FusionHeat + mean_FusionHeat +
-                  mean_Density + mean_atomic_mass + wtd_range_Valence +
-                  mean_fie + wtd_entropy_ThermalConductivity +
-                  entropy_ThermalConductivity + mean_atomic_radius +
-                  wtd_range_atomic_radius + wtd_range_ElectronAffinity +
-                  wtd_mean_fie + wtd_entropy_fie + wtd_range_fie)
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
+                  mean_fie + wtd_entropy_ThermalConductivity + wtd_entropy_fie +
+                  entropy_ThermalConductivity + O + mean_Density +
+                  mean_atomic_mass + mean_atomic_radius +
+                  wtd_range_ElectronAffinity + wtd_range_fie)
+
+add1(mod0, ~ std_ThermalConductivity + number_of_elements + range_fie +
+         O + Ba + Cu + range_atomic_mass + wtd_range_Valence +
+         wtd_mean_fie + wtd_entropy_fie + gmean_ThermalConductivity +
+         mean_FusionHeat + wtd_mean_ThermalConductivity +
+         mean_ThermalConductivity + mean_Density + wtd_range_atomic_radius +
+         wtd_range_atomic_mass + Ca + wtd_range_fie + range_ElectronAffinity +
+         wtd_range_ElectronAffinity + range_Valence + range_FusionHeat +
+         wtd_entropy_ThermalConductivity + mean_atomic_mass +
+         wtd_mean_ElectronAffinity + mean_atomic_radius + mean_fie +
+         entropy_ThermalConductivity + Sr + Y + mean_ElectronAffinity +
+         range_Density, test = "Chisq")
+
+#Finalmente, agregamos Cu
+
+mod0 = update(mod0, ~ std_ThermalConductivity + Ba + number_of_elements + Ca +
+                  wtd_mean_ElectronAffinity + range_fie + range_Valence +
+                  range_atomic_mass + wtd_mean_ThermalConductivity +
+                  gmean_ThermalConductivity + mean_ThermalConductivity + Sr +
+                  wtd_range_atomic_mass + range_FusionHeat + wtd_range_Valence +
+                  range_Density + Y + mean_FusionHeat + wtd_range_atomic_radius +
+                  mean_fie + wtd_entropy_ThermalConductivity + wtd_entropy_fie +
+                  entropy_ThermalConductivity + O + mean_Density +
+                  mean_atomic_mass + mean_atomic_radius +
+                  wtd_range_ElectronAffinity + wtd_range_fie + Cu)
 
 summary(mod0)
+#Mismo modelo, 30 variables (no ocupa wtd_mean_fie, range_ElectronAfinity,
+#mean_ElectronAffinity)
+#R^2 = 0.6721
 
-#R^2 = 0.6689
+#Resumen
+#MODELO BACKWARD = modback
+#MODELO FORWARD = modfor
+#BACKWARD-FORWARD = modambos
+#DROP1 = modover
+#ADD1 = mod0
