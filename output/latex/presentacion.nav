@@ -4,48 +4,58 @@
 \headcommand {\beamer@framepages {2}{2}}
 \headcommand {\beamer@sectionpages {1}{2}}
 \headcommand {\beamer@subsectionpages {1}{2}}
-\headcommand {\sectionentry {1}{Sección 1}{3}{Sección 1}{0}}
+\headcommand {\sectionentry {1}{Avance 1}{3}{Avance 1}{0}}
 \headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
 \headcommand {\beamer@framepages {3}{3}}
 \headcommand {\slideentry {1}{0}{2}{4/4}{}{0}}
 \headcommand {\beamer@framepages {4}{4}}
-\headcommand {\beamer@sectionpages {3}{4}}
-\headcommand {\beamer@subsectionpages {3}{4}}
-\headcommand {\sectionentry {2}{Sección 2}{5}{Sección 2}{0}}
-\headcommand {\slideentry {2}{0}{1}{5/5}{}{0}}
+\headcommand {\slideentry {1}{0}{3}{5/5}{}{0}}
 \headcommand {\beamer@framepages {5}{5}}
-\headcommand {\slideentry {2}{0}{2}{6/6}{}{0}}
-\headcommand {\beamer@framepages {6}{6}}
-\headcommand {\beamer@sectionpages {5}{6}}
-\headcommand {\beamer@subsectionpages {5}{6}}
-\headcommand {\sectionentry {3}{Sección 3}{7}{Sección 3}{0}}
-\headcommand {\slideentry {3}{0}{1}{7/7}{}{0}}
-\headcommand {\beamer@framepages {7}{7}}
-\headcommand {\slideentry {3}{0}{2}{8/8}{}{0}}
-\headcommand {\beamer@framepages {8}{8}}
-\headcommand {\beamer@sectionpages {7}{8}}
-\headcommand {\beamer@subsectionpages {7}{8}}
-\headcommand {\sectionentry {4}{Sección 4}{9}{Sección 4}{0}}
-\headcommand {\slideentry {4}{0}{1}{9/9}{}{0}}
-\headcommand {\beamer@framepages {9}{9}}
-\headcommand {\slideentry {4}{0}{2}{10/10}{}{0}}
-\headcommand {\beamer@framepages {10}{10}}
-\headcommand {\beamer@sectionpages {9}{10}}
-\headcommand {\beamer@subsectionpages {9}{10}}
-\headcommand {\sectionentry {5}{Conclusiones}{11}{Conclusiones}{0}}
-\headcommand {\slideentry {5}{0}{1}{11/11}{}{0}}
-\headcommand {\beamer@framepages {11}{11}}
-\headcommand {\slideentry {5}{0}{2}{12/12}{}{0}}
-\headcommand {\beamer@framepages {12}{12}}
-\headcommand {\beamer@sectionpages {11}{12}}
-\headcommand {\beamer@subsectionpages {11}{12}}
-\headcommand {\sectionentry {6}{Referencias bibliográficas}{13}{Referencias bibliográficas}{0}}
-\headcommand {\slideentry {6}{0}{1}{13/13}{}{0}}
-\headcommand {\beamer@framepages {13}{13}}
-\headcommand {\slideentry {6}{0}{2}{14/14}{}{0}}
-\headcommand {\beamer@framepages {14}{14}}
-\headcommand {\beamer@partpages {1}{14}}
-\headcommand {\beamer@subsectionpages {13}{14}}
-\headcommand {\beamer@sectionpages {13}{14}}
-\headcommand {\beamer@documentpages {14}}
-\headcommand {\gdef \inserttotalframenumber {14}}
+\headcommand {\slideentry {1}{0}{4}{6/7}{}{0}}
+\headcommand {\beamer@framepages {6}{7}}
+\headcommand {\slideentry {1}{0}{5}{8/11}{}{0}}
+\headcommand {\beamer@framepages {8}{11}}
+\headcommand {\slideentry {1}{0}{6}{12/16}{}{0}}
+\headcommand {\beamer@framepages {12}{16}}
+\headcommand {\slideentry {1}{0}{7}{17/17}{}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\beamer@sectionpages {3}{17}}
+\headcommand {\beamer@subsectionpages {3}{17}}
+\headcommand {\sectionentry {2}{Nuevos modelos}{18}{Nuevos modelos}{0}}
+\headcommand {\slideentry {2}{0}{1}{18/18}{}{0}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\slideentry {2}{0}{2}{19/19}{}{0}}
+\headcommand {\beamer@framepages {19}{19}}
+\headcommand {\beamer@sectionpages {18}{19}}
+\headcommand {\beamer@subsectionpages {18}{19}}
+\headcommand {\sectionentry {3}{Elegimos modelo}{20}{Elegimos modelo}{0}}
+\headcommand {\slideentry {3}{0}{1}{20/20}{}{0}}
+\headcommand {\beamer@framepages {20}{20}}
+\headcommand {\slideentry {3}{0}{2}{21/21}{}{0}}
+\headcommand {\beamer@framepages {21}{21}}
+\headcommand {\beamer@sectionpages {20}{21}}
+\headcommand {\beamer@subsectionpages {20}{21}}
+\headcommand {\sectionentry {4}{Ridge Regression}{22}{Ridge Regression}{0}}
+\headcommand {\slideentry {4}{0}{1}{22/22}{}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\slideentry {4}{0}{2}{23/23}{}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\beamer@sectionpages {22}{23}}
+\headcommand {\beamer@subsectionpages {22}{23}}
+\headcommand {\sectionentry {5}{Conclusiones}{24}{Conclusiones}{0}}
+\headcommand {\slideentry {5}{0}{1}{24/24}{}{0}}
+\headcommand {\beamer@framepages {24}{24}}
+\headcommand {\slideentry {5}{0}{2}{25/25}{}{0}}
+\headcommand {\beamer@framepages {25}{25}}
+\headcommand {\beamer@sectionpages {24}{25}}
+\headcommand {\beamer@subsectionpages {24}{25}}
+\headcommand {\sectionentry {6}{Referencias bibliográficas}{26}{Referencias bibliográficas}{0}}
+\headcommand {\slideentry {6}{0}{1}{26/26}{}{0}}
+\headcommand {\beamer@framepages {26}{26}}
+\headcommand {\slideentry {6}{0}{2}{27/27}{}{0}}
+\headcommand {\beamer@framepages {27}{27}}
+\headcommand {\beamer@partpages {1}{27}}
+\headcommand {\beamer@subsectionpages {26}{27}}
+\headcommand {\beamer@sectionpages {26}{27}}
+\headcommand {\beamer@documentpages {27}}
+\headcommand {\gdef \inserttotalframenumber {19}}
