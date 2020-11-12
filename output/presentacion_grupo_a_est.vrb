@@ -1,9 +1,2 @@
-\frametitle{Sumario de los recursos utilizados}
-
-\end{frame}
-
-% BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Tratamiento de las bases de datos}
-
-\begin{frame}[fragile]{Variable Respuesta}
-
+\frametitle{Contenido}
+\tableofcontents

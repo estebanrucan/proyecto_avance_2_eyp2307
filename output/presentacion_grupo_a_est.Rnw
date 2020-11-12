@@ -1,5 +1,6 @@
 \documentclass[11pt]{beamer}
 \usepackage[utf8]{inputenc}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage[spanish]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -97,124 +98,18 @@ showtabs=false,
 tabsize=2
 }
 \lstset{style=customstyle}
-
-<<setup, include=FALSE>>=
-options(width=60)
-opts_chunk$set(fig.width = 7, fig.height = 4, fig.align='center', concordance=TRUE, fig.show='hold', size='footnotesize', prompt=FALSE, comment=NA, tidy=TRUE, results="markup", tidy.opts=list(width.cutoff=50), comment="", highlight=TRUE, warning = FALSE, message = FALSE)
-opts_knit$set(concordance=TRUE,self.contained=FALSE)
-@
-
-
-<<libraries, include=FALSE>>=
-library(xtable)
-library(tidyverse)
-library(caret)
-library(corrplot)
-library(cowplot)
-library(reticulate)
-options(xtable.floating = TRUE)
-options(xtable.timestamp = "")
-@
-
-
-<<include=FALSE>>=
-train <- rio::import("train.csv")
-unique_m <- rio::import("unique_m.csv")
-# Limpieza
-train$critical_temp = NULL
-unique_m$material = NULL # Variable cualitativa nominal
-df = data.frame(train, unique_m)
-variables = names(df)
-cantvariables = length(variables)
-attach(df)
-
-
-# Sumario
-sumario = df %>% summarise(Minimo = min(critical_temp),
-                           Primer_Cuartil = quantile(critical_temp)[2],
-                           Mediana = quantile(critical_temp)[3],
-                           Tercer_Cuartil = quantile(critical_temp)[4],
-                           Maximo = max(critical_temp),
-                           Promedio = mean(critical_temp),
-                           Dev_Estandar = sd(critical_temp)) %>% t() %>%
-    xtable()
-names(sumario) = c("critical_temp")
-rownames(sumario) = c("Mínimo","Primer Cuartil","Mediana","Tercer Cuartil","Máximo", "Promedio", "Desv. Estándar")
-
-variables_baja_var = nearZeroVar(df, names = TRUE) # Explicar
-
-for(i in 1:(length(variables_baja_var))){
-    a = paste("df$",variables_baja_var[i],"=NULL",sep = "")
-    eval(parse( text=a ))
-}
-variables = names(df)
-cantvariables = length(variables)
-tol = 0.05
-cor_baja = c()
-for(i in 1:(cantvariables-1)){
-    correlacion = cor(df[,i], df$critical_temp)
-    if(abs(correlacion) < tol){
-        cor_baja = c(cor_baja, i)
-    }
-}
-
-variables_cor_baja = c()
-for(i in 1:(length(cor_baja))){
-    variables_cor_baja = c(variables_cor_baja, variables[cor_baja[i]])
-}
-
-for(i in 1:(length(variables_cor_baja))){
-    a = paste("df$",variables_cor_baja[i],"=NULL",sep = "")
-    eval(parse( text=a ))
-}
-
-variables = names(df)
-cantvariables = length(variables)
-tol = 0.8
-cor_alta = c()
-for( i in 1:(cantvariables-1)){
-    if(i != cantvariables-1){
-        for(j in (i+1):(cantvariables-1)){
-            correlacion = cor(df[,i], df[,j])
-            if(abs(correlacion) > tol){
-                cor_alta = c(cor_alta,j)
-            }
-        }
-    }
-}
-
-cor_alta = sort(cor_alta[!duplicated(cor_alta)])
-
-variables_cor_alta = c()
-for(i in 1:(length(cor_alta))){
-    variables_cor_alta = c(variables_cor_alta, variables[cor_alta[i]])
-}
-
-for(i in 1:(length(variables_cor_alta))){
-    a = paste("df$",variables_cor_alta[i],"=NULL",sep = "")
-    eval(parse( text=a ))
-}
-
-attach(df)
-variables = names(df)
-cantvariables = length(variables)
-df = df[!duplicated(df),]
-@
-
-
-
 % DATA
 
-\title{Temperatura Crítica de Superconductores} % Titulo
-\subtitle{Presentamos nuevos modelos} % Subtítulo
-\logo{\includegraphics[scale=0.0375]{logo-uc.jpg}}
-\author{Grupo A - Estadística}		% Autor
+\title{Temperatura Cr?tica de Superconductores} % Titulo
+\subtitle{Presentamos nuevos modelos} % Subt?tulo
+\logo{\includegraphics[scale=0.0875]{logo-uc}}
+\author{Grupo A - Estad?stica}		% Autor
 \date{1 de Diciembre de 2020}		% Fecha
 \institute[PUC]{
 	\inst{}
-		Pontificia Universidad Católica de Chile \\
-		Facultad de Matemáticas \\
-		EYP2307 - Análisis de Regresión
+		Pontificia Universidad Cat?lica de Chile \\
+		Facultad de Matem?ticas \\
+		EYP2307 - An?lisis de Regresi?n
         }
 
 
@@ -240,81 +135,85 @@ df = df[!duplicated(df),]
 \end{frame}
 
 
-% PROBLEMATICA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECCION 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Avance 1}
 
-\section{Presentación de la problemática}
-
-\begin{frame}[fragile]{Sumario de los recursos utilizados}
-
+\begin{frame}{Recursos Utilizados}
+	\begin{enumerate}
+		\item Usamos RStudio.
+		\item R Markdown y R Sweave.
+		\item GitHub.
+		\item Bases de datos.
+	\end{enumerate}
 \end{frame}
 
-% BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Tratamiento de las bases de datos}
+% SECCION 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Nuevos modelos}
 
-\begin{frame}[fragile]{Variable Respuesta}
-
-\end{frame}
-
-
-
-
-% ELIGIENDO UN MODELO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Eligimos un modelo}
-
-
-\begin{frame}[fragile]{Análisis de la correlación}
-
+\begin{frame}{Diapositiva}
+	content...
 \end{frame}
 
 
-% ALTERNATIVA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Analizamos alternativas}
+% SECCION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Elegimos modelo}
 
-\begin{frame}[fragile]{¿Qué haremos?}
-
+\begin{frame}{Diapositiva}
+	content...
 \end{frame}
 
 
-% CONCLUSIÓN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECCION 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ridge Regression}
+
+\begin{frame}{Diapositiva}
+	\begin{enumerate}
+		\item abc
+	\end{enumerate}
+\end{frame}
+
+
+% CONCLUSIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones}
 
-\begin{frame}[fragile]{Conclusiones}
+\begin{frame}{Conclusiones}
 
 \end{frame}
 
 
-% REFERENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Referencias Bibliográficas}
+% REFERENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referencias bibliogr?ficas}
 
-\begin{frame}[fragile]{Referencias Bibliográficas}
+\begin{frame}{Referencias bibliogr?ficas}
+	\begin{thebibliography}{10}
 
-\begin{thebibliography}{10}
+		\beamertemplateonlinebibitems % imagen de una URL de internet
+		\bibitem{Author2019}
+		archive.ics.uci.edu/ml/datasets/Superconductivty+Data
+		\newblock{\em Kam Ham Idieh - Machine Learning Repository}.
+		\newblock{2018}
 
-	\beamertemplateonlinebibitems % imagen de una URL de internet
-	\bibitem{Author2019}
-	archive.ics.uci.edu/ml/datasets/Superconductivty+Data
-	\newblock{\em Kam Ham Idieh - Machine Learning Repository}.
-	\newblock{2018}
+		\beamertemplateonlinebibitems % imagen de una URL de internet
+		\bibitem{Author2019}
+		https://arxiv.org/pdf/1803.10260.pdf
+		\newblock{\em Joe Ganser - Superconductivity Regression}.
+		\newblock{2019}
 
-	\beamertemplateonlinebibitems % imagen de una URL de internet
-	\bibitem{Author2019}
-	archive.ics.uci.edu/ml/datasets/Superconductivty+Data
-	\newblock{\em Joe Ganser - Superconductivity Regression}.
-	\newblock{2019}
+		\beamertemplatearticlebibitems % imagen de libro
+		\bibitem{Author1990}
+		Machine learning modeling of superconducting
+		\newblock{\em V. Stanev, C. Oses, A.G. Kusne, et al.}
+		\newblock{2018}
 
-	\beamertemplatearticlebibitems % imagen de libro
-	\bibitem{Author1990}
-	Machine learning modeling of superconducting
-	\newblock{\em V. Stanev, C. Oses, A.G. Kusne, et al.}
-	\newblock{2018}
+		%\beamertemplatebookbibitems % imagen de revista, paper o artículo
+		%\bibitem{Author19901}
+		%Libro
+		%\newblock{\em Autor}.
+		%\newblock{2020}
 
-	%\beamertemplatebookbibitems % imagen de revista, paper o artículo
-	%\bibitem{Author19901}
-	%Libro
-	%\newblock{\em Autor}.
-	%\newblock{2020}
-
-\end{thebibliography}
+	\end{thebibliography}
 \end{frame}
+
+
 \end{document}
 

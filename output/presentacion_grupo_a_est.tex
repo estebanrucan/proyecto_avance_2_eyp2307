@@ -1,5 +1,56 @@
-\documentclass[11pt]{beamer}\usepackage{knitr}
+\documentclass[11pt]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 \usepackage[utf8]{inputenc}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage[spanish]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -97,29 +148,18 @@ showtabs=false,
 tabsize=2
 }
 \lstset{style=customstyle}
-
-
-
-
-
-
-
-
-
-
-
 % DATA
 
-\title{Temperatura Crítica de Superconductores} % Titulo
-\subtitle{Presentamos nuevos modelos} % Subtítulo
-\logo{\includegraphics[scale=0.0375]{logo-uc.jpg}}
-\author{Grupo A - Estadística}		% Autor
+\title{Temperatura Cr?tica de Superconductores} % Titulo
+\subtitle{Presentamos nuevos modelos} % Subt?tulo
+\logo{\includegraphics[scale=0.0875]{logo-uc}}
+\author{Grupo A - Estad?stica}		% Autor
 \date{1 de Diciembre de 2020}		% Fecha
 \institute[PUC]{
 	\inst{}
-		Pontificia Universidad Católica de Chile \\
-		Facultad de Matemáticas \\
-		EYP2307 - Análisis de Regresión
+		Pontificia Universidad Cat?lica de Chile \\
+		Facultad de Matem?ticas \\
+		EYP2307 - An?lisis de Regresi?n
         }
 
 
@@ -144,81 +184,85 @@ tabsize=2
 \end{frame}
 
 
-% PROBLEMATICA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECCION 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Avance 1}
 
-\section{Presentación de la problemática}
-
-\begin{frame}[fragile]{Sumario de los recursos utilizados}
-
+\begin{frame}{Recursos Utilizados}
+	\begin{enumerate}
+		\item Usamos RStudio.
+		\item R Markdown y R Sweave.
+		\item GitHub.
+		\item Bases de datos.
+	\end{enumerate}
 \end{frame}
 
-% BD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Tratamiento de las bases de datos}
+% SECCION 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Nuevos modelos}
 
-\begin{frame}[fragile]{Variable Respuesta}
-
-\end{frame}
-
-
-
-
-% ELIGIENDO UN MODELO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Eligimos un modelo}
-
-
-\begin{frame}[fragile]{Análisis de la correlación}
-
+\begin{frame}{Diapositiva}
+	content...
 \end{frame}
 
 
-% ALTERNATIVA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Analizamos alternativas}
+% SECCION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Elegimos modelo}
 
-\begin{frame}[fragile]{¿Qué haremos?}
-
+\begin{frame}{Diapositiva}
+	content...
 \end{frame}
 
 
-% CONCLUSIÓN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECCION 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ridge Regression}
+
+\begin{frame}{Diapositiva}
+	\begin{enumerate}
+		\item abc
+	\end{enumerate}
+\end{frame}
+
+
+% CONCLUSIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones}
 
-\begin{frame}[fragile]{Conclusiones}
+\begin{frame}{Conclusiones}
 
 \end{frame}
 
 
-% REFERENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Referencias Bibliográficas}
+% REFERENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referencias bibliogr?ficas}
 
-\begin{frame}[fragile]{Referencias Bibliográficas}
+\begin{frame}{Referencias bibliogr?ficas}
+	\begin{thebibliography}{10}
 
-\begin{thebibliography}{10}
+		\beamertemplateonlinebibitems % imagen de una URL de internet
+		\bibitem{Author2019}
+		archive.ics.uci.edu/ml/datasets/Superconductivty+Data
+		\newblock{\em Kam Ham Idieh - Machine Learning Repository}.
+		\newblock{2018}
 
-	\beamertemplateonlinebibitems % imagen de una URL de internet
-	\bibitem{Author2019}
-	archive.ics.uci.edu/ml/datasets/Superconductivty+Data
-	\newblock{\em Kam Ham Idieh - Machine Learning Repository}.
-	\newblock{2018}
+		\beamertemplateonlinebibitems % imagen de una URL de internet
+		\bibitem{Author2019}
+		https://arxiv.org/pdf/1803.10260.pdf
+		\newblock{\em Joe Ganser - Superconductivity Regression}.
+		\newblock{2019}
 
-	\beamertemplateonlinebibitems % imagen de una URL de internet
-	\bibitem{Author2019}
-	archive.ics.uci.edu/ml/datasets/Superconductivty+Data
-	\newblock{\em Joe Ganser - Superconductivity Regression}.
-	\newblock{2019}
+		\beamertemplatearticlebibitems % imagen de libro
+		\bibitem{Author1990}
+		Machine learning modeling of superconducting
+		\newblock{\em V. Stanev, C. Oses, A.G. Kusne, et al.}
+		\newblock{2018}
 
-	\beamertemplatearticlebibitems % imagen de libro
-	\bibitem{Author1990}
-	Machine learning modeling of superconducting
-	\newblock{\em V. Stanev, C. Oses, A.G. Kusne, et al.}
-	\newblock{2018}
+		%\beamertemplatebookbibitems % imagen de revista, paper o artículo
+		%\bibitem{Author19901}
+		%Libro
+		%\newblock{\em Autor}.
+		%\newblock{2020}
 
-	%\beamertemplatebookbibitems % imagen de revista, paper o artículo
-	%\bibitem{Author19901}
-	%Libro
-	%\newblock{\em Autor}.
-	%\newblock{2020}
-
-\end{thebibliography}
+	\end{thebibliography}
 \end{frame}
+
+
 \end{document}
 

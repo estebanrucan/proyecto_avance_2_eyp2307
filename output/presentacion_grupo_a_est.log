@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.10) (preloaded format=xelatex 2020.10.17)  5 NOV 2020 23:01
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.11) (preloaded format=xelatex 2020.11.5)  11 NOV 2020 23:41
 entering extended mode
 **./presentacion_grupo_a_est.tex
 (presentacion_grupo_a_est.tex
-LaTeX2e <2020-10-01> patch level 1
-L3 programming layer <2020-10-05> xparse <2020-03-03>
+LaTeX2e <2020-10-01> patch level 2
+L3 programming layer <2020-10-27> xparse <2020-03-03>
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamer.cls
 Document Class: beamer 2020/07/22 v3.59 A class for typesetting presentations
 
@@ -823,7 +823,7 @@ default.sty
 \beamer@dimb=\dimen280
 )
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beameroutertheme
-default.sty))) (knitr.sty
+default.sty)))
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/framed\framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip63
@@ -831,7 +831,7 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \fb@frh=\dimen282
 \FrameRule=\dimen283
 \FrameSep=\dimen284
-))
+)
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/base\alltt.sty
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
@@ -844,10 +844,10 @@ Package: inputenc 2020/08/01 v1.3d Input encoding file
 Package inputenc Warning: inputenc package ignored with utf8 based engines.
 
 ) (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
-Package: babel 2020/10/06 3.50 The Babel package
+Package: babel 2020/10/27 3.51 The Babel package
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
-File: babel.def 2020/10/06 3.50 Babel common definitions
+File: babel.def 2020/10/27 3.51 Babel common definitions
 \babel@savecnt=\count317
 \U@D=\dimen285
 \l@babelnohyphens=\language79
@@ -856,7 +856,7 @@ File: babel.def 2020/10/06 3.50 Babel common definitions
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def))
 \bbl@readstream=\read3
 )
-LaTeX Info: Redefining \textlatin on input line 709.
+LaTeX Info: Redefining \textlatin on input line 707.
 \bbl@dirlevel=\count318
 *************************************
 * Local config file bblopts.cfg used
@@ -1136,13 +1136,13 @@ s
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
-LaTeX Font Info:    Trying to load font information for TU+phv on input line 13
+LaTeX Font Info:    Trying to load font information for TU+phv on input line 17
 3.
-LaTeX Font Info:    No file TUphv.fd. on input line 133.
+LaTeX Font Info:    No file TUphv.fd. on input line 173.
 
 
 LaTeX Font Warning: Font shape `TU/phv/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 133.
+(Font)              using `TU/lmr/m/n' instead on input line 173.
 
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
@@ -1158,32 +1158,32 @@ LaTeX Info: Redefining \% on input line 25.
 )
 \openout1 = `presentacion_grupo_a_est.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 133.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 173.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
-33.
+73.
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1218,7 +1218,7 @@ LaTeX Font Info:    ... okay on input line 133.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 133.
+Package hyperref Info: Link coloring OFF on input line 173.
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -1231,63 +1231,63 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count351
 )
-LaTeX Info: Redefining \ref on input line 133.
-LaTeX Info: Redefining \pageref on input line 133.
-LaTeX Info: Redefining \nameref on input line 133.
+LaTeX Info: Redefining \ref on input line 173.
+LaTeX Info: Redefining \pageref on input line 173.
+LaTeX Info: Redefining \nameref on input line 173.
  (presentacion_grupo_a_est.out) (presentacion_grupo_a_est.out)
 \@outlinefile=\write7
 \openout7 = `presentacion_grupo_a_est.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 133.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 173.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 133.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 173.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 133.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 133.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 173.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/phv/b/n on input line 133.
+(Font)                  OT1/cmr/bx/n --> TU/phv/b/n on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/phv/b/n on input line 133.
+(Font)                  OT1/cmr/bx/n --> TU/phv/b/n on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `sans'
-(Font)                  OT1/cmr/bx/n --> TU/phv/b/n on input line 133.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 133.
+(Font)                  OT1/cmr/bx/n --> TU/phv/b/n on input line 173.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/phv/m/n on input line 133.
+(Font)                  OT1/cmss/m/n --> TU/phv/m/n on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/phv/m/n on input line 133.
+(Font)                  OT1/cmss/bx/n --> TU/phv/m/n on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `sans'
-(Font)                  OT1/cmss/m/n --> TU/phv/m/n on input line 133.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 133.
+(Font)                  OT1/cmss/m/n --> TU/phv/m/n on input line 173.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/phv/m/it on input line 133.
+(Font)                  OT1/cmr/m/it --> TU/phv/m/it on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/phv/m/it on input line 133.
+(Font)                  OT1/cmr/bx/it --> TU/phv/m/it on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `sans'
-(Font)                  OT1/cmr/m/it --> TU/phv/m/it on input line 133.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 133.
+(Font)                  OT1/cmr/m/it --> TU/phv/m/it on input line 173.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/zi4/m/n on input line 133.
+(Font)                  OT1/cmtt/m/n --> TU/zi4/m/n on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/zi4/m/n on input line 133.
+(Font)                  OT1/cmtt/m/n --> TU/zi4/m/n on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `sans'
-(Font)                  OT1/cmtt/m/n --> TU/zi4/m/n on input line 133.
+(Font)                  OT1/cmtt/m/n --> TU/zi4/m/n on input line 173.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  TU/phv/m/n --> TU/phv/b/n on input line 133.
+(Font)                  TU/phv/m/n --> TU/phv/b/n on input line 173.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  TU/phv/m/it --> TU/phv/b/it on input line 133.
+(Font)                  TU/phv/m/it --> TU/phv/b/it on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 133.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  TU/phv/b/n --> TU/phv/b/n on input line 133.
+(Font)                  TU/phv/b/n --> TU/phv/b/n on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  TU/phv/m/n --> TU/phv/b/n on input line 133.
+(Font)                  TU/phv/m/n --> TU/phv/b/n on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  TU/phv/m/it --> TU/phv/b/it on input line 133.
+(Font)                  TU/phv/m/it --> TU/phv/b/it on input line 173.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  TU/zi4/m/n --> TU/zi4/b/n on input line 133.
+(Font)                  TU/zi4/m/n --> TU/zi4/b/n on input line 173.
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator-b
 asic-dictionary-English.dict
@@ -1313,17 +1313,17 @@ Dictionary: translator-numbers-dictionary, Language: English
 heorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \. on input line 133.
-LaTeX Info: Redefining \% on input line 133.
+LaTeX Info: Redefining \. on input line 173.
+LaTeX Info: Redefining \% on input line 173.
 \c@lstlisting=\count352
  (presentacion_grupo_a_est.nav)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 139
+LaTeX Font Info:    Trying to load font information for U+msa on input line 179
 .
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 139
+LaTeX Font Info:    Trying to load font information for U+msb on input line 179
 .
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1331,10 +1331,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 LaTeX Font Warning: Font shape `TU/phv/m/it' undefined
-(Font)              using `TU/phv/m/n' instead on input line 139.
+(Font)              using `TU/phv/m/n' instead on input line 179.
 
-File: logo-uc.jpg Graphic file (type bmp)
-<logo-uc.jpg>
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
 [1
 
 ]
@@ -1344,8 +1344,8 @@ File: logo-uc.jpg Graphic file (type bmp)
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
-File: logo-uc.jpg Graphic file (type bmp)
-<logo-uc.jpg>
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
  [2
 
 ]
@@ -1353,173 +1353,78 @@ File: logo-uc.jpg Graphic file (type bmp)
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
-File: logo-uc.jpg Graphic file (type bmp)
-<logo-uc.jpg>
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
  [3
 
 ]
-\openout4 = `presentacion_grupo_a_est.vrb'.
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [4
 
- (presentacion_grupo_a_est.vrb
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.3 \end{frame}
-               
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-(presentacion_grupo_a_est.toc
+] (presentacion_grupo_a_est.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.6 \section{Tratamiento de las bases de datos}
-                                               
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [5
 
-)
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
 
-! LaTeX Error: \begin{frame} on input line 6 ended by \end{beamer@framepauses}.
+[6
 
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.160 \end{frame}
-                 
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Extra }, or forgotten \endgroup.
-\endbeamer@frameslide ...amer@framepauses}\egroup 
-                                                  \ifx \beamer@frametitle \@...
-l.160 \end{frame}
-                 
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-
-! LaTeX Error: \begin{beamer@framepauses} on input line 160 ended by \end{beame
-r@frameslide}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.160 \end{frame}
-                 
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-(presentacion_grupo_a_est.toc
+] (presentacion_grupo_a_est.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.166 \section{Eligimos un modelo}
-                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [7
 
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.171 \end{frame}
-                 
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [8
 
-(presentacion_grupo_a_est.toc
+] (presentacion_grupo_a_est.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.175 \section{Analizamos alternativas}
-                                       
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
 
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.179 \end{frame}
-                 
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+[9
 
-(presentacion_grupo_a_est.toc
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [10
+
+] (presentacion_grupo_a_est.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.183 \section{Conclusiones}
-                            
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [11
 
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.187 \end{frame}
-                 
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [12
 
-(presentacion_grupo_a_est.toc
+] (presentacion_grupo_a_est.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.191 \section{Referencias Bibliográficas}
-                                          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [13
 
+]
 File: beamericonarticle.pdf Graphic file (type pdf)
 <use beamericonarticle.pdf>
 File: beamericononline.pdf Graphic file (type pdf)
@@ -1528,17 +1433,11 @@ File: beamericononline.pdf Graphic file (type pdf)
 <use beamericononline.pdf>
 File: beamericonarticle.pdf Graphic file (type pdf)
 <use beamericonarticle.pdf>
-! Extra }, or forgotten \endgroup.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.222 \end{frame}
-                 
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [14
 
+]
 \tf@nav=\write8
 \openout8 = `presentacion_grupo_a_est.nav'.
 
@@ -1548,66 +1447,25 @@ deleted material, e.g., by typing `I$}'.
 \tf@snm=\write10
 \openout10 = `presentacion_grupo_a_est.snm'.
 
-
-! LaTeX Error: \begin{frame} on input line 193 ended by \end{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.223 \end{document}
-                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-(presentacion_grupo_a_est.aux
+ (presentacion_grupo_a_est.aux
 LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 )
 Package rerunfilecheck Info: File `presentacion_grupo_a_est.out' has not change
 d.
-(rerunfilecheck)             Checksum: 8C18E004C962021946A8A3E1AC1D541D;213.
+(rerunfilecheck)             Checksum: 2E7B8A091C5373B72236E8BB6749166A;316.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-! You can't use `\end' in internal vertical mode.
-\enddocument ...cument/end}\deadcycles \z@ \@@end 
-                                                  
-l.223 \end{document}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-! LaTeX Error: \begin{frame} on input line 193 ended by \end{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.223 \end{document}
-                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-)
-! Emergency stop.
-<*> ./presentacion_grupo_a_est.tex
-                                  
-*** (job aborted, no legal \end found)
-
- 
+ ) 
 Here is how much of TeX's memory you used:
- 26592 strings out of 412249
- 484356 string characters out of 2851352
- 827477 words of memory out of 3000000
- 45485 multiletter control sequences out of 15000+200000
+ 26651 strings out of 412197
+ 485472 string characters out of 2849633
+ 837147 words of memory out of 3000000
+ 45605 multiletter control sequences out of 15000+200000
  540247 words of font info for 56 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
- 111i,15n,112p,485b,1194s stack positions out of 5000i,500n,10000p,200000b,50000s
-Output written on presentacion_grupo_a_est.pdf (3 pages).
+ 125i,15n,126p,510b,693s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on presentacion_grupo_a_est.pdf (14 pages).
