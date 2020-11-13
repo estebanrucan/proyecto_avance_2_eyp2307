@@ -2,7 +2,6 @@
 \usepackage[spanish]{babel}
 \usepackage{amsmath}
 \usepackage[utf8]{inputenc}
-\renewcommand{\familydefault}{\sfdefault}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{makeidx}
@@ -14,16 +13,24 @@
 \usepackage{ifthen}
 \usepackage{enumerate}
 \usepackage{tcolorbox}
+\usepackage{cprotect}
 \usepackage{grffile}
 \usepackage{inconsolata}
 \usepackage{listings,color}
-\usepackage{helvet}
 \usepackage{xcolor}
 \usepackage{sansmath}
 \spanishdecimal{.}
 \usetheme{Dresden}
 \usecolortheme{orchid}
 % FONT
+
+\usepackage{fontspec}
+\setmainfont{Arial}
+%\renewcommand*\familydefault{\sfdefault}
+
+%\sffamily
+
+
 
 %\SelectInputMappings{%
 %  ntilde={Ã±}
@@ -59,7 +66,7 @@
 \newcommand{\sol}{\underline{Solución}: }
 \newcommand{\com}{\textbf{Comentario}: }
 \newcommand\tab[1][1cm]{\hspace*{#1}}
-
+\newcommand{\cod}[1]{\texttt{\frenchspacing#1}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \renewcommand{\labelitemii}{\ding{43}}
@@ -119,25 +126,25 @@
 		\item Usamos RStudio.
 		\item R Markdown y R Sweave.
 		\item GitHub.
-		\item \textbf{Bases de datos}
+		\item Bases de datos.
 		\begin{itemize}
-			\item train.csv
-			\item unique\_m.csv
+			\item \cod{train.csv}
+			\item \cod{unique\_m.csv}
 		\end{itemize}
 	\end{enumerate}
 \end{frame}
 
 \begin{frame}{Objetivo Avance 1}
 	\begin{itemize}
-		\item Predecir la temperatura crítica de los superconductores, en base a nuestra variable respuesta ``critical\_temp''.
+		\item Predecir la temperatura crítica de los superconductores, en base a nuestra variable respuesta \cod{critical\_temp}.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Limpieza de la base de datos}
 	\begin{itemize}
-		\item Como se tenían 169 variables en total, se decidió limpiar la base de datos.
+		\item Como se tenían \textbf{169} variables en total, se decidió limpiar la base de datos.
 		\pause
-		\item Al hacer la limpieza nos quedamos solo con 34 variables.
+		\item Al hacer la limpieza nos quedamos solo con \textbf{34} variables.
 	\end{itemize}
 \end{frame}
 
@@ -145,9 +152,9 @@
 	\begin{itemize}
 		\item Se hizo un análisis de correlación.
 		\pause
-		\item La variable ``std\_ThermalConductivity'' tuvo la correlación más alta de $0.65$, por lo tanto se utilizó para nuestro modelo.
+		\item La variable \cod{std\_ThermalConductivity} tuvo la correlación más alta de $\mathbf{0.65}$, por lo tanto se utilizó para nuestro modelo.
 		\pause
-		\item Al hacer el análisis de la varianza explicada: $R^2=0.43$.
+		\item Al hacer el análisis de la varianza explicada: $R^2=\mathbf{0.43}$.
 		\pause
 		\item Se decidió buscar alternativas para intentar aumentar este último valor.
 	\end{itemize}
@@ -157,21 +164,21 @@
 	\begin{itemize}
 		\item  Nos decidimos por un nuevo modelo.
 		\pause
-		\item  Utilizaremos la variable ``range\_Valence'' por ser una variable discreta y nos quedan 6 modelos. 
+		\item  Utilizamos la variable \cod{range\_Valence} por ser una variable discreta y nos quedaron \textbf{6} modelos.
 		\pause
 		\item  El modelo final nos queda:
 		\begin{itemize}
 			\pause
-			\item  Correlación = $0.75$.
+			\item  Correlación = $\mathbf{0.75}$.
 			\pause
-			\item  $R^2 = 0.56$.
+			\item  $R^2 = \mathbf{0.56}$.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Objetivo del Avance 2}
 	\begin{itemize}
-		\item Predecir la temperatura crítica de los superconductores en base a nuestra variable respuesta, utilizando modelos de regresión lineal múltiple para mejorar los resultados obtenidos en el Avance 1.
+		\item Predecir la temperatura crítica de los superconductores en base a nuestra variable respuesta, utilizando modelos de regresión lineal múltiple para mejorar los resultados obtenidos en el Avance \textbf{1}.
 	\end{itemize}
 \end{frame}
 
@@ -221,31 +228,31 @@
 
 \begin{frame}{Referencias bibliográficas}
 	\begin{thebibliography}{10}
-	
+
 		\beamertemplateonlinebibitems % imagen de una URL de internet
 		\bibitem{Author2019}
 		archive.ics.uci.edu/ml/datasets/Superconductivty+Data
 		\newblock{\em Kam Ham Idieh - Machine Learning Repository}.
 		\newblock{2018}
-		
+
 		\beamertemplateonlinebibitems % imagen de una URL de internet
 		\bibitem{Author2019}
 		https://arxiv.org/pdf/1803.10260.pdf
 		\newblock{\em Joe Ganser - Superconductivity Regression}.
 		\newblock{2019}
-		
+
 		\beamertemplatearticlebibitems % imagen de libro
 		\bibitem{Author1990}
 		Machine learning modeling of superconducting
 		\newblock{\em V. Stanev, C. Oses, A.G. Kusne, et al.}
 		\newblock{2018}
-		
+
 		%\beamertemplatebookbibitems % imagen de revista, paper o artÃ­culo
 		%\bibitem{Author19901}
 		%Libro
 		%\newblock{\em Autor}.
 		%\newblock{2020}
-		
+
 	\end{thebibliography}
 \end{frame}
 
