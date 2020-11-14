@@ -7,117 +7,294 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align = 'center')
-library(caret)
-library(tidyverse)
+require(tidyverse)
+require(roperators)
 ```
 
-```{r}
-train = rio::import("train.csv")
-unique_m = rio::import("unique_m.csv")
-train$critical_temp = NULL
-unique_m$material = NULL
-df = data.frame(train, unique_m)
-variables = names(df)
-cantvariables = length(variables)
-variables_baja_var = caret::nearZeroVar(df, names = TRUE)
-for(i in 1:(length(variables_baja_var))){
-    a = paste("df$",variables_baja_var[i],"=NULL",sep = "")
-    eval(parse( text=a ))
-}
-variables = names(df)
-cantvariables = length(variables)
-tol = 0.05
-cor_baja = c()
-for(i in 1:(cantvariables-1)){
-    correlacion = cor(df[,i], df$critical_temp)
-    if(abs(correlacion) < tol){
-        cor_baja = c(cor_baja, i)
-    }
-}
-variables_cor_baja = c()
-for(i in 1:(length(cor_baja))){
-    variables_cor_baja = c(variables_cor_baja, variables[cor_baja[i]])
-}
-for(i in 1:(length(variables_cor_baja))){
-    a = paste("df$",variables_cor_baja[i],"=NULL",sep = "")
-    eval(parse( text=a ))
-}
-variables = names(df)
-cantvariables = length(variables)
-tol = 0.8
-cor_alta = c()
-for( i in 1:(cantvariables-1)){
-    if(i != cantvariables-1){
-        for(j in (i+1):(cantvariables-1)){
-            correlacion = cor(df[,i], df[,j])
-            if(abs(correlacion) > tol){
-                cor_alta = c(cor_alta,j)
-            }
+```{r FUNCIONES}
+auto_drop1 <- function(data_frame, v_respuesta, v_explicativas, alpha) {
+    formula <- as.formula(
+            paste(v_respuesta, paste(v_explicativas, collapse = "+"),
+            sep = " ~ "))
+
+    full_lin_mod <- lm(formula = formula, data = data_frame)
+    detencion <- FALSE
+
+    while(detencion == FALSE) {
+
+        drop_1 <- drop1(full_lin_mod, test = "Chisq")
+        maximo <- drop_1$`Pr(>Chi)`[!is.na(drop_1$`Pr(>Chi)`)] %>% max()
+        indice <- which(drop_1$`Pr(>Chi)`== maximo) - 1
+
+        if(maximo >= alpha) {
+
+            v_explicativas <- v_explicativas[-indice]
+            actualizacion <- as.formula(
+                paste("~ ", paste(v_explicativas, collapse = "+"), sep = ""))
+            full_lin_mod <- update(full_lin_mod, actualizacion)
+
+        } else {
+            detencion <- TRUE
         }
     }
+
+    return(list(modelo = full_lin_mod, aic = min(drop_1$AIC)))
 }
-cor_alta = sort(cor_alta[!duplicated(cor_alta)])
-variables_cor_alta = c()
-for(i in 1:(length(cor_alta))){
-    variables_cor_alta = c(variables_cor_alta, variables[cor_alta[i]])
+
+auto_add1 <- function(data_frame, v_respuesta, v_explicativas, alpha) {
+    formula <- as.formula(paste(v_respuesta, "1", sep = " ~ "))
+    scope <- as.formula(
+        paste("~ ", paste(v_explicativas, collapse = "+"), sep = ""))
+    null_lin_mod <- lm(formula = formula, data = data_frame)
+    detencion <- FALSE
+    variables <- c()
+
+    while(detencion == FALSE) {
+
+        add_1 <- add1(null_lin_mod, scope = scope, test = "Chisq")
+        minimo <- add_1$`Pr(>Chi)`[!is.na(add_1$`Pr(>Chi)`)] %>% min()
+        indice <- which(add_1$`Pr(>Chi)`== minimo) - 1
+
+        if(minimo <= alpha) {
+            variables <- c(variables, v_explicativas[indice])
+            v_explicativas <- v_explicativas[-indice]
+            actualizacion <- as.formula(
+                paste("~ ", paste(variables, collapse = "+"), sep = ""))
+            null_lin_mod <- update(null_lin_mod, actualizacion)
+
+        } else {
+            detencion <- TRUE
+        }
+    }
+
+    return(list(modelo = null_lin_mod, aic = min(add_1$AIC)))
 }
-for(i in 1:(length(variables_cor_alta))){
-    a = paste("df$",variables_cor_alta[i],"=NULL",sep = "")
-    eval(parse( text=a ))
+
+supuestos <- function(modelo) {
+    dw <- modelo %>% lmtest::dwtest()
+    independencia <- abs(dw$statistic - 2) <= 0.5
+    
+    ks <- modelo %>% rstandard() %>% ks.test("pnorm") 
+    normalidad <- ks$p.value >= 0.05
+    
+    bp <- modelo %>% lmtest::bptest()
+    homocedasticidad <- bp$p.value >= 0.05
+    
+    return(c(independencia, normalidad, homocedasticidad))
 }
-variables = names(df)
-cantvariables = length(variables)
-df = df[!duplicated(df),]
-rm(list=ls()[-6])
-#corrplot1 = cor(df)[, 'critical_temp'][-34] %>% abs() %>% sort() 
+
+auto_vif <- function(data_frame, v_respuesta, v_explicativas, criterio = 10) {
+    
+    data_frame <- data
+    v_respuesta <- "critical_temp"
+    v_explicativas <- variables
+    formula <- as.formula(
+            paste(v_respuesta, paste(v_explicativas, collapse = "+"),
+            sep = " ~ "))
+
+    full_lin_mod <- lm(formula = formula, data = data_frame)
+    detencion <- FALSE
+
+    while(detencion == FALSE) {
+
+        vifs <- car::vif(full_lin_mod)
+        maximo <- vifs %>% max()
+        indice <- which(vifs == maximo)
+
+        if(maximo >= criterio) {
+
+            v_explicativas <- v_explicativas[-indice]
+            actualizacion <- as.formula(
+                paste("~ ", paste(v_explicativas, collapse = "+"), sep = ""))
+            full_lin_mod <- update(full_lin_mod, actualizacion)
+
+        } else {
+            detencion <- TRUE
+        }
+    }
+
+    return(list(modelo = full_lin_mod, aic = -2 * logLik(full_lin_mod) + 2 * (length(coefficients(full_lin_mod)) + 1)))
+}
+
+eliminar_multicolinealidad <- function(modelo, criterio) {
+    v_explicativas <- names(modelo$coefficients)[-1]
+    detencion <- FALSE
+    
+    while(detencion == FALSE) {
+        vifs <- car::vif(modelo)
+        maximo <- vifs %>% max()
+        indice <- which(vifs == maximo)
+
+        if(maximo >= criterio) {
+
+            v_explicativas <- v_explicativas[-indice]
+            actualizacion <- as.formula(
+                paste("~ ", paste(v_explicativas, collapse = "+"), sep = ""))
+            modelo <- update(modelo, actualizacion, data = data)
+
+        } else {
+            detencion <- TRUE
+        }
+    }
+    
+    return(list(modelo = modelo, aic = -2 * as.numeric(logLik(modelo)) + 2 * (length(coefficients(modelo)) + 1)))
+        
+}
+    
+
 ```
 
-```{r NORMALIDAD VARIABLE RESPUESTA}
-set.seed(19)
-df_shapiro <- df[sample(1:nrow(df), 5000), ]
-qqnorm(df_shapiro$critical_temp); qqline(df_shapiro$critical_temp)
-shapiro.test(df_shapiro$critical_temp)
-lambda <- EnvStats::boxcox(df_shapiro$critical_temp, optimize=TRUE)$lambda
 
-if(lambda==0){ df_shapiro$critical_temp <- log(df_shapiro$critical_temp)
-} else { df_shapiro$critical_temp <- (df_shapiro$critical_temp ^ lambda-1)/lambda }
-qqnorm(df_shapiro$critical_temp); qqline(df_shapiro$critical_temp)
-shapiro.test(df_shapiro$critical_temp)
 
-set.seed(19)
-df_shapiro <- df[sample(1:nrow(df), 5000), ]
-df_shapiro$critical_temp <- Johnson::RE.Johnson(df_shapiro$critical_temp)$transformed
-qqnorm(df_shapiro$critical_temp); qqline(df_shapiro$critical_temp)
-shapiro.test(df_shapiro$critical_temp)
+```{r BASE}
+data <- rio::import("datos/clean_db.csv")[2:35]
+data$number_of_elements <- NULL
+variables <- names(data)[1:32][-25]
+formula <- "critical_temp ~ " %+% paste(variables, collapse = "+") %>% as.formula()
+```
+
+```{r MODELOS}
+full_mod <- lm(formula = formula, data = data)
+null_mod <- lm(formula = critical_temp ~ 1, data = data)
+
+# bw
+backward <- step(full_mod, direction = "backward", trace = 0)
+(aic_backward <- backward$anova$AIC %>% min())
+(variables_backward <- backward %>% coefficients() %>% length())
+(supuestos_backward <- backward %>% supuestos())
+(summary(backward)$r.squared)
+
+# fw
+forward <- step(full_mod, direction = "forward", scope = formula, trace = 0)
+(aic_forward <- forward$anova$AIC %>% min())
+(variables_forward <- forward %>% coefficients() %>% length())
+(supuestos_forward <- forward %>% supuestos())
+(summary(forward)$r.squared)
+
+# stepwise
+stepwise <- step(full_mod, direction = "both", trace = 0)
+(aic_stepwise <- stepwise$anova$AIC %>% min())
+(variables_stepwise <- stepwise %>% coefficients() %>% length())
+(supuestos_stepwise <- stepwise %>% supuestos())
+(summary(stepwise)$r.squared)
+
+# drop1
+drop1 <- auto_drop1(data, "critical_temp", variables, 0.05)
+(aic_drop1 <- drop1$aic)
+(variables_drop1 <- drop1$modelo %>% coefficients() %>% length())
+(supuestos_drop1 <- drop1$modelo %>% supuestos())
+(summary(drop1$modelo)$r.squared)
+
+# add1
+add1 <- auto_add1(data, "critical_temp", variables, 0.05)
+(aic_add1 <- add1$aic)
+(variables_add1 <- add1$modelo %>% coefficients() %>% length())
+(supuestos_add1 <- add1$modelo %>% supuestos())
+(summary(add1$modelo)$r.squared)
+
+add1_1 <- eliminar_multicolinealidad(add1$modelo, 10)
+
+car::vif(add1_1$modelo)
+add1_1$aic
+
+# Vif
+mod_vif <- auto_vif(data, "critical_temp", variables, 7)
+(aic_vif <- mod_vif$aic)
+(variables_vif <- mod_vif$modelo %>% coefficients() %>% length())
+(supuestos_vif <- mod_vif$modelo %>% supuestos())
+(summary(mod_vif$modelo)$r.squared)
+
 ```
 
 
 
 
 ```{r RIDGE REGRESSION}
-x <- df[, 1:33]; y <- df[, 34] %>% as.data.frame()
+data_ridge <- data
+data_ridge$range_Valence <- NULL
+x_vars <- model.matrix(critical_temp~. , data_ridge)[,-1]
+y_var <- data_ridge$critical_temp
+lambda_seq <- 10^seq(-2, 5, by = 0.001)
 
-set.seed(1)
-train_rows <- sample(1:nrow(x), nrow(x) * 2 / 3)
-train_df <- df[train_rows, ]
-x_train <- x[train_rows, ] %>% as.matrix()
-x_test <- x[-train_rows, ] %>% as.matrix()
-y_train <- y[train_rows, ] %>% as.matrix()
-y_test <- y[-train_rows, ] %>% as.matrix()
+#set.seed(86)
+#train = sample(1:nrow(x_vars), 0.9 * nrow(x_vars))
+#x_test = (-train)
+#y_test = y_var[x_test]
+
+cv_output <- glmnet::cv.glmnet(x_vars, y_var,
+                       alpha = 0, lambda = lambda_seq, 
+                       nfolds = 10)
+ 
+# identifying best lambda
+best_lam <- cv_output$lambda.min
+best_lam
+
+# Rebuilding the model with best lamda value identified
+ridge_best <- glmnet::glmnet(x_vars, y_var, alpha = 0, lambda = best_lam)
+pred <- predict(ridge_best, s = best_lam, newx = x_vars)
+
+final <- cbind(y_var, pred)
+
+head(final)
 
 
-ridge_fit <- lmridge::lmridge(critical_temp ~ ., data = train_df)
+actual <- y_var
+preds <- pred
+rss <- sum((preds - actual) ^ 2)
+tss <- sum((actual - mean(actual)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
 
-ridge_predicted <- predict(ridge_fit, s = ridge_fit$lambda.min, newx = x_test) %>%
-    as.numeric()
+
 
 
 ```
 
 
+```{r LASSO REGRESSION}
+data_ridge <- data
+data_ridge$range_Valence <- NULL
+x_vars <- model.matrix(critical_temp~. , data_ridge)[,-1]
+y_var <- data_ridge$critical_temp
+lambda_seq <- 10^seq(-2, 10, by = 0.1)
+
+set.seed(86)
+train = sample(1:nrow(x_vars), 0.5 * nrow(x_vars))
+x_test = (-train)
+y_test = y_var[x_test]
+
+cv_output <- glmnet::cv.glmnet(x_vars[train,], y_var[train],
+                       alpha = 1, lambda = lambda_seq, 
+                       nfolds = 10)
+
+
+ 
+# identifying best lambda
+best_lam <- cv_output$lambda.min
+best_lam
+
+# Rebuilding the model with best lamda value identified
+lasso_best <- glmnet::glmnet(x_vars[train,], y_var[train], alpha = 1, lambda = best_lam)
+pred <- predict(lasso_best, s = best_lam, newx = x_vars[x_test,])
+
+final <- cbind(y_var[-train], pred)
+
+head(final)
+
+
+actual <- y_var[-train]
+preds <- pred
+rss <- sum((preds - actual) ^ 2)
+tss <- sum((actual - mean(actual)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+
+
+plot(actual ~ preds)
+```
+
 ```{r results="hide"}
-df$number_of_elements <- NULL
-df$range_Valence <- factor(df$range_Valence)
+data$number_of_elements <- NULL
 
 lin_mods_bw <- list()
 lin_mods_fw <- list()
@@ -128,18 +305,18 @@ fitted_values_fw <- c()
 fitted_values_bf <- c()
 
 for(i in 0:6){
-    new_df <- df %>% 
+    new_data <- data %>% 
         filter(range_Valence == i)
-    new_df$range_Valence <- NULL
+    new_data$range_Valence <- NULL
     
-    variables_var_minima <- caret::nearZeroVar(new_df, names = TRUE)
+    variables_var_minima <- caret::nearZeroVar(new_data, names = TRUE)
     
     for(variable in variables_var_minima){
-        new_df[[variable]] <- NULL
+        new_data[[variable]] <- NULL
     }
     
-    full_lin_mod_i <- lm(critical_temp ~ ., data = new_df)
-    null_lin_mod_i <- lm(critical_temp ~ 1, data = new_df)
+    full_lin_mod_i <- lm(critical_temp ~ ., data = new_data)
+    null_lin_mod_i <- lm(critical_temp ~ 1, data = new_data)
     
     if(summary(full_lin_mod_i)$r.squared != 1){
         lin_mods_bw[[paste(i)]] <- step(full_lin_mod_i, direction = "backward", trace = 0)
@@ -151,7 +328,7 @@ for(i in 0:6){
         lin_mods_bf[[paste(i)]] <- full_lin_mod_i
     }
     
-    vr <- c(vr, new_df$critical_temp)
+    vr <- c(vr, new_data$critical_temp)
     fitted_values_bw <- c(fitted_values_bw, lin_mods_bw[[paste(i)]]$fitted.values)
     fitted_values_fw <- c(fitted_values_fw, lin_mods_fw[[paste(i)]]$fitted.values)
     fitted_values_bf <- c(fitted_values_bf, lin_mods_bf[[paste(i)]]$fitted.values)
@@ -161,14 +338,12 @@ for(i in 0:6){
 (correlacion_fw <- cor(vr, fitted_values_fw))
 (correlacion_bf <- cor(vr, fitted_values_bf))
 
-new_mod <- lm(vr ~ fitted_values_bw)
+plot(vr ~ fitted_values_bw)
 
+newmod <- lm(vr ~ fitted_values_fw)
 
-r_squared <- summary(new_mod)$r.squared
-aic <- AIC(new_mod)
-bic <- BIC(new_mod)
-
-
+plot(density(vr), col = "red")
+lines(density(fitted_values_bw))
 
 
 ```
