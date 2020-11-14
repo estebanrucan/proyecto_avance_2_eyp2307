@@ -72,13 +72,13 @@ auto_add1 <- function(data_frame, v_respuesta, v_explicativas, alpha) {
 
 supuestos <- function(modelo) {
     dw <- modelo %>% lmtest::dwtest()
-    independencia <- abs(dw$statistic - 2) <= 0.5
+    independencia <- dw$statistic
     
     ks <- modelo %>% rstandard() %>% ks.test("pnorm") 
-    normalidad <- ks$p.value >= 0.05
+    normalidad <- ks$p.value
     
     bp <- modelo %>% lmtest::bptest()
-    homocedasticidad <- bp$p.value >= 0.05
+    homocedasticidad <- bp$p.value 
     
     return(c(independencia, normalidad, homocedasticidad))
 }
@@ -269,13 +269,6 @@ rsq
 ```
 
 
-```{r RIDGE 2}
-
-
-```
-
-
-
 ```{r LASSO REGRESSION}
 data_ridge <- data
 data_ridge$range_Valence <- NULL
@@ -397,6 +390,8 @@ aic_bw_av_1 <- sum(av1_bw_aic)
 bic_bw_av_1 <- sum(av1_bw_bic)
 #bic_fw_av_1 <- sum(av1_fw_bic)
 #bic_bf_av_1 <- sum(av1_bf_bic)
+
+r_squared_bw_av_1 <- correlacion_bw ^ 2
 
 ```
 
