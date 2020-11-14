@@ -66,6 +66,7 @@
 \newcommand{\sol}{\underline{Solución}: }
 \newcommand{\com}{\textbf{Comentario}: }
 \newcommand\tab[1][1cm]{\hspace*{#1}}
+\newcommand{\B}{\beta}
 \newcommand{\cod}[1]{\texttt{\frenchspacing#1}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
@@ -152,7 +153,7 @@
 	\begin{itemize}
 		\item Se hizo un análisis de correlación.
 		\pause
-		\item La variable \cod{std\_ThermalConductivity} tuvo la correlación más alta de $\mathbf{0.65}$, por lo tanto se utilizó para nuestro modelo.
+		\item La variable \cod{std\_ThermalConductivity} tuvo la correlación más alta de $\mathbf{0.65}$, por lo tanto se utilizó para nuestro modelo de regresión lineal simple.
 		\pause
 		\item Al hacer el análisis de la varianza explicada: $R^2=\mathbf{0.43}$.
 		\pause
@@ -164,12 +165,12 @@
 	\begin{itemize}
 		\item  Nos decidimos por un nuevo modelo.
 		\pause
-		\item  Utilizamos la variable \cod{range\_Valence} por ser una variable discreta y nos quedaron \textbf{6} modelos.
+		\item  Utilizamos la variable \cod{range\_Valence} por ser una variable discreta y así nos quedaron \textbf{7} modelos.
 		\pause
-		\item  El modelo final nos queda:
+		\item  El modelo final nos quedó:
 		\begin{itemize}
 			\pause
-			\item  Correlación = $\mathbf{0.75}$.
+			\item  $\rho = \mathbf{0.75}$.
 			\pause
 			\item  $R^2 = \mathbf{0.56}$.
 		\end{itemize}
@@ -188,7 +189,7 @@
 
 \begin{frame}{Nuevos modelos}
 	\begin{itemize}
-		\item Creamos una serie de nuevos modelos:
+		\item Creamos una serie de nuevos modelos de regresión lineal múltiple:
 		\begin{enumerate}
 			\item \textit{Backward}.
 			\pause
@@ -202,7 +203,7 @@
 			\pause
 			\item \textit{VIF}.
 			\pause
-			\item Regresión Multiple con la idea del Avance \textbf{1}.
+			\item Modelo con la idea del Avance \textbf{1}.
 			\pause
 			\item \textit{Ridge Regression}.
 			\pause
@@ -211,63 +212,150 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\textit{Backward}}
+\begin{frame}{Nuevos modelos}
 	\begin{itemize}
-		\item abc
+		\item Se utilizó la base de datos limpiada en el Avance \textbf{1} para trabajar solo con \textbf{34} variables.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\textit{Forward}}
+\begin{frame}{Modelo con \textit{Backward}}
 	\begin{itemize}
-		\item abc
+		\item Criterio AIC.
+		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
+		\item Modelo conformado finalmente por \textbf{27} variables.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\textit{Backward-Forward}}
+\begin{frame}{Modelo con \textit{Forward}}
 	\begin{itemize}
-		\item abc
+		\item Criterio AIC.
+		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
+		\item Modelo conformado finalmente por \textbf{28} variables.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\cod{add1}}
+\begin{frame}{Modelo con \textit{Backward-Forward}}
 	\begin{itemize}
-		\item abc
+		\item Criterio AIC.
+		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
+		\item Modelo conformado finalmente por \textbf{27} variables.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\cod{drop1}}
+\begin{frame}{Modelo con \cod{add1}}
 	\begin{itemize}
-		\item abc
+		\item Criterio AIC.
+		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
+		\item Modelo conformado finalmente por \textbf{28} variables.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\textit{VIF}}
+\begin{frame}{Modelo con \cod{drop1}}
 	\begin{itemize}
-		\item abc
+		\item Criterio AIC.
+		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
+		\item Modelo conformado finalmente por \textbf{25} variables.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Regresión Multiple con la idea del Avance \textbf{1}}
+\begin{frame}{Modelo con \textit{VIF}}
 	\begin{itemize}
-		\item abc
+		\item Se consideró el modelo conformado por todas las variables de la base de datos.
+		\item Se fue eliminando el problema de multicolinearidad progresivamente.
+		\item Modelo conformado finalmente por \textbf{28} variables.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\textit{Ridge Regression}}
+\begin{frame}{Modelo con la idea del Avance \textbf{1}}
 	\begin{itemize}
-		\item abc
+		\item Se crearon \textbf{7} bases de datos según \cod{range\_Valence}.
+		\item Se creó un modelo para cada base de datos mediante selección \textit{Backward} con criterio AIC.
+		\item Cantidad de variables:
+		\begin{enumerate}
+			\item Modelo para \cod{range\_Valence = 0}: \textbf{25} variables.
+			\item Modelo para \cod{range\_Valence = 1}: \textbf{23} variables.
+			\item Modelo para \cod{range\_Valence = 2}: \textbf{24} variables.
+			\item Modelo para \cod{range\_Valence = 3}: \textbf{25} variables.
+			\item Modelo para \cod{range\_Valence = 4}: \textbf{22} variables.
+			\item Modelo para \cod{range\_Valence = 5}: \textbf{19} variables.
+			\item Modelo para \cod{range\_Valence = 6}: \textbf{27} variables.
+		\end{enumerate}
 	\end{itemize}
 \end{frame}
-
-\begin{frame}{\textit{Lasso Regression}}
-	\begin{itemize}
-		\item abc
-	\end{itemize}
-\end{frame}
-
 
 % SECCION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Elegimos modelo}
+
+\begin{frame}{AIC, BIC y $R^2$ de los modelos.}
+		\begin{tabular}{| r | c | c | c |}
+			\hline
+			\textbf{Modelo} & \textbf{AIC} & \textbf{BIC} & $\mathbf{R^2}$
+			\\ \hline
+			\textit{Backward} & 126489.9 &  127064.9 & 0.66 \\
+			\textit{Forward} & 126880.5 & 127103.5 & 0.66 \\
+			\textit{Backward-Forward} & 126849.9 & 127064.9 & 0.66\\
+			\cod{add1} & 126858.4 &  127081.4& 0.66\\
+			\cod{drop1} & 126849.6 & 127048.7 & 0.66\\
+			\textit{VIF} & 126880.5 & 127103.5 & 0.6 \\ 
+			Idea Avance 1 & 121021.6 & 121840.3 & 0.74
+			\\ \hline
+		\end{tabular}
+\end{frame}
+
+
+\begin{frame}{Supuesto de \textit{Independencia}}
+	\begin{itemize}
+		\item Se utilizó el Test de \textit{Durbin-Watson}.
+		\item Independencia de residuos $\Leftrightarrow$ Valor D entre \textbf{1.5} y \textbf{2.5}. 
+		\item Ningún modelo mencionado cumple este supuesto.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Supuesto de \textit{Normalidad}}
+	\begin{itemize}
+		\item Se utilizó el Test de \textit{Kolmogorov-Smirnov}.
+		\item Criterio: Valor-p $>0.05$.
+		\item Ningún modelo mencionado cumple este supuesto.
+		\item Primera solución aplicada: Transformación de \textit{Box-Cox}
+		\item Segunda solución aplicada: 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Diapositiva}
+	\begin{itemize}
+		\item abc
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Diapositiva}
+	\begin{itemize}
+		\item abc
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Diapositiva}
+	\begin{itemize}
+		\item abc
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Diapositiva}
+	\begin{itemize}
+		\item abc
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Diapositiva}
+	\begin{itemize}
+		\item abc
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Diapositiva}
+	\begin{itemize}
+		\item abc
+	\end{itemize}
+\end{frame}
 
 \begin{frame}{Diapositiva}
 	\begin{itemize}
@@ -277,14 +365,69 @@
 
 
 % SECCION 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Ridge Regression}
+\section{Ridge y Lasso Regression}
 
-\begin{frame}{Diapositiva}
+\begin{frame}{\textit{Ridge Regression}}
 	\begin{itemize}
-		\item abc
+		\item \underline{Objetivo:} Minimizar \textbf{RSS}.
+		\item \textcolor{blue}{\textit{Shrinkage Penalty}} : $RSS_{\text{Ridge}} = RSS_{\text{AMC}} + \textcolor{blue}{\lambda \sum^p_{j=1} \beta_j^2}$.
+		\begin{itemize}
+			\item $\underline{\lambda = \mathbf{0}}: RSS_{\text{Ridge}} = RSS_{\text{AMC}}$.
+			\item $\underline{\lambda \geq \mathbf{0}}:$ Impacto en valores de $\B$.
+			\item $\underline{\lambda \to \mathbf{\infty}}:$ $\B \to \vec{\mathbf{0}}$.
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{\textit{Ridge Regression}: $\lambda$ óptimo}
+	\begin{itemize}
+		\item Es aquel que reduce la mayor varianza del modelo sin apenas perder ajuste.
+		\item \textit{Validación cruzada}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\textit{Ridge Regression}: Visualización}
+	\begin{figure}
+		\includegraphics[scale=0.4]{figures/ridge.png}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{\textit{Ridge Regression}: Ventajas}
+	\begin{itemize}
+		\item Reduce la varianza.
+		\item Datos de Entrenamiento vs. Datos de Prueba.
+		\item Minimiza la influencia sobre el modelo de los predictores menos relacionados con la variable respuesta.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\textit{Ridge Regression}: Limitación}
+	\begin{itemize}
+		\item Modelo final incluye todos los predictores.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\textit{Lasso Regression}}
+	\begin{itemize}
+		\item Misma idea que en \textit{Ridge Regression}.
+		\item Selección de predictores.
+		\item \textcolor{blue}{\textit{Shrinkage Penalty}} : $RSS_{\text{Lasso}} = RSS_{\text{AMC}} + \textcolor{blue}{\lambda \sum^p_{j=1} |\beta_j|}$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Comparación entre \textit{Ridge} y \textit{Lasso Regression}}
+	\begin{itemize}
+		\item Usamos uno u otro dependiendo del escenario.
+		\item \textit{Ridge Regression}: cuando los $\B \not = \vec{\mathbf{0}}$ y tienen la misma magnitud aproximadamente.
+		\item \textit{Lasso Regression}: cuando un gran grupo de parámetros $\approx \mathbf{0}$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Resultados de la implementación en R}
+	\begin{itemize}
+		\item \textcolor{blue}{\textit{Ridge Regression}}:
+	\end{itemize}
+\end{frame}
 
 % CONCLUSIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones}
@@ -304,21 +447,21 @@
 
 		\beamertemplateonlinebibitems % imagen de una URL de internet
 		\bibitem{Author2019}
-		archive.ics.uci.edu/ml/datasets/Superconductivty+Data
-		\newblock{\em Kam Ham Idieh - Machine Learning Repository}.
+		https://online.stat.psu.edu/stat501/lesson/13/13.1
+		\newblock{\em Weighted Least Squares}.
 		\newblock{2018}
 
 		\beamertemplateonlinebibitems % imagen de una URL de internet
 		\bibitem{Author2019}
-		https://arxiv.org/pdf/1803.10260.pdf
-		\newblock{\em Joe Ganser - Superconductivity Regression}.
-		\newblock{2019}
+		https://rpubs.com/Joaquin\_AR/242707
+		\newblock{\em Selección de predictores: Ridge y  Lasso}.
+		\newblock{2016}
 
-		\beamertemplatearticlebibitems % imagen de libro
-		\bibitem{Author1990}
-		Machine learning modeling of superconducting
-		\newblock{\em V. Stanev, C. Oses, A.G. Kusne, et al.}
-		\newblock{2018}
+		\beamertemplateonlinebibitems % imagen de una URL de internet
+		\bibitem{Author2019}
+		https://rstatisticsblog.com/data-science-in-action/machine-learning/ridge-regression-in-r/
+		\newblock{\em Simple Guide To Ridge Regression In R}.
+		\newblock{2020}
 
 		%\beamertemplatebookbibitems % imagen de revista, paper o artÃ­culo
 		%\bibitem{Author19901}

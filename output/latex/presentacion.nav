@@ -42,38 +42,68 @@
 \headcommand {\beamer@framepages {34}{34}}
 \headcommand {\slideentry {2}{0}{10}{35/35}{}{0}}
 \headcommand {\beamer@framepages {35}{35}}
-\headcommand {\slideentry {2}{0}{11}{36/36}{}{0}}
+\headcommand {\beamer@sectionpages {18}{35}}
+\headcommand {\beamer@subsectionpages {18}{35}}
+\headcommand {\sectionentry {3}{Elegimos modelo}{36}{Elegimos modelo}{0}}
+\headcommand {\slideentry {3}{0}{1}{36/36}{}{0}}
 \headcommand {\beamer@framepages {36}{36}}
-\headcommand {\beamer@sectionpages {18}{36}}
-\headcommand {\beamer@subsectionpages {18}{36}}
-\headcommand {\sectionentry {3}{Elegimos modelo}{37}{Elegimos modelo}{0}}
-\headcommand {\slideentry {3}{0}{1}{37/37}{}{0}}
+\headcommand {\slideentry {3}{0}{2}{37/37}{}{0}}
 \headcommand {\beamer@framepages {37}{37}}
-\headcommand {\slideentry {3}{0}{2}{38/38}{}{0}}
+\headcommand {\slideentry {3}{0}{3}{38/38}{}{0}}
 \headcommand {\beamer@framepages {38}{38}}
-\headcommand {\beamer@sectionpages {37}{38}}
-\headcommand {\beamer@subsectionpages {37}{38}}
-\headcommand {\sectionentry {4}{Ridge Regression}{39}{Ridge Regression}{0}}
-\headcommand {\slideentry {4}{0}{1}{39/39}{}{0}}
+\headcommand {\slideentry {3}{0}{4}{39/39}{}{0}}
 \headcommand {\beamer@framepages {39}{39}}
-\headcommand {\slideentry {4}{0}{2}{40/40}{}{0}}
+\headcommand {\slideentry {3}{0}{5}{40/40}{}{0}}
 \headcommand {\beamer@framepages {40}{40}}
-\headcommand {\beamer@sectionpages {39}{40}}
-\headcommand {\beamer@subsectionpages {39}{40}}
-\headcommand {\sectionentry {5}{Conclusiones}{41}{Conclusiones}{0}}
-\headcommand {\slideentry {5}{0}{1}{41/41}{}{0}}
+\headcommand {\slideentry {3}{0}{6}{41/41}{}{0}}
 \headcommand {\beamer@framepages {41}{41}}
-\headcommand {\slideentry {5}{0}{2}{42/42}{}{0}}
+\headcommand {\slideentry {3}{0}{7}{42/42}{}{0}}
 \headcommand {\beamer@framepages {42}{42}}
-\headcommand {\beamer@sectionpages {41}{42}}
-\headcommand {\beamer@subsectionpages {41}{42}}
-\headcommand {\sectionentry {6}{Referencias bibliográficas}{43}{Referencias bibliográficas}{0}}
-\headcommand {\slideentry {6}{0}{1}{43/43}{}{0}}
+\headcommand {\slideentry {3}{0}{8}{43/43}{}{0}}
 \headcommand {\beamer@framepages {43}{43}}
-\headcommand {\slideentry {6}{0}{2}{44/44}{}{0}}
+\headcommand {\slideentry {3}{0}{9}{44/44}{}{0}}
 \headcommand {\beamer@framepages {44}{44}}
-\headcommand {\beamer@partpages {1}{44}}
-\headcommand {\beamer@subsectionpages {43}{44}}
-\headcommand {\beamer@sectionpages {43}{44}}
-\headcommand {\beamer@documentpages {44}}
-\headcommand {\gdef \inserttotalframenumber {28}}
+\headcommand {\slideentry {3}{0}{10}{45/45}{}{0}}
+\headcommand {\beamer@framepages {45}{45}}
+\headcommand {\slideentry {3}{0}{11}{46/46}{}{0}}
+\headcommand {\beamer@framepages {46}{46}}
+\headcommand {\beamer@sectionpages {36}{46}}
+\headcommand {\beamer@subsectionpages {36}{46}}
+\headcommand {\sectionentry {4}{Ridge y Lasso Regression}{47}{Ridge y Lasso Regression}{0}}
+\headcommand {\slideentry {4}{0}{1}{47/47}{}{0}}
+\headcommand {\beamer@framepages {47}{47}}
+\headcommand {\slideentry {4}{0}{2}{48/48}{}{0}}
+\headcommand {\beamer@framepages {48}{48}}
+\headcommand {\slideentry {4}{0}{3}{49/49}{}{0}}
+\headcommand {\beamer@framepages {49}{49}}
+\headcommand {\slideentry {4}{0}{4}{50/50}{}{0}}
+\headcommand {\beamer@framepages {50}{50}}
+\headcommand {\slideentry {4}{0}{5}{51/51}{}{0}}
+\headcommand {\beamer@framepages {51}{51}}
+\headcommand {\slideentry {4}{0}{6}{52/52}{}{0}}
+\headcommand {\beamer@framepages {52}{52}}
+\headcommand {\slideentry {4}{0}{7}{53/53}{}{0}}
+\headcommand {\beamer@framepages {53}{53}}
+\headcommand {\slideentry {4}{0}{8}{54/54}{}{0}}
+\headcommand {\beamer@framepages {54}{54}}
+\headcommand {\slideentry {4}{0}{9}{55/55}{}{0}}
+\headcommand {\beamer@framepages {55}{55}}
+\headcommand {\beamer@sectionpages {47}{55}}
+\headcommand {\beamer@subsectionpages {47}{55}}
+\headcommand {\sectionentry {5}{Conclusiones}{56}{Conclusiones}{0}}
+\headcommand {\slideentry {5}{0}{1}{56/56}{}{0}}
+\headcommand {\beamer@framepages {56}{56}}
+\headcommand {\slideentry {5}{0}{2}{57/57}{}{0}}
+\headcommand {\beamer@framepages {57}{57}}
+\headcommand {\beamer@sectionpages {56}{57}}
+\headcommand {\beamer@subsectionpages {56}{57}}
+\headcommand {\sectionentry {6}{Referencias bibliográficas}{58}{Referencias bibliográficas}{0}}
+\headcommand {\slideentry {6}{0}{1}{58/58}{}{0}}
+\headcommand {\beamer@framepages {58}{58}}
+\headcommand {\slideentry {6}{0}{2}{59/59}{}{0}}
+\headcommand {\beamer@framepages {59}{59}}
+\headcommand {\beamer@partpages {1}{59}}
+\headcommand {\beamer@subsectionpages {58}{59}}
+\headcommand {\beamer@sectionpages {58}{59}}
+\headcommand {\beamer@documentpages {59}}
+\headcommand {\gdef \inserttotalframenumber {43}}
