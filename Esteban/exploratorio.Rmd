@@ -38,7 +38,7 @@ auto_drop1 <- function(data_frame, v_respuesta, v_explicativas, alpha) {
         }
     }
 
-    return(list(modelo = full_lin_mod, aic = min(drop_1$AIC)))
+    return(full_lin_mod)
 }
 
 auto_add1 <- function(data_frame, v_respuesta, v_explicativas, alpha) {
@@ -67,7 +67,7 @@ auto_add1 <- function(data_frame, v_respuesta, v_explicativas, alpha) {
         }
     }
 
-    return(list(modelo = null_lin_mod, aic = min(add_1$AIC)))
+    return(null_lin_mod)
 }
 
 supuestos <- function(modelo) {
@@ -112,8 +112,10 @@ auto_vif <- function(data_frame, v_respuesta, v_explicativas, criterio = 10) {
             detencion <- TRUE
         }
     }
+    
+    full_lin_mod <- step(full_lin_mod, direction = "forward", scope = full_lin_mod$terms, trace = 0)
 
-    return(list(modelo = full_lin_mod, aic = -2 * logLik(full_lin_mod) + 2 * (length(coefficients(full_lin_mod)) + 1)))
+    return(full_lin_mod)
 }
 
 eliminar_multicolinealidad <- function(modelo, criterio) {
@@ -137,10 +139,23 @@ eliminar_multicolinealidad <- function(modelo, criterio) {
         }
     }
     
-    return(list(modelo = modelo, aic = -2 * as.numeric(logLik(modelo)) + 2 * (length(coefficients(modelo)) + 1)))
+    modelo <- step(modelo, direction = "forward", scope = modelo$terms, trace = 0)
+    
+    return(modelo)
         
 }
-    
+
+aic <- function(modelo) {
+    modelo <- step(modelo, direction = "forward", scope = modelo$terms, trace = 0)
+    return(modelo$anova$AIC %>% min())
+}
+
+bic <- function(modelo) {
+    modelo <- step(modelo, direction = "forward", 
+                   k = modelo$model %>% nrow() %>% log(), 
+                   scope = modelo$terms, trace = 0)
+    return(modelo$anova$AIC %>% min()) 
+}
 
 ```
 
@@ -158,51 +173,58 @@ full_mod <- lm(formula = formula, data = data)
 null_mod <- lm(formula = critical_temp ~ 1, data = data)
 
 # bw
-backward <- step(full_mod, direction = "backward", trace = 0)
-(aic_backward <- backward$anova$AIC %>% min())
-(variables_backward <- backward %>% coefficients() %>% length())
-(supuestos_backward <- backward %>% supuestos())
-(summary(backward)$r.squared)
+backward <- step(full_mod, direction = "backward", trace = 0) %>%
+    eliminar_multicolinealidad(criterio = 10)
+aic_backward <- backward %>% aic()
+bic_backward <- backward %>% bic()
+variables_backward <- backward %>% coefficients() %>% length()
+supuestos_backward <- backward %>% supuestos()
+r_squared_backward <- summary(backward)$r.squared
 
 # fw
-forward <- step(full_mod, direction = "forward", scope = formula, trace = 0)
-(aic_forward <- forward$anova$AIC %>% min())
-(variables_forward <- forward %>% coefficients() %>% length())
-(supuestos_forward <- forward %>% supuestos())
-(summary(forward)$r.squared)
+forward <- step(full_mod, direction = "forward", scope = formula, trace = 0) %>%
+    eliminar_multicolinealidad(criterio = 10)
+aic_forward <- forward %>% aic()
+bic_forward <- forward %>% bic()
+variables_forward <- forward %>% coefficients() %>% length()
+supuestos_forward <- forward %>% supuestos()
+r_squared_forward <- summary(forward)$r.squared
 
 # stepwise
-stepwise <- step(full_mod, direction = "both", trace = 0)
-(aic_stepwise <- stepwise$anova$AIC %>% min())
-(variables_stepwise <- stepwise %>% coefficients() %>% length())
-(supuestos_stepwise <- stepwise %>% supuestos())
-(summary(stepwise)$r.squared)
+stepwise <- step(full_mod, direction = "both", trace = 0) %>%
+    eliminar_multicolinealidad(criterio = 10)
+aic_stepwise <- stepwise %>% aic()
+bic_stepwise <- stepwise %>% bic()
+variables_stepwise <- stepwise %>% coefficients() %>% length()
+supuestos_stepwise <- stepwise %>% supuestos()
+r_squared_stepwise <- summary(stepwise)$r.squared
 
 # drop1
-drop1 <- auto_drop1(data, "critical_temp", variables, 0.05)
-(aic_drop1 <- drop1$aic)
-(variables_drop1 <- drop1$modelo %>% coefficients() %>% length())
-(supuestos_drop1 <- drop1$modelo %>% supuestos())
-(summary(drop1$modelo)$r.squared)
+drop1 <- auto_drop1(data, "critical_temp", variables, 0.05) %>%
+    eliminar_multicolinealidad(criterio = 10)
+aic_drop1 <- drop1 %>% aic()
+bic_drop1 <- drop1 %>% bic()
+variables_drop1 <- drop1 %>% coefficients() %>% length()
+supuestos_drop1 <- drop1 %>% supuestos()
+r_squared_drop1 <- summary(drop1)$r.squared
 
 # add1
-add1 <- auto_add1(data, "critical_temp", variables, 0.05)
-(aic_add1 <- add1$aic)
-(variables_add1 <- add1$modelo %>% coefficients() %>% length())
-(supuestos_add1 <- add1$modelo %>% supuestos())
-(summary(add1$modelo)$r.squared)
-
-add1_1 <- eliminar_multicolinealidad(add1$modelo, 10)
-
-car::vif(add1_1$modelo)
-add1_1$aic
+add1 <- auto_add1(data, "critical_temp", variables, 0.05) %>%
+    eliminar_multicolinealidad(criterio = 10)
+aic_add1 <- add1 %>% aic()
+bic_add1 <- add1 %>% bic()
+variables_add1 <- add1 %>% coefficients() %>% length()
+supuestos_add1 <- add1 %>% supuestos()
+r_squared_add1 <- summary(add1)$r.squared
 
 # Vif
-mod_vif <- auto_vif(data, "critical_temp", variables, 7)
-(aic_vif <- mod_vif$aic)
-(variables_vif <- mod_vif$modelo %>% coefficients() %>% length())
-(supuestos_vif <- mod_vif$modelo %>% supuestos())
-(summary(mod_vif$modelo)$r.squared)
+mod_vif <- auto_vif(data, "critical_temp", variables, 10) %>%
+    eliminar_multicolinealidad(criterio = 10)
+aic_vif <- mod_vif %>% aic()
+bic_vif <- mod_vif %>% bic()
+variables_vif <- mod_vif %>% coefficients() %>% length()
+supuestos_vif <- mod_vif %>% supuestos()
+r_squared_vif <- summary(mod_vif)$r.squared
 
 ```
 
@@ -227,16 +249,12 @@ cv_output <- glmnet::cv.glmnet(x_vars, y_var,
  
 # identifying best lambda
 best_lam <- cv_output$lambda.min
-best_lam
 
 # Rebuilding the model with best lamda value identified
 ridge_best <- glmnet::glmnet(x_vars, y_var, alpha = 0, lambda = best_lam)
 pred <- predict(ridge_best, s = best_lam, newx = x_vars)
 
 final <- cbind(y_var, pred)
-
-head(final)
-
 
 actual <- y_var
 preds <- pred
@@ -249,6 +267,13 @@ rsq
 
 
 ```
+
+
+```{r RIDGE 2}
+
+
+```
+
 
 
 ```{r LASSO REGRESSION}
@@ -271,7 +296,6 @@ cv_output <- glmnet::cv.glmnet(x_vars[train,], y_var[train],
  
 # identifying best lambda
 best_lam <- cv_output$lambda.min
-best_lam
 
 # Rebuilding the model with best lamda value identified
 lasso_best <- glmnet::glmnet(x_vars[train,], y_var[train], alpha = 1, lambda = best_lam)
@@ -279,7 +303,6 @@ pred <- predict(lasso_best, s = best_lam, newx = x_vars[x_test,])
 
 final <- cbind(y_var[-train], pred)
 
-head(final)
 
 
 actual <- y_var[-train]
@@ -287,25 +310,37 @@ preds <- pred
 rss <- sum((preds - actual) ^ 2)
 tss <- sum((actual - mean(actual)) ^ 2)
 rsq <- 1 - rss/tss
-rsq
-
 
 plot(actual ~ preds)
 ```
 
 ```{r results="hide"}
-data$number_of_elements <- NULL
+data_av_1 <- data
+data_av_1$number_of_elements <- NULL
 
 lin_mods_bw <- list()
-lin_mods_fw <- list()
-lin_mods_bf <- list()
+#lin_mods_fw <- list()
+#lin_mods_bf <- list()
+
+supuestos_mods_bw <- list()
+#supuestos_mods_fw <- list()
+#supuestos_mods_bf <- list()
+
 vr <- c()
 fitted_values_bw <- c()
-fitted_values_fw <- c()
-fitted_values_bf <- c()
+#fitted_values_fw <- c()
+#fitted_values_bf <- c()
+
+av1_bw_aic <- vector(mode = "numeric", length = 7)
+#av1_fw_aic <- vector(mode = "numeric", length = 7)
+#av1_bf_aic <- vector(mode = "numeric", length = 7)
+
+av1_bw_bic <- vector(mode = "numeric", length = 7)
+#av1_fw_bic <- vector(mode = "numeric", length = 7)
+#av1_bf_bic <- vector(mode = "numeric", length = 7)
 
 for(i in 0:6){
-    new_data <- data %>% 
+    new_data <- data_av_1 %>% 
         filter(range_Valence == i)
     new_data$range_Valence <- NULL
     
@@ -316,35 +351,52 @@ for(i in 0:6){
     }
     
     full_lin_mod_i <- lm(critical_temp ~ ., data = new_data)
-    null_lin_mod_i <- lm(critical_temp ~ 1, data = new_data)
+    #null_lin_mod_i <- lm(critical_temp ~ 1, data = new_data)
     
     if(summary(full_lin_mod_i)$r.squared != 1){
-        lin_mods_bw[[paste(i)]] <- step(full_lin_mod_i, direction = "backward", trace = 0)
-        lin_mods_fw[[paste(i)]] <- step(null_lin_mod_i, direction = "forward", scope = formula(full_lin_mod_i), trace = 0)
-        lin_mods_bf[[paste(i)]] <- step(full_lin_mod_i, direction = "both", trace = 0)
-    } else{
+        lin_mods_bw[[paste(i)]] <- step(full_lin_mod_i, direction = "backward", trace = 0) 
+        #lin_mods_fw[[paste(i)]] <- step(null_lin_mod_i, direction = "forward", scope = formula(full_lin_mod_i), trace = 0) 
+        #lin_mods_bf[[paste(i)]] <- step(full_lin_mod_i, direction = "both", trace = 0)
+        
+        av1_bw_aic[i + 1] <- lin_mods_bw[[paste(i)]] %>% aic()
+        #av1_fw_aic[i + 1] <- lin_mods_fw[[paste(i)]] %>% aic()
+        #av1_bf_aic[i + 1] <- lin_mods_bf[[paste(i)]] %>% aic()
+        
+        av1_bw_bic[i + 1] <- lin_mods_bw[[paste(i)]] %>% bic()
+        #av1_fw_bic[i + 1] <- lin_mods_fw[[paste(i)]] %>% bic()
+        #av1_bf_bic[i + 1] <- lin_mods_bf[[paste(i)]] %>% bic()
+        
+        supuestos_mods_bw[[paste(i)]] <- supuestos(lin_mods_bw[[paste(i)]])
+        #supuestos_mods_fw[[paste(i)]] <- supuestos(lin_mods_fw[[paste(i)]])
+        #supuestos_mods_bf[[paste(i)]] <- supuestos(lin_mods_bf[[paste(i)]])
+    } else {
         lin_mods_bw[[paste(i)]] <- full_lin_mod_i
-        lin_mods_fw[[paste(i)]] <- full_lin_mod_i
-        lin_mods_bf[[paste(i)]] <- full_lin_mod_i
+        #lin_mods_fw[[paste(i)]] <- full_lin_mod_i 
+        #lin_mods_bf[[paste(i)]] <- full_lin_mod_i 
+        
+        av1_bw_aic[i + 1] <- 0
+        #av1_fw_aic[i + 1] <- 0
+        #av1_bf_aic[i + 1] <- 0
     }
     
     vr <- c(vr, new_data$critical_temp)
+    
     fitted_values_bw <- c(fitted_values_bw, lin_mods_bw[[paste(i)]]$fitted.values)
-    fitted_values_fw <- c(fitted_values_fw, lin_mods_fw[[paste(i)]]$fitted.values)
-    fitted_values_bf <- c(fitted_values_bf, lin_mods_bf[[paste(i)]]$fitted.values)
+    #fitted_values_fw <- c(fitted_values_fw, lin_mods_fw[[paste(i)]]$fitted.values)
+    #fitted_values_bf <- c(fitted_values_bf, lin_mods_bf[[paste(i)]]$fitted.values)
 }
 
-(correlacion_bw <- cor(vr, fitted_values_bw))
-(correlacion_fw <- cor(vr, fitted_values_fw))
-(correlacion_bf <- cor(vr, fitted_values_bf))
+correlacion_bw <- cor(vr, fitted_values_bw)
+#correlacion_fw <- cor(vr, fitted_values_fw)
+#correlacion_bf <- cor(vr, fitted_values_bf)
 
-plot(vr ~ fitted_values_bw)
+aic_bw_av_1 <- sum(av1_bw_aic)
+#aic_fw_av_1 <- sum(av1_fw_aic)
+#aic_bf_av_1 <- sum(av1_bf_aic)
 
-newmod <- lm(vr ~ fitted_values_fw)
-
-plot(density(vr), col = "red")
-lines(density(fitted_values_bw))
-
+bic_bw_av_1 <- sum(av1_bw_bic)
+#bic_fw_av_1 <- sum(av1_fw_bic)
+#bic_bf_av_1 <- sum(av1_bf_bic)
 
 ```
 
