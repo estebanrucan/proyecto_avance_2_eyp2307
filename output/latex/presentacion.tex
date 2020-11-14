@@ -85,7 +85,7 @@
 % DATA
 
 \title{Temperatura Crítica de Superconductores} % Titulo
-\subtitle{Presentamos nuevos modelos} % Subtítulo
+\subtitle{\textit{¿Es suficiente una regresión múltiple?}} % Subtítulo
 \logo{\includegraphics[scale=0.0875]{logo-uc}}
 \author{Grupo A - Estadística}		% Autor
 \date{1 de Diciembre de 2020}		% Fecha
@@ -215,53 +215,59 @@
 \begin{frame}{Nuevos modelos}
 	\begin{itemize}
 		\item Se utilizó la base de datos limpiada en el Avance \textbf{1} para trabajar solo con \textbf{34} variables.
+		\pause
+		\item Se solucionó el problema de multicolinearidad en cada modelo viendo el \textit{VIF}.
+		\pause
+		\item En todos los modelos se usó criterio AIC (excepto en Modelo con VIF).
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Modelo con \textit{Backward}}
 	\begin{itemize}
-		\item Criterio AIC.
-		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
-		\item Modelo conformado finalmente por \textbf{27} variables.
+		\item Multicolinearidad $\to \mathbf{2}$ variables eliminadas.
+		\pause
+		\item Modelo conformado finalmente por \textbf{27} $\B$'s.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Modelo con \textit{Forward}}
 	\begin{itemize}
-		\item Criterio AIC.
-		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
-		\item Modelo conformado finalmente por \textbf{28} variables.
+		\item Multicolinearidad $\to \mathbf{4}$ variables eliminadas.
+		\pause
+		\item Modelo conformado finalmente por \textbf{28} $\B$'s.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Modelo con \textit{Backward-Forward}}
 	\begin{itemize}
-		\item Criterio AIC.
-		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
-		\item Modelo conformado finalmente por \textbf{27} variables.
+		\item Multicolinearidad $\to \mathbf{2}$ variables eliminadas.
+		\pause
+		\item Modelo conformado finalmente por \textbf{27} $\B$'s.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Modelo con \cod{add1}}
 	\begin{itemize}
-		\item Criterio AIC.
-		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
-		\item Modelo conformado finalmente por \textbf{28} variables.
+		\item Multicolinearidad $\to \mathbf{3}$ variables eliminadas.
+		\pause
+		\item Modelo conformado finalmente por \textbf{28} $\B$'s.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Modelo con \cod{drop1}}
 	\begin{itemize}
-		\item Criterio AIC.
-		\item Multicolinearidad $\to \mathbf{0}$ variables eliminadas.
-		\item Modelo conformado finalmente por \textbf{25} variables.
+		\item Multicolinearidad $\to \mathbf{1}$ variable eliminada.
+		\pause
+		\item Modelo conformado finalmente por \textbf{25} $\B$'s.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Modelo con \textit{VIF}}
 	\begin{itemize}
 		\item Se consideró el modelo conformado por todas las variables de la base de datos.
+		\pause
 		\item Se fue eliminando el problema de multicolinearidad progresivamente.
+		\pause
 		\item Modelo conformado finalmente por \textbf{28} variables.
 	\end{itemize}
 \end{frame}
@@ -269,7 +275,9 @@
 \begin{frame}{Modelo con la idea del Avance \textbf{1}}
 	\begin{itemize}
 		\item Se crearon \textbf{7} bases de datos según \cod{range\_Valence}.
-		\item Se creó un modelo para cada base de datos mediante selección \textit{Backward} con criterio AIC.
+		\pause
+		\item Se creó un modelo para cada base de datos mediante selección \textit{Backward}.
+		\pause
 		\item Cantidad de variables:
 		\begin{enumerate}
 			\item Modelo para \cod{range\_Valence = 0}: \textbf{25} variables.
@@ -287,41 +295,69 @@
 \section{Elegimos modelo}
 
 \begin{frame}{AIC, BIC y $R^2$ de los modelos.}
-		\begin{tabular}{| r | c | c | c |}
-			\hline
-			\textbf{Modelo} & \textbf{AIC} & \textbf{BIC} & $\mathbf{R^2}$
-			\\ \hline
-			\textit{Backward} & 126489.9 &  127064.9 & 0.66 \\
-			\textit{Forward} & 126880.5 & 127103.5 & 0.66 \\
-			\textit{Backward-Forward} & 126849.9 & 127064.9 & 0.66\\
-			\cod{add1} & 126858.4 &  127081.4& 0.66\\
-			\cod{drop1} & 126849.6 & 127048.7 & 0.66\\
-			\textit{VIF} & 126880.5 & 127103.5 & 0.6 \\ 
-			Idea Avance 1 & 121021.6 & 121840.3 & 0.74
-			\\ \hline
-		\end{tabular}
+		\begin{center}
+			\begin{tabular}{| r | c | c | c |}
+				\hline
+				\textbf{Modelo} & \textbf{AIC} & \textbf{BIC} & $\mathbf{R^2}$
+				\\ \hline
+				\textit{Backward} & 126489.9 &  127064.9 & 0.66 \\
+				\textit{Forward} & 126880.5 & 127103.5 & 0.66 \\
+				\textit{Backward-Forward} & 126849.9 & 127064.9 & 0.66\\
+				\cod{add1} & 126858.4 &  127081.4& 0.66\\
+				\cod{drop1} & 126849.6 & 127048.7 & 0.66\\
+				\textit{VIF} & 126880.5 & 127103.5 & 0.66 \\ 
+				Idea Avance 1 & 121021.6 & 121840.3 & 0.74
+				\\ \hline
+			\end{tabular}
+		\end{center}
+\end{frame}
+
+\begin{frame}{Modelo Elegido: \textit{Backward}}
+	\begin{itemize}
+		\item abc
+	\end{itemize}
 \end{frame}
 
 
 \begin{frame}{Supuesto de \textit{Independencia}}
 	\begin{itemize}
 		\item Se utilizó el Test de \textit{Durbin-Watson}.
+		\pause
 		\item Independencia de residuos $\Leftrightarrow$ Valor D entre \textbf{1.5} y \textbf{2.5}. 
-		\item Ningún modelo mencionado cumple este supuesto.
+		\pause
+		\item $\text{Valor D} = \mathbf{0.89}$ $\to$ No se cumple el supuesto.
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Supuesto de \textit{Normalidad}}
 	\begin{itemize}
 		\item Se utilizó el Test de \textit{Kolmogorov-Smirnov}.
-		\item Criterio: Valor-p $>0.05$.
-		\item Ningún modelo mencionado cumple este supuesto.
-		\item Primera solución aplicada: Transformación de \textit{Box-Cox}
-		\item Segunda solución aplicada: 
+		\pause
+		\item Criterio: valor-p $>\mathbf{0.05}$.
+		\pause
+		\item El modelo no cumple con este supuesto.
+		\pause
+		\item \textit{Primera solución aplicada}: Transformación de \textit{Box-Cox}.
+		\pause
+		\item \textit{Segunda solución aplicada}: Transformación de \textit{Johnson}.
+		\pause
+		\item No se lograron resultados satisfactorios.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Diapositiva}
+\begin{frame}{Supuesto de \textit{Homocedasticidad}}
+	\begin{itemize}
+		\item Se utilizó el Test de \textit{Breusch-Pagan}.
+		\pause
+		\item Criterio: valor-p $>\mathbf{0.05}$.
+		\pause
+		\item El modelo no cumple con este supuesto.
+		\pause
+		\item Solución propuesta para Heterocedasticidad: \\ \center{\textcolor{blue}{\textit{Weighted Least Squares Regression}}}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\textit{Weighted Least Squares Regression}}
 	\begin{itemize}
 		\item abc
 	\end{itemize}
@@ -333,35 +369,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Diapositiva}
-	\begin{itemize}
-		\item abc
-	\end{itemize}
-\end{frame}
 
-\begin{frame}{Diapositiva}
-	\begin{itemize}
-		\item abc
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Diapositiva}
-	\begin{itemize}
-		\item abc
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Diapositiva}
-	\begin{itemize}
-		\item abc
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Diapositiva}
-	\begin{itemize}
-		\item abc
-	\end{itemize}
-\end{frame}
 
 
 % SECCION 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -369,12 +377,13 @@
 
 \begin{frame}{\textit{Ridge Regression}}
 	\begin{itemize}
-		\item \underline{Objetivo:} Minimizar \textbf{RSS}.
+		\item \textbf{Objetivo:} Minimizar \textbf{RSS}.
+		\pause
 		\item \textcolor{blue}{\textit{Shrinkage Penalty}} : $RSS_{\text{Ridge}} = RSS_{\text{AMC}} + \textcolor{blue}{\lambda \sum^p_{j=1} \beta_j^2}$.
 		\begin{itemize}
-			\item $\underline{\lambda = \mathbf{0}}: RSS_{\text{Ridge}} = RSS_{\text{AMC}}$.
-			\item $\underline{\lambda \geq \mathbf{0}}:$ Impacto en valores de $\B$.
-			\item $\underline{\lambda \to \mathbf{\infty}}:$ $\B \to \vec{\mathbf{0}}$.
+			\item $\lambda = \mathbf{0}: RSS_{\text{Ridge}} = RSS_{\text{AMC}}$.
+			\item $\lambda \geq \mathbf{0}:$ Impacto en valores de $\B$.
+			\item $\lambda \to \mathbf{\infty}:$ $\B \to \vec{\mathbf{0}}$.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -382,6 +391,7 @@
 \begin{frame}{\textit{Ridge Regression}: $\lambda$ óptimo}
 	\begin{itemize}
 		\item Es aquel que reduce la mayor varianza del modelo sin apenas perder ajuste.
+		\pause
 		\item \textit{Validación cruzada}.
 	\end{itemize}
 \end{frame}
@@ -396,7 +406,9 @@
 \begin{frame}{\textit{Ridge Regression}: Ventajas}
 	\begin{itemize}
 		\item Reduce la varianza.
+		\pause
 		\item Datos de Entrenamiento vs. Datos de Prueba.
+		\pause
 		\item Minimiza la influencia sobre el modelo de los predictores menos relacionados con la variable respuesta.
 	\end{itemize}
 \end{frame}
@@ -410,7 +422,9 @@
 \begin{frame}{\textit{Lasso Regression}}
 	\begin{itemize}
 		\item Misma idea que en \textit{Ridge Regression}.
-		\item Selección de predictores.
+		\pause
+		\item Realiza selección de predictores.
+		\pause
 		\item \textcolor{blue}{\textit{Shrinkage Penalty}} : $RSS_{\text{Lasso}} = RSS_{\text{AMC}} + \textcolor{blue}{\lambda \sum^p_{j=1} |\beta_j|}$.
 	\end{itemize}
 \end{frame}
@@ -418,7 +432,9 @@
 \begin{frame}{Comparación entre \textit{Ridge} y \textit{Lasso Regression}}
 	\begin{itemize}
 		\item Usamos uno u otro dependiendo del escenario.
-		\item \textit{Ridge Regression}: cuando los $\B \not = \vec{\mathbf{0}}$ y tienen la misma magnitud aproximadamente.
+		\pause
+		\item \textit{Ridge Regression}: cuando los $\B's \not = \mathbf{0}$ y tienen la misma magnitud aproximadamente.
+		\pause
 		\item \textit{Lasso Regression}: cuando un gran grupo de parámetros $\approx \mathbf{0}$.
 	\end{itemize}
 \end{frame}
@@ -426,6 +442,8 @@
 \begin{frame}{Resultados de la implementación en R}
 	\begin{itemize}
 		\item \textcolor{blue}{\textit{Ridge Regression}}:
+		\pause
+		\item \textcolor{blue}{\textit{Lasso Regression}}:
 	\end{itemize}
 \end{frame}
 
@@ -434,7 +452,15 @@
 
 \begin{frame}{Conclusiones}
 	\begin{itemize}
-		\item abc
+		\item Sobre los nuevos modelos.
+		\pause
+		\item Sobre el cumplimiento de los supuestos.
+		\pause
+		\item Sobre \textit{Ridge} y \textit{Lasso Regression}.
+		\pause
+		\item Contraste con Avance \textbf{1}.
+		\pause
+		\item ¿Es suficiente una regresión múltiple?
 	\end{itemize}
 \end{frame}
 

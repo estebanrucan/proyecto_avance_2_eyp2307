@@ -1,9 +1,9 @@
 # Fdb version 3
-["xdvipdfmx"] 1605389795 "presentacion.xdv" "presentacion.pdf" "presentacion" 1605389796
-  "presentacion.xdv" 1605389794 3379024 0be9d930d46018f16c9ae9cc106d66d0 "xelatex"
+["xdvipdfmx"] 1605395743 "presentacion.xdv" "presentacion.pdf" "presentacion" 1605395744
+  "presentacion.xdv" 1605395742 5019448 20fa58f442abef77644266d7676fcb9d "xelatex"
   (generated)
   "presentacion.pdf"
-["xelatex"] 1605389772 "d:/EYP2307/proyecto_avance_2_eyp2307/output/latex/presentacion.tex" "presentacion.xdv" "presentacion" 1605389795
+["xelatex"] 1605395712 "d:/EYP2307/proyecto_avance_2_eyp2307/output/latex/presentacion.tex" "presentacion.xdv" "presentacion" 1605395744
   "C:/Users/esteb/AppData/Local/MiKTeX/miktex/data/le/xetex/xelatex.fmt" 1604629893 23608560 ff580fb41b53edea50cfb933e7349109 ""
   "C:/Users/esteb/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136786654 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "C:/Users/esteb/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -233,21 +233,21 @@
   "C:/Users/esteb/AppData/Local/Programs/MiKTeX/tex/latex/xifthen/xifthen.sty" 1448274436 5689 1bfa68243e89a54479e7d0580773c57e ""
   "C:/Users/esteb/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1419270738 5114 9c1069474ff71dbc47d5006555e352d3 ""
   "C:/Users/esteb/AppData/Local/Programs/MiKTeX/tex/xelatex/xetexconfig/geometry.cfg" 1169251881 322 f4a6234bc28bf70659404393c15d3854 ""
-  "d:/EYP2307/proyecto_avance_2_eyp2307/output/latex/presentacion.tex" 1605389771 14048 22dd3dd8e0029bb6933ef6ff26b70159 ""
+  "d:/EYP2307/proyecto_avance_2_eyp2307/output/latex/presentacion.tex" 1605395681 14928 c230472ed5dfe3d55fc8ec9edc726536 ""
   "figures/ridge.png" 1605378027 50350 da61b9ce7930080ba9040356c1d33016 ""
   "logo-uc.pdf" 1603852659 48666 60d5e6e117ca0a62b80839410d089a7e ""
-  "presentacion.aux" 1605389794 9517 98f830768eec7773ca8ae00acbde47ca "xelatex"
-  "presentacion.nav" 1605389794 5174 3db244046cbc07478250495652b90ece "xelatex"
-  "presentacion.out" 1605389794 445 219f23cb6fff421fbee0f451ad3cb022 "xelatex"
-  "presentacion.tex" 1605389771 14048 22dd3dd8e0029bb6933ef6ff26b70159 ""
-  "presentacion.toc" 1605389794 344 e4c04cfb9585fb0085c842f65eaa8beb "xelatex"
-  "presentacion.vrb" 1605389779 40 807176e9d1921eaaac9ceafac2fabfd0 "xelatex"
+  "presentacion.aux" 1605395742 9053 582543c350433d87087acafe0cca4449 "xelatex"
+  "presentacion.nav" 1605395742 4896 be68bd6b4284cacc3f4f23180b29a19f "xelatex"
+  "presentacion.out" 1605395742 445 219f23cb6fff421fbee0f451ad3cb022 "xelatex"
+  "presentacion.tex" 1605395681 14928 c230472ed5dfe3d55fc8ec9edc726536 ""
+  "presentacion.toc" 1605395742 344 54ddb1a613b4d500bc860d83136fd11c "xelatex"
+  "presentacion.vrb" 1605395720 40 807176e9d1921eaaac9ceafac2fabfd0 "xelatex"
   (generated)
-  "presentacion.aux"
-  "presentacion.out"
-  "presentacion.xdv"
-  "presentacion.nav"
-  "presentacion.vrb"
   "presentacion.snm"
-  "presentacion.toc"
+  "presentacion.xdv"
+  "presentacion.aux"
   "presentacion.log"
+  "presentacion.vrb"
+  "presentacion.nav"
+  "presentacion.out"
+  "presentacion.toc"
