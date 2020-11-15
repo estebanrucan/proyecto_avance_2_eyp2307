@@ -287,11 +287,14 @@
 \end{frame}
 
 \begin{frame}{Modelo Elegido: \textit{Backward}}
+Gráfica reales vs ajustados.
+\end{frame}
+
+\begin{frame}{Analisis de Puntos}
 	\begin{itemize}
 		\item abc
 	\end{itemize}
 \end{frame}
-
 
 \begin{frame}{Supuesto de \textit{Independencia}}
 	\begin{itemize}
@@ -333,16 +336,56 @@
 
 \begin{frame}{\textit{Weighted Least Squares Regression}}
 	\begin{itemize}
-		\item abc
+		\item Caso especial de \textit{Mínimos Cuadrados Generalizados}.
+		\pause
+		\item Se puede utilizar cuando hay Heterocedasticidad.
+		\pause
+		\item Solución del sistema \\ \center{$(X^\top WX)\hat\B = X^\top W y$. \\ $W:\text{Matriz diagonal de ponderaciones}$}.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Diapositiva}
+\begin{frame}{\textit{Weighted Least Squares Regression}: Elección de $W$}
+	\begin{itemize}
+		\item Ver gráfica de 
+		$$|\text{Residuos Estandarizados}|\text{ vs. Valores Ajustados.}$$ 
+		\pause
+		\item Ensayo y error. 
+		\pause
+		\item Veamos la gráfica en nuestro caso.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{$|\text{Residuos Estandarizados}|$ vs. Valores Ajustados}
 	\begin{itemize}
 		\item abc
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Resultados del modelo}
+	\begin{itemize}
+		\item Modelo con 9 variables.
+		\pause
+		\item $R^2= \mathbf{0.96}$.
+		\pause
+		\item $AIC = \mathbf{-76455.66}$.
+		\pause
+		\item Nos sorprendieron estos resultados.
+		\pause
+		\item Veamos algunas gráficas.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{$|\text{Residuos Estandarizados}|$ vs. Valores Ajustados}
+	\begin{itemize}
+		\item abc
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Valores Reales vs. Valores Ajustados}
+	\begin{itemize}
+		\item abc
+	\end{itemize}
+\end{frame}
 
 
 
@@ -415,9 +458,58 @@
 
 \begin{frame}{Resultados de la implementación en R}
 	\begin{itemize}
-		\item \textcolor{blue}{\textit{Ridge Regression}}:
+		\item Se usó el package \cod{glmnet}.
 		\pause
-		\item \textcolor{blue}{\textit{Lasso Regression}}:
+		\item Se usó la misma fórmula que el modelo resultante con \textit{Backward} en \textit{Ridge} Regression.
+		\pause
+		\item En \textit{Lasso Regression} se consideró el modelo completo.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Resultados de la implementación en R}
+	\begin{itemize}
+		\item El $\lambda$ óptimo en los modelos nos dió:
+		\pause
+		\begin{itemize}
+			\item \textit{Ridge Regression}: \textbf{0.01}.
+			\item \textit{Lasso Regression}: \textbf{0.05}.
+		\end{itemize}
+		\pause
+		\item Veamos algunos coeficientes importantes de los modelos.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Coeficientes de los modelos en orden creciente}
+	\begin{center}
+		\begin{tabular}{|r|c|c|c|}
+			\hline
+			Coeficiente & \textit{Backward}& \textit{Ridge} & \textit{Lasso} \\
+			\hline 
+			Intercepto  &-48.2633 &-46.8465 &-44.4442 \\
+			\cod{gmean\_ThermalConductivity} & -0.3338 & -0.3301 & -0.3171 \\
+			\vdots & & & \\
+			\cod{wtd\_range\_atomic\_radius} &  &  & 0\\
+			\vdots & & & \\
+			\cod{wtd\_entropy\_TConductivity}& 6.9492 & 6.7131 & 7.684503 \\
+			\cod{Ba} & 9.3430 & 9.3538 & 10.6381 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Comparación entre modelos}
+	\begin{itemize}
+		\item La función que nos permite hacer \textit{Ridge} y \textit{Lasso Regression} no nos aporta información suficiente para calcular la \textit{Log-Verosimilitud}.
+		\pause
+		\item Un criterio de comparación es el $R^2$ ajustado.
+		\pause
+		\item $R^2$:
+		\begin{itemize}
+			\item \textit{Backward}: \textbf{0.66}.
+			\item \textit{Ridge Regression}: \textbf{0.66}.
+			\item \textit{Lasso Regression}: \textbf{0.65}.
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
@@ -430,11 +522,13 @@
 		\pause
 		\item Sobre el cumplimiento de los supuestos.
 		\pause
-		\item Sobre \textit{Ridge} y \textit{Lasso Regression}.
+		\item \textit{Weighted Least Squares Regression}
+		\pause
+		\item \textit{Ridge} y \textit{Lasso Regression}.
 		\pause
 		\item Contraste con Avance \textbf{1}.
 		\pause
-		\item ¿Es suficiente una regresión múltiple?
+		\item \textbf{¿Es suficiente una regresión múltiple?}
 	\end{itemize}
 \end{frame}
 
@@ -447,9 +541,8 @@
 
 		\beamertemplateonlinebibitems % imagen de una URL de internet
 		\bibitem{Author2019}
-		https://online.stat.psu.edu/stat501/lesson/13/13.1
-		\newblock{\em Weighted Least Squares}.
-		\newblock{2018}
+		https://support.minitab.com/es-mx/minitab/18/help-and-how-to/modeling-statistics/regression/supporting-topics/basics/weighted-regression/
+		\newblock{\em Regresión ponderada}.
 
 		\beamertemplateonlinebibitems % imagen de una URL de internet
 		\bibitem{Author2019}

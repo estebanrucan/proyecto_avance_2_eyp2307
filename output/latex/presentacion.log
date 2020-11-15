@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.11) (preloaded format=xelatex 2020.11.5)  14 NOV 2020 21:28
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.11) (preloaded format=xelatex 2020.11.5)  15 NOV 2020 15:51
 entering extended mode
 **d:/EYP2307/proyecto_avance_2_eyp2307/output/latex/presentacion.tex
 (d:/EYP2307/proyecto_avance_2_eyp2307/output/latex/presentacion.tex
@@ -1403,10 +1403,7 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [54
 
-] (presentacion.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+]
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [55
@@ -1432,8 +1429,6 @@ File: logo-uc.pdf Graphic file (type pdf)
  [59
 
 ]
-File: figures/ridge.png Graphic file (type bmp)
-<figures/ridge.png>
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [60
@@ -1473,7 +1468,10 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [67
 
-]
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [68
@@ -1498,10 +1496,9 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [72
 
-] (presentacion.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+]
+File: figures/ridge.png Graphic file (type bmp)
+<figures/ridge.png>
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [73
@@ -1531,13 +1528,130 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [78
 
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [79
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [80
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [81
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [82
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [83
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [84
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [85
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [86
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [87
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [88
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [89
+
+]
+Overfull \hbox (10.37576pt too wide) in paragraph at lines 499--499
+ [] 
+ []
+
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+[90
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [91
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [92
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [93
+
 ] (presentacion.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
- [79
+ [94
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [95
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [96
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [97
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [98
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [99
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [100
+
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [101
 
 ]
 File: beamericonarticle.pdf Graphic file (type pdf)
@@ -1550,7 +1664,7 @@ File: beamericononline.pdf Graphic file (type pdf)
 <use beamericononline.pdf>
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
- [80
+ [102
 
 ]
 \tf@nav=\write9
@@ -1570,12 +1684,12 @@ Package rerunfilecheck Info: File `presentacion.out' has not changed.
 (rerunfilecheck)             Checksum: 219F23CB6FFF421FBEE0F451AD3CB022;445.
  ) 
 Here is how much of TeX's memory you used:
- 29002 strings out of 412197
- 573289 string characters out of 2849633
- 1038991 words of memory out of 3000000
- 47901 multiletter control sequences out of 15000+200000
+ 29026 strings out of 412197
+ 573639 string characters out of 2849633
+ 1054122 words of memory out of 3000000
+ 47925 multiletter control sequences out of 15000+200000
  543708 words of font info for 108 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
  125i,19n,126p,502b,825s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on presentacion.xdv (80 pages, 4355864 bytes).
+Output written on presentacion.xdv (102 pages, 6063920 bytes).
