@@ -94,6 +94,7 @@ auto_vif <- function(data_frame, v_respuesta, v_explicativas, criterio = 10) {
 
     full_lin_mod <- lm(formula = formula, data = data_frame)
     detencion <- FALSE
+    contador <- 0
 
     while(detencion == FALSE) {
 
@@ -107,6 +108,7 @@ auto_vif <- function(data_frame, v_respuesta, v_explicativas, criterio = 10) {
             actualizacion <- as.formula(
                 paste("~ ", paste(v_explicativas, collapse = "+"), sep = ""))
             full_lin_mod <- update(full_lin_mod, actualizacion)
+            contador %+=% 1
 
         } else {
             detencion <- TRUE
@@ -114,13 +116,16 @@ auto_vif <- function(data_frame, v_respuesta, v_explicativas, criterio = 10) {
     }
     
     full_lin_mod <- step(full_lin_mod, direction = "forward", scope = full_lin_mod$terms, trace = 0)
+    full_lin_mod$variables_borradas <- contador
 
     return(full_lin_mod)
 }
 
 eliminar_multicolinealidad <- function(modelo, criterio) {
     v_explicativas <- names(modelo$coefficients)[-1]
+    
     detencion <- FALSE
+    contador <- 0
     
     while(detencion == FALSE) {
         vifs <- car::vif(modelo)
@@ -133,6 +138,7 @@ eliminar_multicolinealidad <- function(modelo, criterio) {
             actualizacion <- as.formula(
                 paste("~ ", paste(v_explicativas, collapse = "+"), sep = ""))
             modelo <- update(modelo, actualizacion, data = data)
+            contador %+=% 1
 
         } else {
             detencion <- TRUE
@@ -140,6 +146,8 @@ eliminar_multicolinealidad <- function(modelo, criterio) {
     }
     
     modelo <- step(modelo, direction = "forward", scope = modelo$terms, trace = 0)
+    
+    modelo$variables_borradas <- contador
     
     return(modelo)
         
@@ -177,57 +185,238 @@ backward <- step(full_mod, direction = "backward", trace = 0) %>%
     eliminar_multicolinealidad(criterio = 10)
 aic_backward <- backward %>% aic()
 bic_backward <- backward %>% bic()
-variables_backward <- backward %>% coefficients() %>% length()
+variables_backward <- backward %>% coefficients()
 supuestos_backward <- backward %>% supuestos()
 r_squared_backward <- summary(backward)$r.squared
+v_borradas_backward <- backward$variables_borradas
+
+# 
 
 # fw
 forward <- step(full_mod, direction = "forward", scope = formula, trace = 0) %>%
     eliminar_multicolinealidad(criterio = 10)
 aic_forward <- forward %>% aic()
 bic_forward <- forward %>% bic()
-variables_forward <- forward %>% coefficients() %>% length()
+variables_forward <- forward %>% coefficients()
 supuestos_forward <- forward %>% supuestos()
 r_squared_forward <- summary(forward)$r.squared
+v_borradas_forward <- forward$variables_borradas
 
 # stepwise
 stepwise <- step(full_mod, direction = "both", trace = 0) %>%
     eliminar_multicolinealidad(criterio = 10)
 aic_stepwise <- stepwise %>% aic()
 bic_stepwise <- stepwise %>% bic()
-variables_stepwise <- stepwise %>% coefficients() %>% length()
+variables_stepwise <- stepwise %>% coefficients()
 supuestos_stepwise <- stepwise %>% supuestos()
 r_squared_stepwise <- summary(stepwise)$r.squared
+v_borradas_stepwise <- stepwise$variables_borradas
 
 # drop1
 drop1 <- auto_drop1(data, "critical_temp", variables, 0.05) %>%
     eliminar_multicolinealidad(criterio = 10)
 aic_drop1 <- drop1 %>% aic()
 bic_drop1 <- drop1 %>% bic()
-variables_drop1 <- drop1 %>% coefficients() %>% length()
+variables_drop1 <- drop1 %>% coefficients()
 supuestos_drop1 <- drop1 %>% supuestos()
 r_squared_drop1 <- summary(drop1)$r.squared
+v_borradas_drop1 <- drop1$variables_borradas
 
 # add1
 add1 <- auto_add1(data, "critical_temp", variables, 0.05) %>%
     eliminar_multicolinealidad(criterio = 10)
 aic_add1 <- add1 %>% aic()
 bic_add1 <- add1 %>% bic()
-variables_add1 <- add1 %>% coefficients() %>% length()
+variables_add1 <- add1 %>% coefficients()
 supuestos_add1 <- add1 %>% supuestos()
 r_squared_add1 <- summary(add1)$r.squared
+v_borradas_add1 <- add1$variables_borradas
 
 # Vif
 mod_vif <- auto_vif(data, "critical_temp", variables, 10) %>%
     eliminar_multicolinealidad(criterio = 10)
 aic_vif <- mod_vif %>% aic()
 bic_vif <- mod_vif %>% bic()
-variables_vif <- mod_vif %>% coefficients() %>% length()
+variables_vif <- mod_vif %>% coefficients()
 supuestos_vif <- mod_vif %>% supuestos()
 r_squared_vif <- summary(mod_vif)$r.squared
 
+coef(backward) %>% sort() %>% summary()
+
 ```
 
+
+```{r BACKWARD POINTS}
+# OUTLIERS
+
+residuos_estandarizados <- mod_weighted_vif %>% rstandard()
+valores_ajustados <- mod_weighted_vif %>% fitted.values()
+
+ggplot(mapping = aes(valores_ajustados, residuos_estandarizados)) +
+    theme_bw() +
+    labs(title = "Outliers",
+         x = "Valores Ajustados",
+         y = "Residuos Estandarizados") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    geom_jitter(color = "dodgerblue") +
+    geom_hline(yintercept = -2, color = "deepskyblue4", linetype = 2) +
+    geom_hline(yintercept = 2, color = "deepskyblue4", linetype = 2) +
+    ylim(-6, 6)
+
+outliers <- residuos_estandarizados[residuos_estandarizados > 2 |
+                                     residuos_estandarizados < -2]
+indices <- outliers %>% names() %>% as.numeric()
+
+data_bw <- data[-indices, ]
+
+full_mod_p <- lm(formula = formula, data = data_bw)
+backward_p <- step(full_mod_p, direction = "backward", trace = 0) %>%
+    eliminar_multicolinealidad(criterio = 10)
+aic_backward_p <- backward_p %>% aic()
+bic_backward_p <- backward_p %>% bic()
+variables_backward_p <- backward_p %>% coefficients() %>% length()
+supuestos_backward_p <- backward_p %>% supuestos()
+r_squared_backward_p <- summary(backward_p)$r.squared
+v_borradas_backward_p <- backward_p$variables_borradas
+
+# PLOT
+residuos_estandarizados <- backward_p %>% rstandard()
+valores_ajustados <- backward_p %>% fitted.values()
+
+ggplot(mapping = aes(valores_ajustados, residuos_estandarizados)) +
+    theme_bw() +
+    labs(title = "Outliers",
+         x = "Valores Ajustados",
+         y = "Residuos Estandarizados") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    geom_jitter(color = "dodgerblue") +
+    geom_hline(yintercept = -2, color = "deepskyblue4", linetype = 2) +
+    geom_hline(yintercept = 2, color = "deepskyblue4", linetype = 2) +
+    ylim(-6, 6)
+
+
+# PALANCA
+hat_values <- mod_weighted_vif %>% hatvalues()
+parametros <- mod_weighted_vif %>% coefficients() %>% length()
+
+observaciones <- nrow(data)
+
+criterio_1 <- 2 * (parametros + 1) / observaciones
+criterio_2 <- 2 * parametros / observaciones
+
+ggplot(mapping = aes(hat_values, residuos_estandarizados)) +
+    theme_bw() +
+    labs(title = "Puntos Extremos",
+         x = "Hat Values",
+         y = "Residuos Estandarizados") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    geom_point(color = "dodgerblue") +
+    geom_vline(xintercept = criterio_1, color = "deepskyblue4", linetype = 2) +
+    geom_vline(xintercept = criterio_2, color = "brown3", linetype = 2)
+puntos_extremos_criterio_1 <- hat_values[hat_values > criterio_1]
+
+# INFLUENCIA
+
+dffits <- dffits(mod_weighted_vif)
+abs_dffits <- abs(dffits)
+indices <- seq_along(abs_dffits)
+criterio <- 2 * sqrt(parametros / observaciones)
+# Porque hay muchas observaciones
+
+ggplot(mapping = aes(indices, abs_dffits)) +
+    theme_bw() +
+    labs(title = "Puntos de Influencia",
+         x = "Índice",
+         y = "|DFFITS|") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    geom_point(color = "dodgerblue") +
+    geom_hline(yintercept = criterio, color = "deepskyblue4", linetype = 2) +
+    ylim(0,.5)
+
+puntos_de_influencia <- abs_dffits[abs_dffits > criterio] %>% names() %>% as.numeric()
+
+data_bw <- data[-puntos_de_influencia, ]
+
+full_mod_p <- lm(formula = formula, data = data_bw)
+backward_p <- step(full_mod_p, direction = "backward", trace = 0) %>%
+    eliminar_multicolinealidad(criterio = 10)
+aic_backward_p <- backward_p %>% aic()
+bic_backward_p <- backward_p %>% bic()
+variables_backward_p <- backward_p %>% coefficients() %>% length()
+supuestos_backward_p <- backward_p %>% supuestos()
+r_squared_backward_p <- summary(backward_p)$r.squared
+v_borradas_backward_p <- backward_p$variables_borradas 
+
+backward_p %>% summary()
+
+```
+
+
+
+```{r BACKWARD WLS}
+
+ggplot(mapping = aes(backward$fitted.values, abs(backward$residuals))) +
+    theme_bw() +
+    labs(title = "Residuos Estandarizados vs Valores ajustados",
+         x = "Valores Ajustados",
+         y = "|Residuos Estandarizados|") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    geom_jitter(color = "dodgerblue") +
+    geom_hline(yintercept = 0, size = 0.2) +
+    geom_smooth(color = "deepskyblue4", method = "loess",
+                formula = y ~ x, se = FALSE) +
+    xlim(0, 150) +
+    ylim(0,500)
+
+abs_res <- abs(backward$residuals)
+terminos <- as.character(backward$terms)
+form <- as.formula(paste("abs_res ~", terminos[3], sep = ""))
+residuos_abs_mod <- lm(form, data = data)
+
+summary(residuos_abs_mod)
+
+mod_weights <- 1 / 7.68 ^ (residuos_abs_mod$fitted.values)
+
+mod_weighted <- lm(formula = formula(backward), data = data, weights = mod_weights) %>% eliminar_multicolinealidad(criterio = 10)
+
+summary(mod_weighted)
+
+ggplot(mapping = aes(mod_weighted$fitted.values, abs(mod_weighted$residuals))) +
+    theme_bw() +
+    labs(title = "Residuos Estandarizados vs Valores ajustados",
+         x = "Valores Ajustados",
+         y = "|Residuos Estandarizados|") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    geom_jitter(color = "dodgerblue") +
+    geom_hline(yintercept = 0, size = 0.2) +
+    geom_smooth(color = "deepskyblue4", method = "loess",
+                formula = y ~ x, se = FALSE) +
+    xlim(0, 150) +
+    ylim(0,500)
+
+
+
+final <- cbind(data$critical_temp, mod_weighted$fitted.values)
+boxplot(final)
+plot(final)
+
+plot(density(final[,1]))
+lines(density(final[,2]))
+
+qqplot(sort(final[,1]), sort(final[,2]))
+
+actual <- data$critical_temp 
+preds <- mod_weighted$fitted.values
+rss <- sum((preds - actual) ^ 2)
+tss <- sum((actual - mean(actual)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+
+boxplot(data$critical_temp)
+
+plot(data$critical_temp ~ mod_weighted$fitted.values)
+abline(0,1)
+```
 
 
 
