@@ -380,6 +380,7 @@ mod_weights <- 1 / 7.68 ^ (residuos_abs_mod$fitted.values)
 mod_weighted <- lm(formula = formula(backward), data = data, weights = mod_weights) %>% eliminar_multicolinealidad(criterio = 10)
 
 summary(mod_weighted)
+aic(mod_weighted)
 
 ggplot(mapping = aes(mod_weighted$fitted.values, abs(mod_weighted$residuals))) +
     theme_bw() +
@@ -423,7 +424,7 @@ abline(0,1)
 ```{r RIDGE REGRESSION}
 data_ridge <- data
 data_ridge$range_Valence <- NULL
-x_vars <- model.matrix(critical_temp~. , data_ridge)[,-1]
+x_vars <- model.matrix(formula(backward) , data_ridge)
 y_var <- data_ridge$critical_temp
 lambda_seq <- 10^seq(-2, 5, by = 0.001)
 
@@ -437,21 +438,26 @@ cv_output <- glmnet::cv.glmnet(x_vars, y_var,
                        nfolds = 10)
  
 # identifying best lambda
-best_lam <- cv_output$lambda.min
+best_lam_r <- cv_output$lambda.min
 
 # Rebuilding the model with best lamda value identified
-ridge_best <- glmnet::glmnet(x_vars, y_var, alpha = 0, lambda = best_lam)
-pred <- predict(ridge_best, s = best_lam, newx = x_vars)
+ridge_best <- glmnet::glmnet(x_vars, y_var, alpha = 0, lambda = best_lam_r)
+pred <- predict(ridge_best, s = best_lam_r, newx = x_vars)
+
 
 final <- cbind(y_var, pred)
+
+cof <- ridge_best %>% coef() %>% length() - 1
+obs <- x_vars %>% nrow()
 
 actual <- y_var
 preds <- pred
 rss <- sum((preds - actual) ^ 2)
 tss <- sum((actual - mean(actual)) ^ 2)
-rsq <- 1 - rss/tss
-rsq
-
+rsq <- 1 - rss/tss 
+rsq <- 1 - rsq
+rsq <- rsq * (obs-1)/(obs-cof-1)
+rsq <- 1 - rsq
 
 
 
@@ -459,11 +465,9 @@ rsq
 
 
 ```{r LASSO REGRESSION}
-data_ridge <- data
-data_ridge$range_Valence <- NULL
-x_vars <- model.matrix(critical_temp~. , data_ridge)[,-1]
+x_vars <- model.matrix(critical_temp ~ ., data_ridge)
 y_var <- data_ridge$critical_temp
-lambda_seq <- 10^seq(-2, 10, by = 0.1)
+lambda_seq <- 10^seq(-2, 5, by = 0.001)
 
 set.seed(86)
 train = sample(1:nrow(x_vars), 0.5 * nrow(x_vars))
@@ -475,7 +479,6 @@ cv_output <- glmnet::cv.glmnet(x_vars[train,], y_var[train],
                        nfolds = 10)
 
 
- 
 # identifying best lambda
 best_lam <- cv_output$lambda.min
 
@@ -485,15 +488,30 @@ pred <- predict(lasso_best, s = best_lam, newx = x_vars[x_test,])
 
 final <- cbind(y_var[-train], pred)
 
-
+cof <- lasso_best %>% coef() %>% length() - 1
+obs <- x_vars[x_test, ] %>% nrow()
 
 actual <- y_var[-train]
 preds <- pred
 rss <- sum((preds - actual) ^ 2)
 tss <- sum((actual - mean(actual)) ^ 2)
-rsq <- 1 - rss/tss
-
+rsq <- 1 - rss/tss 
+rsq <- 1 - rsq
+rsq <- rsq * (obs-1)/(obs-cof-1)
+rsq <- 1 - rsq
+ 
 plot(actual ~ preds)
+
+
+
+a <- coefficients(backward) %>% round(., 4) %>% as.data.frame()
+names(a) <- c("coef")
+a <- a %>% arrange(coef)
+
+b <- coef(ridge_best) %>% as.matrix() %>% as.data.frame() %>% round(., 6) %>% arrange(s0)
+
+c <- coef(lasso_best) %>% as.matrix() %>% as.data.frame() %>% round(., 6) %>% arrange(s0)
+
 ```
 
 ```{r results="hide"}
