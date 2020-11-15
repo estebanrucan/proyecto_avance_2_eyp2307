@@ -1,7 +1,7 @@
 \babel@toc {spanish}{}
 \beamer@sectionintoc {1}{Avance 1}{3}{0}{1}
-\beamer@sectionintoc {2}{Nuevos modelos}{18}{0}{2}
-\beamer@sectionintoc {3}{Elegimos modelo}{47}{0}{3}
-\beamer@sectionintoc {4}{Ridge y Lasso Regression}{65}{0}{4}
-\beamer@sectionintoc {5}{Conclusiones}{83}{0}{5}
-\beamer@sectionintoc {6}{Referencias bibliográficas}{89}{0}{6}
+\beamer@sectionintoc {2}{Nuevos modelos}{8}{0}{2}
+\beamer@sectionintoc {3}{Elegimos modelo}{37}{0}{3}
+\beamer@sectionintoc {4}{Ridge y Lasso Regression}{55}{0}{4}
+\beamer@sectionintoc {5}{Conclusiones}{73}{0}{5}
+\beamer@sectionintoc {6}{Referencias bibliográficas}{79}{0}{6}

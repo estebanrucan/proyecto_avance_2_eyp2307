@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.11) (preloaded format=xelatex 2020.11.5)  14 NOV 2020 20:15
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.11) (preloaded format=xelatex 2020.11.5)  14 NOV 2020 21:28
 entering extended mode
 **d:/EYP2307/proyecto_avance_2_eyp2307/output/latex/presentacion.tex
 (d:/EYP2307/proyecto_avance_2_eyp2307/output/latex/presentacion.tex
@@ -1160,7 +1160,10 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [7
 
-]
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [8
@@ -1210,10 +1213,7 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [17
 
-] (presentacion.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+]
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [18
@@ -1229,6 +1229,8 @@ File: logo-uc.pdf Graphic file (type pdf)
  [20
 
 ]
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <14.4> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 205.
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [21
@@ -1279,8 +1281,6 @@ File: logo-uc.pdf Graphic file (type pdf)
  [30
 
 ]
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <14.4> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 231.
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [31
@@ -1310,7 +1310,10 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [36
 
-]
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [37
@@ -1360,10 +1363,7 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [46
 
-] (presentacion.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+]
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [47
@@ -1403,7 +1403,10 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [54
 
-]
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [55
@@ -1429,6 +1432,8 @@ File: logo-uc.pdf Graphic file (type pdf)
  [59
 
 ]
+File: figures/ridge.png Graphic file (type bmp)
+<figures/ridge.png>
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [60
@@ -1453,10 +1458,7 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [64
 
-] (presentacion.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+]
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [65
@@ -1482,8 +1484,6 @@ File: logo-uc.pdf Graphic file (type pdf)
  [69
 
 ]
-File: figures/ridge.png Graphic file (type bmp)
-<figures/ridge.png>
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [70
@@ -1498,7 +1498,10 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [72
 
-]
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [73
@@ -1528,66 +1531,13 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [78
 
-]
+] (presentacion.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [79
-
-]
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [80
-
-]
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [81
-
-]
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [82
-
-] (presentacion.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [83
-
-]
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [84
-
-]
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [85
-
-]
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [86
-
-]
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [87
-
-]
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [88
-
-] (presentacion.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [89
 
 ]
 File: beamericonarticle.pdf Graphic file (type pdf)
@@ -1600,7 +1550,7 @@ File: beamericononline.pdf Graphic file (type pdf)
 <use beamericononline.pdf>
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
- [90
+ [80
 
 ]
 \tf@nav=\write9
@@ -1620,12 +1570,12 @@ Package rerunfilecheck Info: File `presentacion.out' has not changed.
 (rerunfilecheck)             Checksum: 219F23CB6FFF421FBEE0F451AD3CB022;445.
  ) 
 Here is how much of TeX's memory you used:
- 29006 strings out of 412197
- 573325 string characters out of 2849633
- 1042158 words of memory out of 3000000
- 47905 multiletter control sequences out of 15000+200000
+ 29002 strings out of 412197
+ 573289 string characters out of 2849633
+ 1038991 words of memory out of 3000000
+ 47901 multiletter control sequences out of 15000+200000
  543708 words of font info for 108 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
  125i,19n,126p,502b,825s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on presentacion.xdv (90 pages, 5019448 bytes).
+Output written on presentacion.xdv (80 pages, 4355864 bytes).

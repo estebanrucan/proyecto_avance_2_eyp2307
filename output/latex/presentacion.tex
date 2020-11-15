@@ -135,51 +135,25 @@
 	\end{enumerate}
 \end{frame}
 
-\begin{frame}{Objetivo Avance 1}
+\begin{frame}{Resumen del Avance \textbf{1}}
 	\begin{itemize}
-		\item Predecir la temperatura crítica de los superconductores, en base a nuestra variable respuesta \cod{critical\_temp}.
+		\item El objetivo era predecir la Temperatura Crítica de los Superconductores, con un modelo de regresión lineal simple.
+		\item Se limpió la base de datos: de \textbf{169} variables se pasaron a \textbf{34}.
+		\item Se hizo un modelo de regresión simple con la variable \cod{std\_ThermalConductivity}, ya que es modelo con mejor $R^2$ respecto \cod{critical\_temp} ($R^2 = \mathbf{0.43}$).
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Limpieza de la base de datos}
+\begin{frame}{Resumen del Avance \textbf{1}}
 	\begin{itemize}
-		\item Como se tenían \textbf{169} variables en total, se decidió limpiar la base de datos.
-		\pause
-		\item Al hacer la limpieza nos quedamos solo con \textbf{34} variables.
+		\item Buscamos alternativas para mejorar el $R^2$. 
+		\item Se crearon \textbf{7} bases de datos según \cod{range\_Valence}, ya que es la variable categórica que mejores correlaciones nos da.
+		\item Finalmente obtuvimos \textbf{7} modelos para predecir la variable respuesta, con un $R^2$ conjunto igual a $\mathbf{0.56}$.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Elección del modelo}
+\begin{frame}{Objetivo del Avance \textbf{2}}
 	\begin{itemize}
-		\item Se hizo un análisis de correlación.
-		\pause
-		\item La variable \cod{std\_ThermalConductivity} tuvo la correlación más alta de $\mathbf{0.65}$, por lo tanto se utilizó para nuestro modelo de regresión lineal simple.
-		\pause
-		\item Al hacer el análisis de la varianza explicada: $R^2=\mathbf{0.43}$.
-		\pause
-		\item Se decidió buscar alternativas para intentar aumentar este último valor.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Buscando Alternativas}
-	\begin{itemize}
-		\item  Nos decidimos por un nuevo modelo.
-		\pause
-		\item  Utilizamos la variable \cod{range\_Valence} por ser una variable discreta y así nos quedaron \textbf{7} modelos.
-		\pause
-		\item  El modelo final nos quedó:
-		\begin{itemize}
-			\pause
-			\item  $\rho = \mathbf{0.75}$.
-			\pause
-			\item  $R^2 = \mathbf{0.56}$.
-		\end{itemize}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Objetivo del Avance 2}
-	\begin{itemize}
-		\item Predecir la temperatura crítica de los superconductores en base a nuestra variable respuesta, utilizando modelos de regresión lineal múltiple para mejorar los resultados obtenidos en el Avance \textbf{1}.
+		\item Predecir la temperatura crítica de los superconductores en base a nuestra variable respuesta, aplicando nuevas herramientas para mejorar los resultados obtenidos en el Avance \textbf{1}.
 	\end{itemize}
 \end{frame}
 
@@ -216,7 +190,7 @@
 	\begin{itemize}
 		\item Se utilizó la base de datos limpiada en el Avance \textbf{1} para trabajar solo con \textbf{34} variables.
 		\pause
-		\item Se solucionó el problema de multicolinearidad en cada modelo viendo el \textit{VIF}.
+		\item Se solucionó el problema de multicolinearidad en cada modelo viendo el \textit{VIF} (Excepto en \textit{Ridge} y \textit{Lasso Regression}).
 		\pause
 		\item En todos los modelos se usó criterio AIC (excepto en Modelo con VIF).
 	\end{itemize}
