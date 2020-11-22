@@ -26,8 +26,8 @@ sumario = df %>% summarise(Minimo = min(critical_temp),
                            Maximo = max(critical_temp),
                            Promedio = mean(critical_temp),
                            Varianza = var(critical_temp)) %>% t() %>%
-    xtable() 
-names(sumario) = c("critical_temp") 
+    xtable()
+names(sumario) = c("critical_temp")
 rownames(sumario) = c("Mínimo","Primer Cuartil","Mediana","Segundo Cuartil","Máximo", "Promedio", "Varianza")
 
 
@@ -48,16 +48,16 @@ ggplot(data = df, mapping = aes(critical_temp)) +
     ylab("Cantidad")
 
 
-ggplot(data = df) + 
+ggplot(data = df) +
     geom_histogram(breaks= quantile(critical_temp,seq(0,1,by=0.1)),
                    aes(x=critical_temp,
-                       y=density(critical_temp))) + 
+                       y=density(critical_temp))) +
     geom_density(aes(x=critical_temp,
                      y=density(critical_temp)))
 
 ggplot(df, aes(critical_temp)) +
     geom_density(aes(y = ..count.. * 12), # multiply count by bins
-                 fill = "dodgerblue1", alpha = .5, col = NA) + 
+                 fill = "dodgerblue1", alpha = .5, col = NA) +
     geom_histogram(binwidth = 12, alpha = .7, fill = "dodgerblue3") +
     ylab("Cuenta")
 
@@ -163,13 +163,6 @@ rownames(tabla1) = c("Datos", "Variables")
 
 matriz = as.data.frame(cor(df))
 
-repl_python()
-
-import string
-r.abc = string.ascii_lowercase + string.ascii_uppercase 
-r.abc = list(r.abc[0:34])
-
-exit
 
 colnames(matriz) = abc
 
@@ -185,23 +178,23 @@ corr_simple <- function(data=df,sig=0.5){
     df_cor <- df_cor %>% mutate_if(is.factor, as.numeric)
     #run a correlation and drop the insignificant ones
     corr <- cor(df_cor)
-    #prepare to drop duplicates and correlations of 1     
-    corr[lower.tri(corr,diag=TRUE)] <- NA 
+    #prepare to drop duplicates and correlations of 1
+    corr[lower.tri(corr,diag=TRUE)] <- NA
     #drop perfect correlations
-    corr[corr == 1] <- NA 
+    corr[corr == 1] <- NA
     #turn into a 3-column table
     corr <- as.data.frame(as.table(corr))
-    #remove the NA values from above 
-    corr <- na.omit(corr) 
-    #select significant values  
-    corr <- subset(corr, abs(Freq) > sig) 
+    #remove the NA values from above
+    corr <- na.omit(corr)
+    #select significant values
+    corr <- subset(corr, abs(Freq) > sig)
     #sort by highest correlation
-    corr <- corr[order(-abs(corr$Freq)),] 
+    corr <- corr[order(-abs(corr$Freq)),]
     #print table
     #print(corr)
     #turn corr back into matrix in order to plot with corrplot
     mtx_corr <- reshape2::acast(corr, Var1~Var2, value.var="Freq")
-    
+
     #plot correlations visually
     corrplot(mtx_corr, is.corr=FALSE, tl.col="black",addgrid.col="lightskyblue1", na.label=" ",tl.pos = "n",col=colorRampPalette(c("darkorange","white","deepskyblue"))(200))
 }
@@ -214,10 +207,10 @@ colors <- c("critical_temp" = "deepskyblue3", "std_ThermalConductivity" = "darko
 
 ggplot(data = df) +
     geom_density(aes(x = critical_temp, fill = "critical_temp"), color = "red",alpha = 0.3) +
-    geom_density(aes(x = std_ThermalConductivity, fill = "std_ThermalConductivity"),color = "blue",alpha = 0.3) + 
+    geom_density(aes(x = std_ThermalConductivity, fill = "std_ThermalConductivity"),color = "blue",alpha = 0.3) +
     ylab("Densidad") +
     xlab("Variables")
-    
+
 
 # Exploratorio
 
@@ -256,40 +249,40 @@ lines(density(modelo$fitted.values))
 
 # Gráficos
 p1 = ggplot(mapping = aes(x = C, y = critical_temp),data = df[df$number_of_elements == 1,] ) +
-    geom_point( color = "dodgerblue3") + 
-    geom_smooth(method = "lm", se = FALSE,color = "deepskyblue4") 
+    geom_point( color = "dodgerblue3") +
+    geom_smooth(method = "lm", se = FALSE,color = "deepskyblue4")
 
 p2 = ggplot(mapping = aes(x = std_FusionHeat, y = critical_temp),data = df[df$number_of_elements == 2,] ) +
-    geom_point( color = "dodgerblue3") + 
-    geom_smooth(method = "lm", se = FALSE,color = "deepskyblue4") 
+    geom_point( color = "dodgerblue3") +
+    geom_smooth(method = "lm", se = FALSE,color = "deepskyblue4")
 
 p3 = ggplot(mapping = aes(x = mean_atomic_mass, y = critical_temp),data = df[df$number_of_elements == 3,] ) +
-    geom_point( color = "dodgerblue3") + 
-    geom_smooth(method = "lm", se = FALSE,color = "deepskyblue4") 
+    geom_point( color = "dodgerblue3") +
+    geom_smooth(method = "lm", se = FALSE,color = "deepskyblue4")
 
 p4 = ggplot(mapping = aes(x = Ba, y = critical_temp), data = df[df$number_of_elements == 4,] ) +
-    geom_point( color = "dodgerblue3") + 
-    geom_smooth(method = "lm", se = FALSE,color = "deepskyblue4") 
+    geom_point( color = "dodgerblue3") +
+    geom_smooth(method = "lm", se = FALSE,color = "deepskyblue4")
 
 p5 = ggplot(mapping = aes(x = Ba, y = critical_temp),data = df[df$number_of_elements == 5,] ) +
-    geom_point( color = "dodgerblue3") + 
-    geom_smooth(method = "lm",se = FALSE, color = "deepskyblue4") 
+    geom_point( color = "dodgerblue3") +
+    geom_smooth(method = "lm",se = FALSE, color = "deepskyblue4")
 
 p6 = ggplot(data = df[df$number_of_elements == 6,],mapping = aes(x = mean_ThermalConductivity, y = critical_temp) ) +
-    geom_point( color = "dodgerblue3") + 
-    geom_smooth(method = "lm",se = FALSE, color = "deepskyblue4") 
+    geom_point( color = "dodgerblue3") +
+    geom_smooth(method = "lm",se = FALSE, color = "deepskyblue4")
 
 p7 = ggplot(data = df[df$number_of_elements == 7,],mapping = aes(x = Ca, y = critical_temp) ) +
-    geom_point(color = "dodgerblue3") + 
-    geom_smooth(se = FALSE, method = "lm", color = "deepskyblue4")  
+    geom_point(color = "dodgerblue3") +
+    geom_smooth(se = FALSE, method = "lm", color = "deepskyblue4")
 
 p8 = ggplot(mapping = aes(x = std_Density, y = critical_temp),data = df[df$number_of_elements == 8,] ) +
-    geom_point( color = "dodgerblue3") + 
-    geom_smooth(se = FALSE,method = "lm", color = "deepskyblue4")  
+    geom_point( color = "dodgerblue3") +
+    geom_smooth(se = FALSE,method = "lm", color = "deepskyblue4")
 
 p9 = ggplot(mapping = aes(x = wtd_entropy_ThermalConductivity, y = critical_temp),data = df[df$number_of_elements == 9,] ) +
-    geom_point(color = "dodgerblue3") + 
-    geom_smooth(se = FALSE,method = "lm", color = "deepskyblue4") 
+    geom_point(color = "dodgerblue3") +
+    geom_smooth(se = FALSE,method = "lm", color = "deepskyblue4")
 
 title <- ggdraw() +
     draw_label(

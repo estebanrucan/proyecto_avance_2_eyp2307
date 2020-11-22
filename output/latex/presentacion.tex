@@ -82,6 +82,10 @@
 \let\thedate\@date
 \makeatother
 
+
+
+
+
 % DATA
 
 \title{Temperatura Crítica de Superconductores} % Titulo
@@ -145,7 +149,7 @@
 
 \begin{frame}{Resumen del Avance \textbf{1}}
 	\begin{itemize}
-		\item Buscamos alternativas para mejorar el $R^2$. 
+		\item Buscamos alternativas para mejorar el $R^2$.
 		\item Se crearon \textbf{7} bases de datos según \cod{range\_Valence}, ya que es la variable categórica que mejores correlaciones nos da.
 		\item Finalmente obtuvimos \textbf{7} modelos para predecir la variable respuesta, con un $R^2$ conjunto igual a $\mathbf{0.56}$.
 	\end{itemize}
@@ -181,7 +185,7 @@
 			\pause
 			\item \textit{Ridge Regression}.
 			\pause
-			\item \textit{Lasso Regression}.
+			\item Extras.
 		\end{enumerate}
 	\end{itemize}
 \end{frame}
@@ -190,7 +194,7 @@
 	\begin{itemize}
 		\item Se utilizó la base de datos limpiada en el Avance \textbf{1} para trabajar solo con \textbf{34} variables.
 		\pause
-		\item Se solucionó el problema de multicolinearidad en cada modelo viendo el \textit{VIF} (Excepto en \textit{Ridge} y \textit{Lasso Regression}).
+		\item Se solucionó el problema de multicolinearidad en cada modelo viendo el \textit{VIF} (Excepto en \textit{Ridge} y Extras).
 		\pause
 		\item En todos los modelos se usó criterio AIC (excepto en Modelo con VIF).
 	\end{itemize}
@@ -266,7 +270,7 @@
 \end{frame}
 
 % SECCION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Elegimos modelo}
+\section{Elección del modelo}
 
 \begin{frame}{AIC, BIC y $R^2$ de los modelos.}
 		\begin{center}
@@ -279,7 +283,7 @@
 				\textit{Backward-Forward} & 126849.9 & 127064.9 & 0.66\\
 				\cod{add1} & 126858.4 &  127081.4& 0.66\\
 				\cod{drop1} & 126849.6 & 127048.7 & 0.66\\
-				\textit{VIF} & 126880.5 & 127103.5 & 0.66 \\ 
+				\textit{VIF} & 126880.5 & 127103.5 & 0.66 \\
 				Idea Avance 1 & 121021.6 & 121840.3 & 0.74
 				\\ \hline
 			\end{tabular}
@@ -287,22 +291,33 @@
 \end{frame}
 
 \begin{frame}{Modelo Elegido: \textit{Backward}}
-Gráfica reales vs ajustados.
+
 \end{frame}
 
-\begin{frame}{Analisis de Puntos}
-	\begin{itemize}
-		\item abc
-	\end{itemize}
+\begin{frame}{Análisis de Puntos: \textit{Outliers}}
+
+\end{frame}
+
+\begin{frame}{Análisis de Puntos: \textit{Leverage}}
+
+\end{frame}
+
+\begin{frame}{Análisis de Puntos: \textit{DFFITS}}
+
+\end{frame}
+
+
+\begin{frame}{Análisis de Puntos: \textit{Distancia de Cook}}
+
 \end{frame}
 
 \begin{frame}{Supuesto de \textit{Independencia}}
 	\begin{itemize}
 		\item Se utilizó el Test de \textit{Durbin-Watson}.
 		\pause
-		\item Independencia de residuos $\Leftrightarrow$ Valor D entre \textbf{1.5} y \textbf{2.5}. 
+		\item Independencia de residuos $\Leftrightarrow$ valor-p $>\mathbf{0.05}$.
 		\pause
-		\item $\text{Valor D} = \mathbf{0.89}$ $\to$ No se cumple el supuesto.
+		\item No se cumple el supuesto.
 	\end{itemize}
 \end{frame}
 
@@ -318,8 +333,12 @@ Gráfica reales vs ajustados.
 		\pause
 		\item \textit{Segunda solución aplicada}: Transformación de \textit{Johnson}.
 		\pause
-		\item No se lograron resultados satisfactorios.
+		\item Tercera solución aplicada:
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Supuesto de \textit{Normalidad}}
+variable respuesta
 \end{frame}
 
 \begin{frame}{Supuesto de \textit{Homocedasticidad}}
@@ -334,54 +353,7 @@ Gráfica reales vs ajustados.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\textit{Weighted Least Squares Regression}}
-	\begin{itemize}
-		\item Caso especial de \textit{Mínimos Cuadrados Generalizados}.
-		\pause
-		\item Se puede utilizar cuando hay Heterocedasticidad.
-		\pause
-		\item Solución del sistema \\ \center{$(X^\top WX)\hat\B = X^\top W y$. \\ $W:\text{Matriz diagonal de ponderaciones}$}.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{\textit{Weighted Least Squares Regression}: Elección de $W$}
-	\begin{itemize}
-		\item Ver gráfica de 
-		$$|\text{Residuos Estandarizados}|\text{ vs. Valores Ajustados.}$$ 
-		\pause
-		\item Ensayo y error. 
-		\pause
-		\item Veamos la gráfica en nuestro caso.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{$|\text{Residuos Estandarizados}|$ vs. Valores Ajustados}
-	\begin{itemize}
-		\item abc
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Resultados del modelo}
-	\begin{itemize}
-		\item Modelo con 9 variables.
-		\pause
-		\item $R^2= \mathbf{0.96}$.
-		\pause
-		\item $AIC = \mathbf{-76455.66}$.
-		\pause
-		\item Nos sorprendieron estos resultados.
-		\pause
-		\item Veamos algunas gráficas.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{$|\text{Residuos Estandarizados}|$ vs. Valores Ajustados}
-	\begin{itemize}
-		\item abc
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Valores Reales vs. Valores Ajustados}
+\begin{frame}{Diapositiva}
 	\begin{itemize}
 		\item abc
 	\end{itemize}
@@ -390,7 +362,7 @@ Gráfica reales vs ajustados.
 
 
 % SECCION 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Ridge y Lasso Regression}
+\section{Ridge Regression}
 
 \begin{frame}{\textit{Ridge Regression}}
 	\begin{itemize}
@@ -471,8 +443,8 @@ Gráfica reales vs ajustados.
 		\item El $\lambda$ óptimo en los modelos nos dió:
 		\pause
 		\begin{itemize}
-			\item \textit{Ridge Regression}: \textbf{0.01}.
-			\item \textit{Lasso Regression}: \textbf{0.05}.
+			\item \textit{Ridge Regression}: \textbf{0.05}.
+			\item \textit{Lasso Regression}: \textbf{0.01}.
 		\end{itemize}
 		\pause
 		\item Veamos algunos coeficientes importantes de los modelos.
@@ -485,7 +457,7 @@ Gráfica reales vs ajustados.
 		\begin{tabular}{|r|c|c|c|}
 			\hline
 			Coeficiente & \textit{Backward}& \textit{Ridge} & \textit{Lasso} \\
-			\hline 
+			\hline
 			Intercepto  &-48.2633 &-46.8465 &-44.4442 \\
 			\cod{gmean\_ThermalConductivity} & -0.3338 & -0.3301 & -0.3171 \\
 			\vdots & & & \\
@@ -502,9 +474,8 @@ Gráfica reales vs ajustados.
 	\begin{itemize}
 		\item La función que nos permite hacer \textit{Ridge} y \textit{Lasso Regression} no nos aporta información suficiente para calcular la \textit{Log-Verosimilitud}.
 		\pause
-		\item Un criterio de comparación es el $R^2$ ajustado.
+		\item Un criterio de comparación es el $R^2$ ajustado:
 		\pause
-		\item $R^2$:
 		\begin{itemize}
 			\item \textit{Backward}: \textbf{0.66}.
 			\item \textit{Ridge Regression}: \textbf{0.66}.
@@ -512,6 +483,46 @@ Gráfica reales vs ajustados.
 		\end{itemize}
 	\end{itemize}
 \end{frame}
+
+% RANDOM FOREST %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Extra}
+
+\begin{frame}{\textit{Random Forest}}
+	\begin{itemize}
+		\item Árbol de decisión: \textit{Definición}.
+		\pause
+		\item Conjunto de estos árboles.
+		\pause
+		\item Boostrap.
+		\pause
+		\item Bootstrap.
+		\pause
+		\item Poco control sobre el modelo.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\textit{Random Forest}}
+	\begin{figure}
+		\includegraphics[scale=0.4]{figures/arbol-de-decisiones.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{\textit{Random Forest}: Implemantación}
+	\begin{itemize}
+		\item Package \cod{randomForest}.
+		\pause
+		\item El resultado es considerablemente mejor.
+		\pause
+		\item $R^2=\mathbf{0.92}$.
+		\pause
+		\item Veamos la gráfica de Valores Ajustados y Valores Reales:
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\textit{Random Forest}: Densidad de Ajustados y Reales}
+
+	\end{frame}
 
 % CONCLUSIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones}
@@ -522,7 +533,7 @@ Gráfica reales vs ajustados.
 		\pause
 		\item Sobre el cumplimiento de los supuestos.
 		\pause
-		\item \textit{Weighted Least Squares Regression}
+		\item \textit{Random Forest}
 		\pause
 		\item \textit{Ridge} y \textit{Lasso Regression}.
 		\pause
@@ -541,13 +552,14 @@ Gráfica reales vs ajustados.
 
 		\beamertemplateonlinebibitems % imagen de una URL de internet
 		\bibitem{Author2019}
-		https://support.minitab.com/es-mx/minitab/18/help-and-how-to/modeling-statistics/regression/supporting-topics/basics/weighted-regression/
-		\newblock{\em Regresión ponderada}.
+		https://rpubs.com/Joaquin\_AR/255596
+		\newblock{\em A.D., Random Forest ...}.
+		\newblock{2017}
 
 		\beamertemplateonlinebibitems % imagen de una URL de internet
 		\bibitem{Author2019}
 		https://rpubs.com/Joaquin\_AR/242707
-		\newblock{\em Selección de predictores: Ridge y  Lasso}.
+		\newblock{\em Selección de predictores: Ridge y Lasso}.
 		\newblock{2016}
 
 		\beamertemplateonlinebibitems % imagen de una URL de internet

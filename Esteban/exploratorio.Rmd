@@ -245,188 +245,108 @@ coef(backward) %>% sort() %>% summary()
 
 ```
 
+```{r ALTERNATIVO}
+data_sep1 <- data %>%
+    filter(critical_temp > 55)
+data_sep2 <- data %>% 
+    filter(critical_temp <= 40)
+
+mod <- step(lm(critical_temp~.,data=data_sep1), direction = "backward", trace = 0)
+summary(mod)
+
+
+
+data_sep1$critical_temp <- exp(-data_sep1$critical_temp)
+
+data_sep2$critical_temp <- log(data_sep2$critical_temp)
+
+```
+
+
 
 ```{r BACKWARD POINTS}
 # OUTLIERS
 
-residuos_estandarizados <- mod_weighted_vif %>% rstandard()
-valores_ajustados <- mod_weighted_vif %>% fitted.values()
+residuos_estandarizados <- backward %>% rstandard()
+valores_ajustados <- backward %>% fitted.values()
 
-ggplot(mapping = aes(valores_ajustados, residuos_estandarizados)) +
+grafico_outliers <- ggplot(mapping = aes(valores_ajustados, residuos_estandarizados)) +
     theme_bw() +
-    labs(title = "Outliers",
-         x = "Valores Ajustados",
+    labs(x = "Valores Ajustados",
          y = "Residuos Estandarizados") +
-    theme(plot.title = element_text(hjust = 0.5)) +
     geom_jitter(color = "dodgerblue") +
-    geom_hline(yintercept = -2, color = "deepskyblue4", linetype = 2) +
-    geom_hline(yintercept = 2, color = "deepskyblue4", linetype = 2) +
+    geom_hline(yintercept = -2, color = "darkorange", linetype = 2, size = 1) +
+    geom_hline(yintercept = 2, color = "darkorange", linetype = 2, size = 1) +
     ylim(-6, 6)
 
 outliers <- residuos_estandarizados[residuos_estandarizados > 2 |
                                      residuos_estandarizados < -2]
-indices <- outliers %>% names() %>% as.numeric()
-
-data_bw <- data[-indices, ]
-
-full_mod_p <- lm(formula = formula, data = data_bw)
-backward_p <- step(full_mod_p, direction = "backward", trace = 0) %>%
-    eliminar_multicolinealidad(criterio = 10)
-aic_backward_p <- backward_p %>% aic()
-bic_backward_p <- backward_p %>% bic()
-variables_backward_p <- backward_p %>% coefficients() %>% length()
-supuestos_backward_p <- backward_p %>% supuestos()
-r_squared_backward_p <- summary(backward_p)$r.squared
-v_borradas_backward_p <- backward_p$variables_borradas
-
-# PLOT
-residuos_estandarizados <- backward_p %>% rstandard()
-valores_ajustados <- backward_p %>% fitted.values()
-
-ggplot(mapping = aes(valores_ajustados, residuos_estandarizados)) +
-    theme_bw() +
-    labs(title = "Outliers",
-         x = "Valores Ajustados",
-         y = "Residuos Estandarizados") +
-    theme(plot.title = element_text(hjust = 0.5)) +
-    geom_jitter(color = "dodgerblue") +
-    geom_hline(yintercept = -2, color = "deepskyblue4", linetype = 2) +
-    geom_hline(yintercept = 2, color = "deepskyblue4", linetype = 2) +
-    ylim(-6, 6)
 
 
 # PALANCA
-hat_values <- mod_weighted_vif %>% hatvalues()
-parametros <- mod_weighted_vif %>% coefficients() %>% length()
+hat_values <- backward %>% hatvalues()
+parametros <- backward %>% coefficients() %>% length()
 
 observaciones <- nrow(data)
 
 criterio_1 <- 2 * (parametros + 1) / observaciones
 criterio_2 <- 2 * parametros / observaciones
 
-ggplot(mapping = aes(hat_values, residuos_estandarizados)) +
+grafico_palanca <- ggplot(mapping = aes(hat_values, residuos_estandarizados)) +
     theme_bw() +
-    labs(title = "Puntos Extremos",
+    labs(
          x = "Hat Values",
          y = "Residuos Estandarizados") +
-    theme(plot.title = element_text(hjust = 0.5)) +
     geom_point(color = "dodgerblue") +
-    geom_vline(xintercept = criterio_1, color = "deepskyblue4", linetype = 2) +
-    geom_vline(xintercept = criterio_2, color = "brown3", linetype = 2)
+    geom_vline(xintercept = criterio_1, color = "darkorange", linetype = 2, size = 1) +
+    geom_vline(xintercept = criterio_2, color = "darkorange", linetype = 2, size = 1)
 puntos_extremos_criterio_1 <- hat_values[hat_values > criterio_1]
 
 # INFLUENCIA
 
-dffits <- dffits(mod_weighted_vif)
-abs_dffits <- abs(dffits)
-indices <- seq_along(abs_dffits)
-criterio <- 2 * sqrt(parametros / observaciones)
-# Porque hay muchas observaciones
+dffits <- dffits(backward) %>% abs
+cook_dist <- cooks.distance(backward)
+indices <- cook_dist %>% names %>% as.numeric
+criterio <- 2 * sqrt(length(coefficients(backward)) / nrow(data))
 
-ggplot(mapping = aes(indices, abs_dffits)) +
-    theme_bw() +
-    labs(title = "Puntos de Influencia",
-         x = "Índice",
-         y = "|DFFITS|") +
-    theme(plot.title = element_text(hjust = 0.5)) +
+
+grafico_cook <- ggplot(mapping = aes(indices, cook_dist)) +
     geom_point(color = "dodgerblue") +
-    geom_hline(yintercept = criterio, color = "deepskyblue4", linetype = 2) +
-    ylim(0,.5)
+    labs(x = "Índice", y = "Distancia de Cook") +
+    geom_hline(yintercept = 1, linetype = 2, color = "darkorange", size = 1) +
+    theme_bw()
 
-puntos_de_influencia <- abs_dffits[abs_dffits > criterio] %>% names() %>% as.numeric()
+grafixo_dffits <- ggplot(mapping = aes(indices, dffits)) +
+    geom_point(color = "dodgerblue") +
+    labs(x = "Índice", y = "|DFFITS|") +
+    geom_hline(yintercept = criterio, linetype = 2, color = "darkorange", size = 1) +
+    theme_bw()
+    
+# Backward
 
-data_bw <- data[-puntos_de_influencia, ]
-
-full_mod_p <- lm(formula = formula, data = data_bw)
-backward_p <- step(full_mod_p, direction = "backward", trace = 0) %>%
-    eliminar_multicolinealidad(criterio = 10)
-aic_backward_p <- backward_p %>% aic()
-bic_backward_p <- backward_p %>% bic()
-variables_backward_p <- backward_p %>% coefficients() %>% length()
-supuestos_backward_p <- backward_p %>% supuestos()
-r_squared_backward_p <- summary(backward_p)$r.squared
-v_borradas_backward_p <- backward_p$variables_borradas 
-
-backward_p %>% summary()
-
-```
-
-
-
-```{r BACKWARD WLS}
-
-ggplot(mapping = aes(backward$fitted.values, abs(backward$residuals))) +
-    theme_bw() +
-    labs(title = "Residuos Estandarizados vs Valores ajustados",
-         x = "Valores Ajustados",
-         y = "|Residuos Estandarizados|") +
-    theme(plot.title = element_text(hjust = 0.5)) +
-    geom_jitter(color = "dodgerblue") +
-    geom_hline(yintercept = 0, size = 0.2) +
-    geom_smooth(color = "deepskyblue4", method = "loess",
-                formula = y ~ x, se = FALSE) +
+grafico_backward <- ggplot() +
+    geom_density(aes(x = data$critical_temp, color = "dodgerblue"), size = 1.3,alpha = 0.3) +
+    geom_density(aes(x = backward$fitted.values, color = "darkorange"), size = 1.3,alpha = 0.3) + 
+    ylab("Densidad") +
+    xlab("Valores") +
     xlim(0, 150) +
-    ylim(0,500)
-
-abs_res <- abs(backward$residuals)
-terminos <- as.character(backward$terms)
-form <- as.formula(paste("abs_res ~", terminos[3], sep = ""))
-residuos_abs_mod <- lm(form, data = data)
-
-summary(residuos_abs_mod)
-
-mod_weights <- 1 / 7.68 ^ (residuos_abs_mod$fitted.values)
-
-mod_weighted <- lm(formula = formula(backward), data = data, weights = mod_weights) %>% eliminar_multicolinealidad(criterio = 10)
-
-summary(mod_weighted)
-aic(mod_weighted)
-
-ggplot(mapping = aes(mod_weighted$fitted.values, abs(mod_weighted$residuals))) +
-    theme_bw() +
-    labs(title = "Residuos Estandarizados vs Valores ajustados",
-         x = "Valores Ajustados",
-         y = "|Residuos Estandarizados|") +
-    theme(plot.title = element_text(hjust = 0.5)) +
-    geom_jitter(color = "dodgerblue") +
-    geom_hline(yintercept = 0, size = 0.2) +
-    geom_smooth(color = "deepskyblue4", method = "loess",
-                formula = y ~ x, se = FALSE) +
-    xlim(0, 150) +
-    ylim(0,500)
+    ylim(0,0.05) +
+    scale_color_identity(name = "Variable:", breaks = c("dodgerblue", "darkorange"), labels = c("critical_temp","Ajustados"), guide = "legend") +
+    theme_bw()
 
 
 
-final <- cbind(data$critical_temp, mod_weighted$fitted.values)
-boxplot(final)
-plot(final)
-
-plot(density(final[,1]))
-lines(density(final[,2]))
-
-qqplot(sort(final[,1]), sort(final[,2]))
-
-actual <- data$critical_temp 
-preds <- mod_weighted$fitted.values
-rss <- sum((preds - actual) ^ 2)
-tss <- sum((actual - mean(actual)) ^ 2)
-rsq <- 1 - rss/tss
-rsq
-
-boxplot(data$critical_temp)
-
-plot(data$critical_temp ~ mod_weighted$fitted.values)
-abline(0,1)
 ```
 
 
 
 ```{r RIDGE REGRESSION}
+backward <- step(full_mod, direction = "backward", trace = 0)
 data_ridge <- data
 data_ridge$range_Valence <- NULL
-x_vars <- model.matrix(formula(backward) , data_ridge)
+x_vars <- model.matrix(formula(backward), data_ridge)
 y_var <- data_ridge$critical_temp
-lambda_seq <- 10^seq(-2, 5, by = 0.001)
+lambda_seq <- 10^seq(-2, 1, by = 0.001)
 
 #set.seed(86)
 #train = sample(1:nrow(x_vars), 0.9 * nrow(x_vars))
@@ -459,7 +379,15 @@ rsq <- 1 - rsq
 rsq <- rsq * (obs-1)/(obs-cof-1)
 rsq <- 1 - rsq
 
-
+grafico_ridge <- ggplot() +
+    geom_density(aes(x = final[, 1], color = "dodgerblue"), size = 1.3,alpha = 0.3) +
+    geom_density(aes(x = final[, 2], color = "darkorange"), size = 1.3,alpha = 0.3) + 
+    ylab("Densidad") +
+    xlab("Valores") +
+    xlim(0, 150) +
+    ylim(0,0.05) +
+    scale_color_identity(name = "Variable:", breaks = c("dodgerblue", "darkorange"), labels = c("crit_temp","Ridge"), guide = "legend") +
+    theme_bw()
 
 ```
 
@@ -467,7 +395,7 @@ rsq <- 1 - rsq
 ```{r LASSO REGRESSION}
 x_vars <- model.matrix(critical_temp ~ ., data_ridge)
 y_var <- data_ridge$critical_temp
-lambda_seq <- 10^seq(-2, 5, by = 0.001)
+lambda_seq <- 10^seq(-2, 1, by = 0.001)
 
 set.seed(86)
 train = sample(1:nrow(x_vars), 0.5 * nrow(x_vars))
@@ -500,17 +428,15 @@ rsq <- 1 - rsq
 rsq <- rsq * (obs-1)/(obs-cof-1)
 rsq <- 1 - rsq
  
-plot(actual ~ preds)
-
-
-
-a <- coefficients(backward) %>% round(., 4) %>% as.data.frame()
-names(a) <- c("coef")
-a <- a %>% arrange(coef)
-
-b <- coef(ridge_best) %>% as.matrix() %>% as.data.frame() %>% round(., 6) %>% arrange(s0)
-
-c <- coef(lasso_best) %>% as.matrix() %>% as.data.frame() %>% round(., 6) %>% arrange(s0)
+grafico_lasso <- ggplot() +
+    geom_density(aes(x = final[, 1], color = "dodgerblue"), size = 1.3,alpha = 0.3) +
+    geom_density(aes(x = final[, 2], color = "darkorange"), size = 1.3,alpha = 0.3) + 
+    ylab("Densidad") +
+    xlab("Valores") +
+    xlim(0, 150) +
+    ylim(0,0.05) +
+    scale_color_identity(name = "Variable:", breaks = c("dodgerblue", "darkorange"), labels = c("crit_temp","Lasso"), guide = "legend") +
+    theme_bw()
 
 ```
 
@@ -600,5 +526,41 @@ bic_bw_av_1 <- sum(av1_bw_bic)
 
 r_squared_bw_av_1 <- correlacion_bw ^ 2
 
+```
+
+```{r}
+data_rf <- rio::import("datos//clean_db.csv")[2:35]
+data_rf$number_of_elements <- NULL
+data_rf$range_Valence <- NULL
+
+set.seed(56)
+train <- sample(1:nrow(data_rf), nrow(data_rf) / 2)
+data_train <- data_rf[train, ]
+ct_train <- data_rf$critical_temp[train]
+data_test <- data_rf[-train, ]
+ct_test <- data_rf$critical_temp[-train]
+
+random_forest <- randomForest::randomForest(critical_temp ~ .,data = data_train)
+random_forest
+predicciones <- predict(random_forest, data = data_test)
+
+
+grafico_rf <- ggplot() +
+    geom_density(aes(x = data_test$critical_temp, color = "dodgerblue"), size = 1.3,alpha = 0.3) +
+    geom_density(aes(x = predicciones, color = "darkorange"), size = 1.3,alpha = 0.3) + 
+    ylab("Densidad") +
+    xlab("Valores") +
+    xlim(0, 150) +
+    ylim(0,0.05) +
+    scale_color_identity(name = "Variable:", breaks = c("dodgerblue", "darkorange"), labels = c("crit_temp","R. Forest"), guide = "legend") +
+    theme_bw()
+
+grarfico_vr <- ggplot(data, aes(critical_temp)) +
+    geom_density(aes(y = ..count.. * 12), # multiply count by bins
+                 fill = "dodgerblue", alpha = .5, col = NA) + 
+    geom_histogram(binwidth = 12, alpha = .7, fill = "dodgerblue") +
+    ylab("Cuenta") +
+    geom_vline(xintercept = 55, color = "darkorange", linetype = 2, size = 1) +
+    theme_bw()
 ```
 

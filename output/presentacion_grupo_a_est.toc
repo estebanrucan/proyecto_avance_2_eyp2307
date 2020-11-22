@@ -1,7 +1,8 @@
 \babel@toc {spanish}{}
 \beamer@sectionintoc {1}{Avance 1}{3}{0}{1}
-\beamer@sectionintoc {2}{Nuevos modelos}{5}{0}{2}
-\beamer@sectionintoc {3}{Elegimos modelo}{7}{0}{3}
-\beamer@sectionintoc {4}{Ridge Regression}{9}{0}{4}
-\beamer@sectionintoc {5}{Conclusiones}{11}{0}{5}
-\beamer@sectionintoc {6}{Referencias bibliogr?ficas}{13}{0}{6}
+\beamer@sectionintoc {2}{Nuevos modelos}{8}{0}{2}
+\beamer@sectionintoc {3}{Elección de un modelo}{38}{0}{3}
+\beamer@sectionintoc {4}{Ridge Regression}{59}{0}{4}
+\beamer@sectionintoc {5}{Extra}{87}{0}{5}
+\beamer@sectionintoc {6}{Conclusiones}{100}{0}{6}
+\beamer@sectionintoc {7}{Referencias bibliográficas}{107}{0}{7}

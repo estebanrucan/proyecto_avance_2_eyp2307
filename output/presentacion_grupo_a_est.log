@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.11) (preloaded format=xelatex 2020.11.5)  12 NOV 2020 23:54
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.11) (preloaded format=xelatex 2020.11.5)  22 NOV 2020 16:26
 entering extended mode
 **./presentacion_grupo_a_est.tex
 (presentacion_grupo_a_est.tex
@@ -823,7 +823,7 @@ default.sty
 \beamer@dimb=\dimen280
 )
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beameroutertheme
-default.sty)))
+default.sty))) (knitr.sty
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/framed\framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip63
@@ -831,19 +831,11 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \fb@frh=\dimen282
 \FrameRule=\dimen283
 \FrameSep=\dimen284
-)
+))
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/base\alltt.sty
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
-(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
-Package: inputenc 2020/08/01 v1.3d Input encoding file
-\inpenc@prehook=\toks44
-\inpenc@posthook=\toks45
-
-
-Package inputenc Warning: inputenc package ignored with utf8 based engines.
-
-) (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2020/10/27 3.51 The Babel package
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
@@ -868,13 +860,21 @@ File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/babel-spanish\spanish.l
 df
 Language: spanish.ldf 2016/03/03 v5.0p Spanish support from the babel system
-\es@quottoks=\toks46
+\es@quottoks=\toks44
 \es@quotdepth=\count319
 Package babel Info: Making " an active character on input line 561.
 Package babel Info: Making . an active character on input line 662.
 Package babel Info: Making < an active character on input line 707.
 Package babel Info: Making > an active character on input line 707.
-)) (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/base\makeidx.sty
+)) (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks45
+\inpenc@posthook=\toks46
+
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+) (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/base\makeidx.sty
 Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
 )
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
@@ -1030,19 +1030,18 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@temp=\box132
 \tcb@out=\write5
 \tcb@record@out=\write6
-) (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\pifont.sty
-Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
-LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
-
-(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\upzd.fd
-File: upzd.fd 2001/06/04 font definitions for U/pzd.
 )
-LaTeX Font Info:    Trying to load font information for U+psy on input line 64.
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/cprotect\cprotect.sty
+Package: cprotect 2011/01/27 v1.0e (Bruno Le Floch)
 
-
-(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\upsy.fd
-File: upsy.fd 2001/06/04 font definitions for U/psy.
-))
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/bigfoot\suffix.sty
+Package: suffix 2006/07/15 1.5a Variant command support
+)
+\CPT@WriteOut=\write7
+\c@CPT@WriteCount=\count337
+\c@CPT@numB=\count338
+\CPT@commandatend@toks=\toks51
+)
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/grffile\grffile.sty
 Package: grffile 2019/11/11 v2.1 Extended file name support for graphics (legac
 y)
@@ -1058,68 +1057,138 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
-\XKV@toks=\toks51
-\XKV@tempa@toks=\toks52
+\XKV@toks=\toks52
+\XKV@tempa@toks=\toks53
 )
-\XKV@depth=\count337
+\XKV@depth=\count339
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-\zifour@ocount=\count338
+\zifour@ocount=\count340
 )
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count339
+\lst@mode=\count341
 \lst@gtempboxa=\box133
-\lst@token=\toks53
-\lst@length=\count340
+\lst@token=\toks54
+\lst@length=\count342
 \lst@currlwidth=\dimen299
-\lst@column=\count341
-\lst@pos=\count342
+\lst@column=\count343
+\lst@pos=\count344
 \lst@lostspace=\dimen300
 \lst@width=\dimen301
-\lst@newlines=\count343
-\lst@lineno=\count344
+\lst@newlines=\count345
+\lst@lineno=\count346
 \lst@maxwidth=\dimen302
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count345
-\lst@skipnumbers=\count346
+\c@lstnumber=\count347
+\lst@skipnumbers=\count348
 \lst@framebox=\box134
 )
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
-(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\helvet.sty
-Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
-)
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/sansmath\sansmath.sty
 Package: sansmath 2007/02/28  ver 1.1 Donald Arseneau
-\c@mv@sans=\count347
+\c@mv@sans=\count349
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `sans'
-(Font)                  OT1/cmr/m/n --> OT1/phv/m/n on input line 103.
+(Font)                  OT1/cmr/m/n --> OT1/lmss/m/n on input line 103.
 LaTeX Font Info:    Overwriting math alphabet `\mathsfsl' in version `sans'
-(Font)                  OT1/phv/m/sl --> OT1/phv/m/sl on input line 104.
+(Font)                  OT1/lmss/m/sl --> OT1/lmss/m/sl on input line 104.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `sans'
-(Font)                  OT1/cmr/m/n --> OT1/phv/m/n on input line 105.
+(Font)                  OT1/cmr/m/n --> OT1/lmss/m/n on input line 105.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `sans'
 (Font)                  OML/cmm/m/it --> OML/cmm/m/it on input line 109.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `sans'
 (Font)                  OMS/cmsy/m/n --> OMS/cmsy/m/n on input line 110.
 LaTeX Font Info:    Overwriting math alphabet `\mathsfbf' in version `sans'
-(Font)                  OT1/phv/bx/sl --> OT1/phv/bx/n on input line 112.
+(Font)                  OT1/lmss/bx/sl --> OT1/lmss/bx/n on input line 112.
 )
-(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerthemeAntib
-es.sty
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerthemeDresd
+en.sty
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beameroutertheme
-tree.sty)
+miniframes.sty)
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamercolortheme
-whale.sty)
+whale.sty))
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamercolortheme
 orchid.sty)
-(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerinnertheme
-rectangles.sty))
-(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2020-10-27 L3 programming layer (loader) 
+
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
+ex.def
+File: l3backend-xetex.def 2020-09-24 L3 backend support: XeTeX
+\g__graphics_track_int=\count350
+\l__pdf_internal_box=\box135
+\g__pdf_backend_object_int=\count351
+\g__pdf_backend_annotation_int=\count352
+))
+Package: xparse 2020-10-27 L3 Experimental document command parser
+
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e-generic.tex))
+Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
+
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec-xetex
+.sty
+Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count353
+\l__fontspec_language_int=\count354
+\l__fontspec_strnum_int=\count355
+\l__fontspec_tmp_int=\count356
+\l__fontspec_tmpa_int=\count357
+\l__fontspec_tmpb_int=\count358
+\l__fontspec_tmpc_int=\count359
+\l__fontspec_em_int=\count360
+\l__fontspec_emdef_int=\count361
+\l__fontspec_strong_int=\count362
+\l__fontspec_strongdef_int=\count363
+\l__fontspec_tmpa_dim=\dimen303
+\l__fontspec_tmpb_dim=\dimen304
+\l__fontspec_tmpc_dim=\dimen305
+ (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)
+(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.cfg))
+)
+
+Package fontspec Info: Font family 'Arial(0)' created for font 'Arial' with
+(fontspec)             options [Ligatures=TeX].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"Arial/OT:script=latn;language=dflt;mapping=tex-text;
+"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->"Arial/OT:script=latn;language=dflt;+smcp;mapping=tex
+-text;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"Arial/B/OT:script=latn;language=dflt;mapping=tex-tex
+t;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->"Arial/B/OT:script=latn;language=dflt;+smcp;mapping=t
+ex-text;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->"Arial/I/OT:script=latn;language=dflt;mapping=tex-tex
+t;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"Arial/I/OT:script=latn;language=dflt;+smcp;mapping=t
+ex-text;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"Arial/BI/OT:script=latn;language=dflt;mapping=tex-te
+xt;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->"Arial/BI/OT:script=latn;language=dflt;+smcp;mapping=
+tex-text;"
+
+ (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
 Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
 s
 \f@nch@headwidth=\skip69
@@ -1131,59 +1200,42 @@ s
 \f@nch@O@erf=\skip75
 \f@nch@O@olf=\skip76
 \f@nch@O@orf=\skip77
-)
-(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
+) (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
-LaTeX Font Info:    Trying to load font information for TU+phv on input line 17
-3.
-LaTeX Font Info:    No file TUphv.fd. on input line 173.
-
-
-LaTeX Font Warning: Font shape `TU/phv/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 173.
-
-
-(C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
-ex.def
-File: l3backend-xetex.def 2020-09-24 L3 backend support: XeTeX
-\g__graphics_track_int=\count348
-\l__pdf_internal_box=\box135
-\g__pdf_backend_object_int=\count349
-\g__pdf_backend_annotation_int=\count350
-) (presentacion_grupo_a_est.aux
+(presentacion_grupo_a_est.aux
 LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 )
 \openout1 = `presentacion_grupo_a_est.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 173.
-LaTeX Font Info:    ... okay on input line 173.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 173.
-LaTeX Font Info:    ... okay on input line 173.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 173.
-LaTeX Font Info:    ... okay on input line 173.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 173.
-LaTeX Font Info:    ... okay on input line 173.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 173.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
-73.
+12.
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 173.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 173.
-LaTeX Font Info:    ... okay on input line 173.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 173.
-LaTeX Font Info:    ... okay on input line 173.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 173.
-LaTeX Font Info:    ... okay on input line 173.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 173.
-LaTeX Font Info:    ... okay on input line 173.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 173.
-LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1218,7 +1270,7 @@ LaTeX Font Info:    ... okay on input line 173.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 173.
+Package hyperref Info: Link coloring OFF on input line 112.
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -1229,65 +1281,65 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count351
+\c@section@level=\count364
 )
-LaTeX Info: Redefining \ref on input line 173.
-LaTeX Info: Redefining \pageref on input line 173.
-LaTeX Info: Redefining \nameref on input line 173.
+LaTeX Info: Redefining \ref on input line 112.
+LaTeX Info: Redefining \pageref on input line 112.
+LaTeX Info: Redefining \nameref on input line 112.
  (presentacion_grupo_a_est.out) (presentacion_grupo_a_est.out)
-\@outlinefile=\write7
-\openout7 = `presentacion_grupo_a_est.out'.
+\@outlinefile=\write8
+\openout8 = `presentacion_grupo_a_est.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 173.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 112.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 173.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 112.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 173.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 173.
+(Font)                  OT1/cmr/m/n --> TU/Arial(0)/m/n on input line 112.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/phv/b/n on input line 173.
+(Font)                  OT1/cmr/bx/n --> TU/lmss/b/n on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/phv/b/n on input line 173.
+(Font)                  OT1/cmr/bx/n --> TU/lmss/b/n on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `sans'
-(Font)                  OT1/cmr/bx/n --> TU/phv/b/n on input line 173.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 173.
+(Font)                  OT1/cmr/bx/n --> TU/lmss/b/n on input line 112.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/phv/m/n on input line 173.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/phv/m/n on input line 173.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/m/n on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `sans'
-(Font)                  OT1/cmss/m/n --> TU/phv/m/n on input line 173.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 173.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 112.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/phv/m/it on input line 173.
+(Font)                  OT1/cmr/m/it --> TU/lmss/m/it on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/phv/m/it on input line 173.
+(Font)                  OT1/cmr/bx/it --> TU/lmss/m/it on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `sans'
-(Font)                  OT1/cmr/m/it --> TU/phv/m/it on input line 173.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 173.
+(Font)                  OT1/cmr/m/it --> TU/lmss/m/it on input line 112.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/zi4/m/n on input line 173.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/zi4/m/n on input line 173.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `sans'
-(Font)                  OT1/cmtt/m/n --> TU/zi4/m/n on input line 173.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 112.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  TU/phv/m/n --> TU/phv/b/n on input line 173.
+(Font)                  TU/lmss/m/n --> TU/lmss/b/n on input line 112.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  TU/phv/m/it --> TU/phv/b/it on input line 173.
+(Font)                  TU/lmss/m/it --> TU/lmss/b/it on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 173.
+(Font)                  OT1/cmr/bx/n --> TU/Arial(0)/b/n on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  TU/phv/b/n --> TU/phv/b/n on input line 173.
+(Font)                  TU/lmss/b/n --> TU/lmss/b/n on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  TU/phv/m/n --> TU/phv/b/n on input line 173.
+(Font)                  TU/lmss/m/n --> TU/lmss/b/n on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  TU/phv/m/it --> TU/phv/b/it on input line 173.
+(Font)                  TU/lmss/m/it --> TU/lmss/b/it on input line 112.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  TU/zi4/m/n --> TU/zi4/b/n on input line 173.
+(Font)                  TU/lmtt/m/n --> TU/lmtt/b/n on input line 112.
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator-b
 asic-dictionary-English.dict
@@ -1313,28 +1365,95 @@ Dictionary: translator-numbers-dictionary, Language: English
 heorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \. on input line 173.
-LaTeX Info: Redefining \% on input line 173.
-\c@lstlisting=\count352
+LaTeX Info: Redefining \. on input line 112.
+LaTeX Info: Redefining \% on input line 112.
+\c@lstlisting=\count365
+
+Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 112.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 112.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 112.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 112.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 112.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 112.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 112.
+LaTeX Font Info:    Redeclaring math accent \check on input line 112.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 112.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 112.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 112.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 112.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 112.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 112.
+
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/Arial(0)/m/n on input line 112.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 112.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmss/b/n --> TU/Arial(0)/m/n on input line 112.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `sans' on input line 112.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `sans'
+(Font)                  OT1/lmss/m/n --> TU/Arial(0)/m/n on input line 112.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/Arial(0)/m/n --> TU/Arial(0)/m/n on input line 112.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 112.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  TU/lmss/m/it --> TU/Arial(0)/m/it on input line 112.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  TU/lmss/b/n --> TU/Arial(0)/b/n on input line 112.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  TU/lmss/m/n --> TU/lmss/m/n on input line 112.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  TU/lmtt/m/n --> TU/lmtt/m/n on input line 112.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/Arial(0)/m/n --> TU/Arial(0)/b/n on input line 112.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  TU/lmss/b/it --> TU/Arial(0)/b/it on input line 112.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  TU/lmss/b/n --> TU/lmss/b/n on input line 112.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  TU/lmtt/b/n --> TU/lmtt/b/n on input line 112.
  (presentacion_grupo_a_est.nav)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 179
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 118.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 118
 .
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 179
+LaTeX Font Info:    Trying to load font information for U+msb on input line 118
 .
 
 (C:\Users\esteb\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-LaTeX Font Warning: Font shape `TU/phv/m/it' undefined
-(Font)              using `TU/phv/m/n' instead on input line 179.
-
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 118.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <6> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 118.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <5> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 118.
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
+
 [1
 
 ]
@@ -1358,14 +1477,15 @@ File: logo-uc.pdf Graphic file (type pdf)
  [3
 
 ]
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 140.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 140.
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [4
 
-] (presentacion_grupo_a_est.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+]
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [5
@@ -1373,40 +1493,33 @@ File: logo-uc.pdf Graphic file (type pdf)
 ]
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
+ [6
 
-[6
-
-] (presentacion_grupo_a_est.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+]
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [7
 
 ]
-File: logo-uc.pdf Graphic file (type pdf)
-<use logo-uc.pdf>
- [8
-
-] (presentacion_grupo_a_est.toc
+(presentacion_grupo_a_est.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
+ [8
 
-[9
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [9
 
 ]
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [10
 
-] (presentacion_grupo_a_est.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+]
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [11
@@ -1416,36 +1529,604 @@ File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
  [12
 
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [13
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [14
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [15
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [16
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+
+[17
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [18
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [19
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [20
+
+]
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <14.4> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 209.
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [21
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [22
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [23
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [24
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [25
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [26
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [27
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [28
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [29
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [30
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [31
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+
+[32
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [33
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [34
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [35
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [36
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+ (presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-2-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-2-1.pdf>
+)
+LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <14.4> not available
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 286.
+
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [37
+
+]
+(presentacion_grupo_a_est.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [38
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [39
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+ (presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-3-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-3-1.pdf>
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+
+[40
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+ (presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-4-1.pdf>
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [41
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+ (presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-5-1.pdf>
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+
+[42
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+ (presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-6-1.pdf>
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [43
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+ (presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-7-1.pdf>
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+
+[44
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [45
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [46
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [47
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [48
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [49
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [50
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [51
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [52
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [53
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+ (presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-8-1.pdf>
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [54
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [55
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [56
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [57
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [58
+
 ] (presentacion_grupo_a_est.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
- [13
+ [59
 
 ]
-File: beamericonarticle.pdf Graphic file (type pdf)
-<use beamericonarticle.pdf>
-File: beamericononline.pdf Graphic file (type pdf)
-<use beamericononline.pdf>
-File: beamericononline.pdf Graphic file (type pdf)
-<use beamericononline.pdf>
-File: beamericonarticle.pdf Graphic file (type pdf)
-<use beamericonarticle.pdf>
 File: logo-uc.pdf Graphic file (type pdf)
 <use logo-uc.pdf>
- [14
+ [60
 
 ]
-\tf@nav=\write8
-\openout8 = `presentacion_grupo_a_est.nav'.
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [61
 
-\tf@toc=\write9
-\openout9 = `presentacion_grupo_a_est.toc'.
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
 
-\tf@snm=\write10
-\openout10 = `presentacion_grupo_a_est.snm'.
+[62
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [63
+
+]
+File: figures/ridge.png Graphic file (type bmp)
+<figures/ridge.png>
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [64
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [65
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [66
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [67
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [68
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [69
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [70
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [71
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [72
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [73
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [74
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [75
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [76
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+
+[77
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [78
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [79
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [80
+
+]
+Overfull \hbox (10.37576pt too wide) in paragraph at lines 555--555
+ [] 
+ []
+
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+[81
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [82
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [83
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [84
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+ (presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-9-1.pdf>
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [85
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+
+(presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-10-1.pdf>
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [86
+
+] (presentacion_grupo_a_est.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [87
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+
+[88
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [89
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [90
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [91
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [92
+
+]
+File: figures/arbol-de-decisiones.png Graphic file (type bmp)
+<figures/arbol-de-decisiones.png>
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [93
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [94
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [95
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [96
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [97
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [98
+
+]
+\openout4 = `presentacion_grupo_a_est.vrb'.
+
+
+(presentacion_grupo_a_est.vrb
+File: figure/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-11-1.pdf>
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [99
+
+] (presentacion_grupo_a_est.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [100
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+
+[101
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [102
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [103
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [104
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [105
+
+]
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [106
+
+] (presentacion_grupo_a_est.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+ [107
+
+]
+File: beamericonarticle.pdf Graphic file (type pdf)
+<use beamericonarticle.pdf>
+File: beamericononline.pdf Graphic file (type pdf)
+<use beamericononline.pdf>
+File: beamericononline.pdf Graphic file (type pdf)
+<use beamericononline.pdf>
+File: beamericononline.pdf Graphic file (type pdf)
+<use beamericononline.pdf>
+File: logo-uc.pdf Graphic file (type pdf)
+<use logo-uc.pdf>
+
+[108
+
+]
+\tf@nav=\write9
+\openout9 = `presentacion_grupo_a_est.nav'.
+
+\tf@toc=\write10
+\openout10 = `presentacion_grupo_a_est.toc'.
+
+\tf@snm=\write11
+\openout11 = `presentacion_grupo_a_est.snm'.
 
  (presentacion_grupo_a_est.aux
 LaTeX Info: Redefining \. on input line 25.
@@ -1453,19 +2134,15 @@ LaTeX Info: Redefining \% on input line 25.
 )
 Package rerunfilecheck Info: File `presentacion_grupo_a_est.out' has not change
 d.
-(rerunfilecheck)             Checksum: 2E7B8A091C5373B72236E8BB6749166A;316.
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
+(rerunfilecheck)             Checksum: 8DB6C2D759D368704266219918D7D8B6;578.
  ) 
 Here is how much of TeX's memory you used:
- 26651 strings out of 412197
- 485472 string characters out of 2849633
- 837147 words of memory out of 3000000
- 45605 multiletter control sequences out of 15000+200000
- 540247 words of font info for 56 fonts, out of 3000000 for 9000
+ 29232 strings out of 412197
+ 578171 string characters out of 2849633
+ 1070493 words of memory out of 3000000
+ 48085 multiletter control sequences out of 15000+200000
+ 543724 words of font info for 110 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
- 125i,15n,126p,510b,693s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 125i,19n,126p,485b,825s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on presentacion_grupo_a_est.pdf (14 pages).
+Output written on presentacion_grupo_a_est.pdf (108 pages).
